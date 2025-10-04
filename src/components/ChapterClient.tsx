@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import type { Verse } from "@/types/bible";
 import { prevChapter, nextChapter } from "@/lib/canon";
+import DOMPurify from "isomorphic-dompurify";
+
 
 type Note = {
   id: number;
@@ -33,6 +35,27 @@ export default function ChapterClient({
 
   const START_BIAS = 0;
   const END_BIAS = 0;
+
+   // helper for external links
+function sanitizeNoteHTML(raw: string) {
+  // 1) Sanitize (allowing target/rel so we can keep them if already present)
+  const clean = DOMPurify.sanitize(raw ?? "", {
+    ADD_ATTR: ["target", "rel"],
+  });
+
+  // 2) Ensure http/https links open safely in a new tab
+  //    - add target and rel if they’re missing
+  return clean.replace(
+    /<a\b([^>]*\bhref="https?:[^"]*"[^>]*)>/gi,
+    (full, attrs) => {
+      let a = attrs;
+      if (!/\btarget\s*=/.test(a)) a += ' target="_blank"';
+      if (!/\brel\s*=/.test(a)) a += ' rel="noopener noreferrer nofollow"';
+      return `<a${a}>`;
+    }
+  );
+}
+
 
   // --- helpers for note highlighting ---
   function extractQuotedPhrase(body: string): string | null {
@@ -176,9 +199,13 @@ const renderVerse = (v: Verse) => {
               {activeNote.book} {activeNote.chapter}:{activeNote.verse}
             </div>
 
-            <div className="text-neutral-900 dark:text-neutral-100">
-              {activeNote.body}
-            </div>
+		<div
+		  className="note-popup text-neutral-900 dark:text-neutral-100"
+		  dangerouslySetInnerHTML={{
+			__html: sanitizeNoteHTML(activeNote?.body ?? ""),
+		  }}
+		/>
+
 
             <div className="mt-3 text-right">
               <button
