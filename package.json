@@ -12,13 +12,14 @@
     "seed:notes": "node scripts/seed-notes.js",
     "pack:db": "node scripts/pack-prod-db.js",
     "build:ukmap": "node scripts/build-uk-map.cjs",
-	 "fts:rebuild": "node scripts/rebuild-fts.cjs",
+    "fts:rebuild": "node scripts/rebuild-fts.cjs",
     "seed:uk": "npm run build:ukmap && node scripts/seed-uk-patches.cjs",
-	"vercel-build": "node -e \"require('fs').mkdirSync('data',{recursive:true})\" && npm run migrate && npm run seed && npm run seed:notes && npm run fts:rebuild && npm run pack:db && next build --turbopack"
+    "vercel-build": "node -e \"require('fs').mkdirSync('data',{recursive:true})\" && npm run migrate && npm run seed && npm run seed:notes && npm run fts:rebuild && npm run pack:db && next build --turbopack"
   },
   "dependencies": {
     "@vercel/speed-insights": "1.2.0",
     "better-sqlite3": "^12.4.1",
+    "isomorphic-dompurify": "^2.28.0",
     "next": "15.5.4",
     "react": "19.1.0",
     "react-dom": "19.1.0"
