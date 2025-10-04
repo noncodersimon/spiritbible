@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full" suppressHydrationWarning>
       <body
-        className={`${inter.className} h-full bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100`}
+        className={`${inter.className} h-full `}
       >
         {/* Header */}
         <header className="site-header sticky top-0 z-50 border-b border-neutral-200/50 dark:border-neutral-900/50 bg-transparent dark:bg-transparent">
