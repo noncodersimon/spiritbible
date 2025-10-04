@@ -1,0 +1,41 @@
+{
+  "name": "bible-site",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build --turbopack",
+    "start": "next start",
+    "lint": "next lint",
+    "migrate": "node scripts/migrate.cjs",
+    "seed": "node scripts/seed.js",
+    "seed:notes": "node scripts/seed-notes.js",
+    "pack:db": "node scripts/pack-prod-db.js",
+    "build:ukmap": "node scripts/build-uk-map.cjs",
+	 "fts:rebuild": "node scripts/rebuild-fts.cjs",
+    "seed:uk": "npm run build:ukmap && node scripts/seed-uk-patches.cjs",
+	"vercel-build": "node -e \"require('fs').mkdirSync('data',{recursive:true})\" && npm run migrate && npm run seed && npm run seed:notes && npm run fts:rebuild && npm run pack:db && next build --turbopack"
+  },
+  "dependencies": {
+    "@vercel/speed-insights": "1.2.0",
+    "better-sqlite3": "^12.4.1",
+    "next": "15.5.4",
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4.1.13",
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.5.4",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  },
+  "engines": {
+    "node": "20.x"
+  }
+}
