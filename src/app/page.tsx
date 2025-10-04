@@ -25,12 +25,14 @@ function HorizontalScroller<T>({
   getLabel,
   isActive,
   onClick,
+  getDataAttrs, // <-- NEW (optional)
 }: {
   items: T[];
   getKey: (it: T) => string;
   getLabel: (it: T) => string | number;
   isActive: (it: T) => boolean;
   onClick: (it: T) => void;
+  getDataAttrs?: (it: T) => Record<string, string | number>; // <-- NEW
 }) {
   return (
     <div
@@ -46,18 +48,19 @@ function HorizontalScroller<T>({
     >
       {items.map((it) => {
         const active = isActive(it);
+        const extra = getDataAttrs ? getDataAttrs(it) : undefined; // <-- NEW
         return (
           <button
             key={getKey(it)}
             onClick={() => onClick(it)}
             className={`chip ${active ? 'is-active' : ''}`}
             style={{
-              // keep only layout/spacing inline; colours come from CSS
               whiteSpace: 'nowrap',
               borderRadius: 8,
               padding: '6px 10px',
               cursor: 'pointer',
             }}
+            {...extra} // <-- NEW: safely applies data attributes
           >
             {getLabel(it)}
           </button>
@@ -66,6 +69,7 @@ function HorizontalScroller<T>({
     </div>
   );
 }
+
 
 // Bottom Inline Previous/Next nav
 function InlineNav({
@@ -181,6 +185,28 @@ function scrollToReaderTop() {
       alive = false;
     };
   }, []); // once
+
+useEffect(() => {
+  if (!books.length || selectedBook) return;
+
+  const targetName = 'Matthew';
+  const found = books.find(
+    (b) => b.book.toLowerCase() === targetName.toLowerCase()
+  );
+  const chosen = found ?? books[0];
+
+  setSelectedBook(chosen);
+  setSelectedChapter(1);
+
+  // Center the chosen book in view
+  // (CSS.escape is in all modern browsers; TS knows it from the DOM lib)
+  const sel = `[data-bk="${CSS.escape(chosen.book)}"]`;
+  const btn = document.querySelector<HTMLButtonElement>(sel);
+  // use block:'nearest' to avoid vertical jump
+  btn?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+}, [books, selectedBook]);
+
+
 
   // Chapters array for slider
   const chapters = useMemo<number[]>(() => {
@@ -378,6 +404,7 @@ function scrollToReaderTop() {
           b.book.toLowerCase() === selectedBook!.book.toLowerCase()
         }
         onClick={(b) => onPickBook(b)}
+		  getDataAttrs={(b) => ({ 'data-bk': b.book })}
       />
 
       {/* Chapter scroller */}
