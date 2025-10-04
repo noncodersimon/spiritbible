@@ -17,21 +17,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-     <html lang="en" className="h-full" suppressHydrationWarning>
-      <body className="h-full bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
+    <html lang="en" className="h-full" suppressHydrationWarning>
+      <body
+        className={`${inter.className} h-full bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100`}
+      >
         {/* Header */}
-		<header className="site-header sticky top-0 z-50 border-b border-neutral-200/50 dark:border-neutral-900/50 bg-transparent dark:bg-transparent">
-		  <div className="mx-auto max-w-5xl w-full px-4 py-3">
-			<Link href="/" className="site-title font-semibold tracking-tight text-lg">
-			  SpiritBible
-			</Link>
-		  </div>
-		</header>
-
-		{/* keep this empty or add right-side actions later */}
-	  </div>
-	</header>
-
+        <header className="site-header sticky top-0 z-50 border-b border-neutral-200/50 dark:border-neutral-900/50 bg-transparent dark:bg-transparent">
+          <div className="mx-auto max-w-5xl w-full px-4 py-3 flex items-center justify-start">
+            <Link href="/" className="site-title font-semibold tracking-tight text-lg">
+              SpiritBible
+            </Link>
+          </div>
+        </header>
 
         {/* Page content */}
         <main className="mx-auto max-w-5xl px-4 py-6">{children}</main>
