@@ -23,15 +23,15 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* Dark mode: keep the SAME image (black banner happens when
+   a dark bg-color overrides the image). */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    /* Slightly stronger overlay in dark to keep contrast */
+    --banner-img: url("/pebbles-banner.JPG");
     --banner-overlay: linear-gradient(
       to right,
-      rgba(0, 0, 0, 0.55),
-      rgba(0, 0, 0, 0.45);
+      rgba(0,0,0,0.60),
+      rgba(0,0,0,0.45)
     );
   }
 }
@@ -56,29 +56,47 @@ button { touch-action: manipulation; }
 /* Optional: thin scrollbars for horizontal scrollers */
 .scroller { scrollbar-width: thin; }
 
-/* ---------- Pebble banner header ---------- */
-/* Add this class to the element that wraps your top bar/title */
+/* ---------- Header with photo background ---------- */
 .site-header {
-  /* overlay + image */
+  /* ensure the image is used in both modes */
   background-image: var(--banner-overlay), var(--banner-img);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 
+  /* prevent any bg color from masking the image */
+  background-color: transparent !important;
+
   min-height: 68px;
   padding: 12px 16px;
 
   display: flex;
-  align-items: center;          /* vertically center the row */
-  justify-content: flex-start;  /* keep content on the left */
+  align-items: center;          /* vertically center content */
+  justify-content: flex-start;  /* title on the left */
 }
 
+
+/* Repeat the background-image inside dark media query to beat specificity */
+@media (prefers-color-scheme: dark) {
+  .site-header {
+    background-image: var(--banner-overlay), var(--banner-img);
+    background-color: transparent !important;
+  }
+}
 
 /* White title text on photo */
 .site-title,
 .site-title a {
   color: #ffffff !important;
   text-decoration: none;
+}
+
+/* Title/link color on top of the photo */
+.site-title,
+.site-title a {
+  color: #fff !important;
+  text-decoration: none;
+  text-shadow: 0 1px 2px rgba(0,0,0,.35);
 }
 
 /* Optional: give the title a subtle text-shadow for extra legibility */
