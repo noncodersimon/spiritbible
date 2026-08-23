@@ -97,14 +97,8 @@ function InlineNav({
         aria-label="Previous chapter"
         disabled={!prev}
         onClick={() => prev && onGo(prev.book, prev.chapter)}
-        style={{
-          border: '1px solid #ddd',
-          background: prev ? '#f7f7f7' : '#eee',
-          color: '#222',
-          borderRadius: 6,
-          padding: '8px 12px',
-          cursor: prev ? 'pointer' : 'not-allowed',
-        }}
+        className="chip"
+        style={{ padding: '8px 12px' }}
       >
         ← Previous
       </button>
@@ -115,14 +109,8 @@ function InlineNav({
         aria-label="Next chapter"
         disabled={!next}
         onClick={() => next && onGo(next.book, next.chapter)}
-        style={{
-          border: '1px solid #ddd',
-          background: next ? '#f7f7f7' : '#eee',
-          color: '#222',
-          borderRadius: 6,
-          padding: '8px 12px',
-          cursor: next ? 'pointer' : 'not-allowed',
-        }}
+        className="chip"
+        style={{ padding: '8px 12px' }}
       >
         Next →
       </button>
@@ -372,24 +360,9 @@ useEffect(() => {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder='Try: John 3:16 or "festival"'
-          style={{
-            flex: 1,
-            border: '1px solid #ccc',
-            borderRadius: 8,
-            padding: '10px 12px',
-          }}
+          className="text-input"
         />
-        <button
-          type="submit"
-          style={{
-            border: '1px solid #444',
-            background: '#111',
-            color: '#fff',
-            borderRadius: 8,
-            padding: '10px 14px',
-            cursor: 'pointer',
-          }}
-        >
+        <button type="submit" className="btn-primary">
           Search
         </button>
       </form>
@@ -436,7 +409,7 @@ useEffect(() => {
             {searchResults.map((r, i) => (
               <li
                 key={`${r.book}-${r.chapter}-${r.verse}-${i}`}
-                style={{ padding: '10px 0', borderBottom: '1px solid #eee' }}
+                style={{ padding: '10px 0', borderBottom: '1px solid var(--border-soft)' }}
               >
                 <button
                   onClick={() => openHit(r)}

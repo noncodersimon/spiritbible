@@ -1,9 +1,36 @@
 @import "tailwindcss";
 
+/* ==========================================================================
+   SpiritBible - themed to the Digitelos design system.
+
+   Tokens are lifted from the Digitelos site (github.com/noncodersimon/digitelos,
+   css/main.css) so the family stays in step: cobalt and azure for chrome,
+   amber for highlights only, ink and parchment neutrals. The pebbles banner
+   stays - it is this site's own identity - with the spiral mark beside the
+   title. Note highlights use amber, the one place a highlight colour is
+   doing its actual job.
+   ========================================================================== */
+
 /* ---------- CSS variables / theme ---------- */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand colours, fixed */
+  --cobalt: #2b57db;
+  --azure: #17a2e8;
+  --amber: #f98e12;
+  --ink: #0b0b10;
+  --parchment: #eceae1;
+
+  /* Semantic - light theme */
+  color-scheme: light;
+  --background: #fbfaf6;
+  --foreground: var(--ink);
+  --surface: #ffffff;
+  --border-soft: #e3e0d5;
+  --input-border: #a9a599;
+  --accent: var(--cobalt); /* solid fills: buttons, active chips */
+  --accent-hover: #1e43b8;
+  --accent-text: var(--cobalt); /* links and tinted text on the ground */
+  --note-mark: rgba(249, 142, 18, 0.28); /* amber, for note highlights */
 
   --banner-img: url("/pebbles-banner.JPG");
   --banner-overlay: linear-gradient(
@@ -13,41 +40,66 @@
   );
 }
 
-/* Dark mode: override BOTH the theme colors and the banner */
+/* Dark mode: override BOTH the theme colours and the banner */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;   /* add this */
-    --foreground: #ededed;   /* add this */
+    color-scheme: dark;
+    --background: var(--ink);
+    --foreground: #ededed;
+    --surface: #15151c;
+    --border-soft: #26262e;
+    --input-border: #3d3d48;
+    --accent: var(--cobalt); /* cobalt + white text works on either ground */
+    --accent-hover: #3a67e4;
+    --accent-text: var(--azure); /* cobalt is too dark as text on ink */
+    --note-mark: rgba(249, 142, 18, 0.35);
 
     --banner-img: url("/pebbles-banner.JPG");
     --banner-overlay: linear-gradient(
       to right,
-      rgba(0,0,0,0.60),
-      rgba(0,0,0,0.45)
+      rgba(0, 0, 0, 0.6),
+      rgba(0, 0, 0, 0.45)
     );
   }
 }
-
 
 /* ---------- Base ---------- */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body, "Inter"), system-ui, -apple-system, "Segoe UI",
+    Roboto, sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display, "Space Grotesk"), var(--font-body, "Inter"),
+    system-ui, sans-serif;
+  letter-spacing: -0.01em;
 }
 
 :focus-visible {
-  outline: 2px solid rgba(59,130,246,0.7); /* blue-500 */
+  outline: 2px solid var(--azure);
   outline-offset: 2px;
 }
 
-mark { padding: 0 2px; border-radius: 4px; }
+mark {
+  padding: 0 2px;
+  border-radius: 4px;
+  background: var(--note-mark);
+  color: inherit;
+}
 
 /* Improve tap targets on mobile */
-button { touch-action: manipulation; }
+button {
+  touch-action: manipulation;
+}
 
 /* Optional: thin scrollbars for horizontal scrollers */
-.scroller { scrollbar-width: thin; }
+.scroller {
+  scrollbar-width: thin;
+}
 
 /* ---------- Header with photo background ---------- */
 .site-header {
@@ -57,17 +109,16 @@ button { touch-action: manipulation; }
   background-position: center;
   background-repeat: no-repeat;
 
-  /* prevent any bg color from masking the image */
+  /* prevent any bg colour from masking the image */
   background-color: transparent !important;
 
   min-height: 68px;
   padding: 12px 16px;
 
   display: flex;
-  align-items: center;          /* vertically center content */
-  justify-content: flex-start;  /* title on the left */
+  align-items: center; /* vertically centre content */
+  justify-content: flex-start; /* title on the left */
 }
-
 
 /* Repeat the background-image inside dark media query to beat specificity */
 @media (prefers-color-scheme: dark) {
@@ -82,51 +133,92 @@ button { touch-action: manipulation; }
 .site-title a {
   color: #ffffff !important;
   text-decoration: none;
+  font-family: var(--font-display, "Space Grotesk"), system-ui, sans-serif;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
 }
 
-/* Title/link color on top of the photo */
-.site-title,
-.site-title a {
-  color: #fff !important;
-  text-decoration: none;
-  text-shadow: 0 1px 2px rgba(0,0,0,.35);
+/* Spiral mark beside the title */
+.site-mark {
+  width: 26px;
+  height: 26px;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.35));
 }
 
-/* Optional: give the title a subtle text-shadow for extra legibility */
-.site-title {
-  text-shadow: 0 1px 2px rgba(0,0,0,0.35);
-}
-
-/* ---------- “Chip” buttons (book/chapter pills) ---------- */
-/* Light mode */
+/* ---------- "Chip" buttons (book/chapter pills) ---------- */
 .chip {
-  border: 1px solid #ddd;
-  background: #f7f7f7;
-  color: #222;
+  border: 1px solid var(--border-soft);
+  background: var(--surface);
+  color: var(--foreground);
   border-radius: 10px;
   padding: 6px 10px;
   font: inherit;
   cursor: pointer;
-  transition: background .12s ease, color .12s ease, border-color .12s ease;
+  transition: background 0.12s ease, color 0.12s ease, border-color 0.12s ease;
 }
-.chip:hover { filter: brightness(0.98); }
+.chip:hover:not(:disabled):not(.is-active) {
+  border-color: var(--accent-text);
+  color: var(--accent-text);
+}
 
 .chip.is-active {
-  background: #111;
-  color: #fff;
-  border-color: #111;
+  background: var(--accent);
+  color: #ffffff;
+  border-color: var(--accent);
 }
 
-/* Dark mode: invert — selected becomes white, others dark */
-@media (prefers-color-scheme: dark) {
-  .chip {
-    background: #111;
-    color: #eee;
-    border-color: #333;
-  }
-  .chip.is-active {
-    background: #fff;
-    color: #111;
-    border-color: #fff;
-  }
+.chip:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ---------- Primary button (search) ---------- */
+.btn-primary {
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: #ffffff;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font: inherit;
+  cursor: pointer;
+  transition: background 0.12s ease, border-color 0.12s ease;
+}
+.btn-primary:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+/* ---------- Text input (search box) ---------- */
+.text-input {
+  flex: 1;
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font: inherit;
+  background: var(--surface);
+  color: var(--foreground);
+}
+
+/* ---------- Footer credit ---------- */
+.site-footer {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 24px 16px 32px;
+  border-top: 1px solid var(--border-soft);
+  display: flex;
+  justify-content: center;
+  font-size: 0.85rem;
+}
+.site-footer a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--accent-text);
+  text-decoration: none;
+}
+.site-footer a:hover {
+  text-decoration: underline;
+}
+.site-footer img {
+  width: 18px;
+  height: 18px;
 }

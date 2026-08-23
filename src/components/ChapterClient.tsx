@@ -155,7 +155,7 @@ const renderVerse = (v: Verse) => {
         key={i}
         onClick={() => setActiveNote(seg.note!)}
         style={{
-          background: "rgba(255,230,150,.9)",
+          background: "var(--note-mark)",
           borderRadius: 4,
           padding: "0 2px",
           cursor: "pointer",

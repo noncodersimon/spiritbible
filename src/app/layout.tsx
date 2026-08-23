@@ -2,9 +2,14 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Inter } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: "--font-body" });
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["500", "700"],
+  variable: "--font-display",
+});
 
 export const metadata: Metadata = {
   title: "SpiritBible",
@@ -19,12 +24,21 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full" suppressHydrationWarning>
       <body
-        className={`${inter.className} h-full `}
+        className={`${inter.variable} ${spaceGrotesk.variable} ${inter.className} h-full`}
       >
         {/* Header */}
         <header className="site-header sticky top-0 z-50 border-b border-neutral-200/50 dark:border-neutral-900/50 bg-transparent dark:bg-transparent">
           <div className="mx-auto max-w-5xl w-full px-4 py-3 flex items-center justify-start">
-            <Link href="/" className="site-title font-semibold tracking-tight text-lg">
+            <Link
+              href="/"
+              className="site-title font-semibold tracking-tight text-lg flex items-center gap-2"
+            >
+              <img
+                className="site-mark"
+                src="/digitelos-spiral.svg"
+                alt=""
+                aria-hidden="true"
+              />
               SpiritBible
             </Link>
           </div>
@@ -32,6 +46,14 @@ export default function RootLayout({
 
         {/* Page content */}
         <main className="mx-auto max-w-5xl px-4 py-6">{children}</main>
+
+        {/* Footer */}
+        <footer className="site-footer">
+          <a href="https://digitelos.co.uk">
+            <img src="/digitelos-spiral.svg" alt="" aria-hidden="true" />
+            Built by Digitelos
+          </a>
+        </footer>
       </body>
     </html>
   );
