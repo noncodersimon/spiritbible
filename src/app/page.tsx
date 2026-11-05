@@ -20,6 +20,7 @@ type SearchHit = {
 
 // Small reusable horizontal scroller for buttons
 function HorizontalScroller<T>({
+  label,
   items,
   getKey,
   getLabel,
@@ -27,6 +28,7 @@ function HorizontalScroller<T>({
   onClick,
   getDataAttrs, // <-- NEW (optional)
 }: {
+  label: string;
   items: T[];
   getKey: (it: T) => string;
   getLabel: (it: T) => string | number;
@@ -44,7 +46,8 @@ function HorizontalScroller<T>({
         padding: '8px 0',
         WebkitOverflowScrolling: 'touch',
       }}
-      aria-label="Scroller"
+      role="group"
+      aria-label={label}
     >
       {items.map((it) => {
         const active = isActive(it);
@@ -52,6 +55,8 @@ function HorizontalScroller<T>({
         return (
           <button
             key={getKey(it)}
+            type="button"
+            aria-pressed={active}
             onClick={() => onClick(it)}
             className={`chip ${active ? 'is-active' : ''}`}
             style={{
@@ -135,7 +140,8 @@ function scrollToReaderTop() {
   const [lastQuery, setLastQuery] = useState('');
 
   // --- browse state ---
-  const [books, setBooks] = useState<BookRow[]>([]);
+  const [bookGroups, setBookGroups] = useState<{ ot: BookRow[]; nt: BookRow[] }>({ ot: [], nt: [] });
+  const books = useMemo(() => [...bookGroups.ot, ...bookGroups.nt], [bookGroups]);
   const [loadingBooks, setLoadingBooks] = useState(false);
   const [booksError, setBooksError] = useState<string | null>(null);
 
@@ -156,7 +162,7 @@ function scrollToReaderTop() {
         if (!data.ok) throw new Error(data.error ?? 'Unknown error');
         const flat = [...data.ot, ...data.nt];
         if (alive) {
-          setBooks(flat);
+          setBookGroups({ ot: data.ot, nt: data.nt });
           if (!selectedBook && flat.length > 0) {
             const b = flat[0];
             setSelectedBook(b);
@@ -367,18 +373,26 @@ useEffect(() => {
         </button>
       </form>
 
-      {/* Books scroller */}
-      <HorizontalScroller<BookRow>
-        items={books}
-        getKey={(b) => b.book}
-        getLabel={(b) => b.book}
-        isActive={(b) =>
-          !!selectedBook &&
-          b.book.toLowerCase() === selectedBook!.book.toLowerCase()
-        }
-        onClick={(b) => onPickBook(b)}
-		  getDataAttrs={(b) => ({ 'data-bk': b.book })}
-      />
+      {/* Both rows share selectedBook; the combined list still drives navigation. */}
+      {([
+        { id: 'old-testament', label: 'Old Testament', items: bookGroups.ot },
+        { id: 'new-testament', label: 'New Testament', items: bookGroups.nt },
+      ]).map(({ id, label, items }) => (
+        <section key={id} aria-labelledby={`${id}-heading`}>
+          <h2 id={`${id}-heading`} style={{ fontSize: 14, fontWeight: 600, margin: '8px 0 0' }}>
+            {label}
+          </h2>
+          <HorizontalScroller<BookRow>
+            label={`${label} books`}
+            items={items}
+            getKey={(b) => b.book}
+            getLabel={(b) => b.book}
+            isActive={(b) => b.book === selectedBook?.book}
+            onClick={onPickBook}
+            getDataAttrs={(b) => ({ 'data-bk': b.book })}
+          />
+        </section>
+      ))}
 
       {/* Chapter scroller */}
       {selectedBook && (
@@ -386,6 +400,7 @@ useEffect(() => {
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <div style={{ flex: 1, minWidth: 0 }}>
               <HorizontalScroller<number>
+                label="Chapters"
                 items={chapters}
                 getKey={(ch) => String(ch)}
                 getLabel={(ch) => ch}
