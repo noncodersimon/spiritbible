@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { parseRef } from "@/lib/ref";
+import { parseRef, isReferenceQuery } from "@/lib/ref";
+import { buildTextQuery } from "@/lib/search-query";
 
 export const runtime = "nodejs";
 export const revalidate = 0;
@@ -10,6 +11,8 @@ export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const q = (searchParams.get("q") || "").trim();
   if (!q) return NextResponse.json({ results: [] });
+
+  if (q.length > 300) return NextResponse.json({ error: "Please use a shorter passage reference or search phrase." }, { status: 400 });
 
   const ref = parseRef(q);
   if (ref) {
@@ -33,13 +36,19 @@ export async function GET(req: Request) {
     }
   }
 
+  if (isReferenceQuery(q)) {
+    return NextResponse.json({ error: "That chapter or verse range is not valid. Try a reference such as Jn3:16 or 1 Cor13:4–7." }, { status: 400 });
+  }
+  const textQuery = buildTextQuery(q);
+  if (!textQuery) return NextResponse.json({ results: [] });
   const results = db.prepare(`
     SELECT v.book, v.chapter, v.verse, v.text
     FROM verse v
     JOIN verse_fts f ON f.rowid = v.id
     WHERE verse_fts MATCH ?
+    ORDER BY bm25(verse_fts), v.id
     LIMIT 50
-  `).all(q.replace(/\s+/g, " "));
+  `).all(textQuery);
 
   return NextResponse.json({ results });
 }

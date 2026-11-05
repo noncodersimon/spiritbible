@@ -22,10 +22,12 @@ export default function ChapterClient({
   book,
   chapter,
   verses,
+  highlightVerse,
 }: {
   book: string;
   chapter: number;
   verses: Verse[];
+  highlightVerse?: number;
 }) {
   const [notes, setNotes] = useState<Note[]>([]);
   const [activeNote, setActiveNote] = useState<Note | null>(null);
@@ -175,7 +177,7 @@ const renderVerse = (v: Verse) => {
   return (
     <>
       {verses.map((v) => (
-        <p key={v.verse} id={`v${v.verse}`}>
+        <p key={v.verse} id={`v${v.verse}`} className={highlightVerse === v.verse ? "search-target" : undefined} tabIndex={highlightVerse === v.verse ? -1 : undefined}>
           <sup style={{ userSelect: "none" }}>{v.verse}</sup>{" "}
           {renderVerse(v)}
         </p>

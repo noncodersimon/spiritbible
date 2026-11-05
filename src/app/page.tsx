@@ -76,13 +76,15 @@ function HorizontalScroller<T>({
 }
 
 
-// Bottom Inline Previous/Next nav
+// Shared Previous/Next navigation above and below the reader.
 function InlineNav({
+  label,
   prev,
   next,
   onGo,
   style,
 }: {
+  label: string;
   prev: { book: string; chapter: number } | null;
   next: { book: string; chapter: number } | null;
   onGo: (book: string, chapter: number) => void;
@@ -90,6 +92,7 @@ function InlineNav({
 }) {
   return (
     <nav
+      aria-label={label}
       style={{
         display: 'flex',
         justifyContent: 'space-between',
@@ -125,10 +128,10 @@ function InlineNav({
 
 export default function Home() {
 // --- scrolling helpers ---
-// scroll the actual H2 title into view so it's visible after Next/Prev
-const titleRef = useRef<HTMLHeadingElement | null>(null);
+// Keep the top navigation and chapter title visible after changing chapters.
+const readerTopRef = useRef<HTMLDivElement | null>(null);
 function scrollToReaderTop() {
-  titleRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  readerTopRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 
@@ -138,6 +141,7 @@ function scrollToReaderTop() {
   const [searchLoading, setSearchLoading] = useState(false);
   const [searchTried, setSearchTried] = useState(false);
   const [lastQuery, setLastQuery] = useState('');
+  const [searchError, setSearchError] = useState<string | null>(null);
 
   // --- browse state ---
   const [bookGroups, setBookGroups] = useState<{ ot: BookRow[]; nt: BookRow[] }>({ ot: [], nt: [] });
@@ -148,6 +152,10 @@ function scrollToReaderTop() {
   const [selectedBook, setSelectedBook] = useState<BookRow | null>(null);
   const [selectedChapter, setSelectedChapter] = useState<number | null>(null);
   const [chapterVerses, setChapterVerses] = useState<Verse[]>([]);
+  const [loadedChapterKey, setLoadedChapterKey] = useState<string | null>(null);
+  const [chapterError, setChapterError] = useState<string | null>(null);
+  const chapterRequest = useRef(0);
+  const [searchTarget, setSearchTarget] = useState<{ book: string; chapter: number; verse: number } | null>(null);
 
   // Fetch books (OT + NT)
   useEffect(() => {
@@ -209,26 +217,41 @@ useEffect(() => {
     return Array.from({ length: total }, (_, i) => i + 1);
   }, [selectedBook]);
 
-  // Load a chapter’s verses for the inline reader
+  // Only the latest chapter request may update the reader.
   const loadChapter = useCallback(async (book: string, ch: number) => {
-    const res = await fetch(
-      `/api/chapter2?book=${encodeURIComponent(book)}&chapter=${ch}`,
-      { cache: 'no-store' }
-    );
-    if (!res.ok) {
-      setChapterVerses([]);
-      return;
+    const request = ++chapterRequest.current;
+    setChapterError(null);
+    try {
+      const res = await fetch(
+        `/api/chapter2?book=${encodeURIComponent(book)}&chapter=${ch}`,
+        { cache: 'no-store' }
+      );
+      if (!res.ok) throw new Error('The chapter could not be loaded. Please try again.');
+      const data = (await res.json()) as { verses: Verse[] };
+      if (request !== chapterRequest.current) return;
+      setChapterVerses(data.verses ?? []);
+      setLoadedChapterKey(`${book}|${ch}`);
+    } catch (error) {
+      if (request !== chapterRequest.current) return;
+      setChapterError(error instanceof Error ? error.message : 'The chapter could not be loaded.');
+      setLoadedChapterKey(null);
     }
-    const data = (await res.json()) as { verses: Verse[] };
-    setChapterVerses(data.verses ?? []);
   }, []);
 
-  // Auto-load when selection changes
   useEffect(() => {
-    if (selectedBook && selectedChapter) {
-      loadChapter(selectedBook.book, selectedChapter);
-    }
+    if (selectedBook && selectedChapter) loadChapter(selectedBook.book, selectedChapter);
+    return () => { chapterRequest.current++; };
   }, [selectedBook, selectedChapter, loadChapter]);
+
+  useEffect(() => {
+    if (!searchTarget || loadedChapterKey !== `${searchTarget.book}|${searchTarget.chapter}`) return;
+    const frame = requestAnimationFrame(() => {
+      const verse = document.getElementById(`v${searchTarget.verse}`);
+      verse?.focus({ preventScroll: true });
+      verse?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [searchTarget, loadedChapterKey, chapterVerses]);
 
   // Prev / Next across books
   const prevNav = useMemo(() => {
@@ -262,18 +285,18 @@ useEffect(() => {
     setSearchResults([]); // hide search when browsing
     setSelectedBook(b);
     setSelectedChapter(1);
-    loadChapter(b.book, 1); // no scroll
+    setSearchTarget(null);
+    setSearchError(null);
   };
 
   const onPickChapter = (ch: number) => {
     setSearchResults([]); // hide search when browsing
     setSelectedChapter(ch);
-    if (selectedBook) {
-      loadChapter(selectedBook.book, ch); // no scroll
-    }
+    setSearchTarget(null);
+    setSearchError(null);
   };
 
-  // Inline go func for bottom arrows — SCROLL here
+  // Both navigation rows return to the start of the reader.
   const inlineGoToChapter = useCallback(
     (b: string, ch: number) => {
       setSearchResults([]); // hide search when navigating
@@ -282,9 +305,10 @@ useEffect(() => {
       );
       if (found) setSelectedBook(found);
       setSelectedChapter(ch);
-      loadChapter(b, ch).then(scrollToReaderTop);
+      setSearchTarget(null);
+      requestAnimationFrame(scrollToReaderTop);
     },
-    [books, loadChapter]
+    [books]
   );
 
   // Search: replaces the chapter view; user clicks a hit to open it
@@ -292,6 +316,7 @@ useEffect(() => {
     const q = searchQuery.trim();
     setLastQuery(q);
     setSearchTried(true);
+    setSearchError(null);
 
     if (!q) {
       setSearchResults([]);
@@ -307,13 +332,8 @@ useEffect(() => {
         cache: 'no-store',
       });
 
-      if (!res.ok) {
-        console.error('Search HTTP error', res.status);
-        setSearchResults([]);
-        return;
-      }
-
       const data: any = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Search is temporarily unavailable. Please try again.');
 
       // Accept both shapes: {hits: [...] } or {results: [...] }
       const hits: SearchHit[] =
@@ -323,16 +343,16 @@ useEffect(() => {
 
       setSearchResults(hits);
     } catch (e) {
-      console.error('Search failed', e);
+      setSearchError(e instanceof Error ? e.message : 'Search is temporarily unavailable. Please try again.');
       setSearchResults([]);
     } finally {
       setSearchLoading(false);
     }
   }, [searchQuery]);
 
-  // open any clicked search hit (no scroll here; opening via list is a top action)
+  // Open the whole chapter, then focus the selected verse once its text is ready.
   const openHit = useCallback(
-    async (hit: SearchHit) => {
+    (hit: SearchHit) => {
       const found = books.find(
         (b) => b.book.toLowerCase() === hit.book.toLowerCase()
       );
@@ -340,16 +360,15 @@ useEffect(() => {
 
       setSelectedBook(found);
       setSelectedChapter(hit.chapter);
-      await loadChapter(found.book, hit.chapter);
+      setSearchTarget({ book: found.book, chapter: hit.chapter, verse: hit.verse });
 
       // exit search mode
       setSearchResults([]);
       setSearchTried(false);
       setLastQuery('');
-      setSearchQuery('');
-      // do not scroll (top action)
+      setSearchError(null);
     },
-    [books, loadChapter]
+    [books]
   );
 
   return (
@@ -365,13 +384,17 @@ useEffect(() => {
         <input
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder='Try: John 3:16 or "festival"'
+          type="search"
+          aria-label="Search the Bible"
+          aria-describedby="search-help"
+          placeholder='Passage, word or phrase'
           className="text-input"
         />
         <button type="submit" className="btn-primary">
           Search
         </button>
       </form>
+      <p id="search-help" className="search-help">Try Jn3:16, 1 Cor13:4–7 or &quot;living water&quot;.</p>
 
       {/* Both rows share selectedBook; the combined list still drives navigation. */}
       {([
@@ -410,7 +433,8 @@ useEffect(() => {
       )}
 
       {/* Results list OR inline reader */}
-      {searchLoading && <p>Searching…</p>}
+      {searchLoading && <p role="status">Searching…</p>}
+      {searchError && <p role="alert">{searchError}</p>}
 
       {searchResults.length > 0 ? (
         <>
@@ -445,33 +469,39 @@ useEffect(() => {
       ) : selectedBook && selectedChapter ? (
         // ✅ reader takes precedence
         <>
-          {/* scroll target just above the title for Next/Prev */}
-<h2
-  ref={titleRef}
-  style={{
-    fontSize: 22,
-    margin: '12px 0',
-    // keeps the title visible if the browser uses anchor snapping
-    scrollMarginTop: 72,
-  }}
->
-  {selectedBook.book} {selectedChapter}
-</h2>
+          <div ref={readerTopRef} style={{ scrollMarginTop: 96 }}>
+            <InlineNav
+              label="Chapter navigation above the text"
+              prev={prevNav}
+              next={nextNav}
+              onGo={inlineGoToChapter}
+              style={{ marginTop: 12 }}
+            />
+            <h2 style={{ fontSize: 22, margin: '12px 0' }}>
+              {selectedBook.book} {selectedChapter}
+            </h2>
+          </div>
 
-          <ChapterClient
-            book={selectedBook.book}
-            chapter={selectedChapter}
-            verses={chapterVerses}
-          />
-          {/* Bottom inline nav — this calls inlineGoToChapter which scrolls */}
+          {loadedChapterKey === `${selectedBook.book}|${selectedChapter}` ? (
+            <ChapterClient
+              key={`${selectedBook.book}|${selectedChapter}`}
+              book={selectedBook.book}
+              chapter={selectedChapter}
+              verses={chapterVerses}
+              highlightVerse={searchTarget?.book === selectedBook.book && searchTarget.chapter === selectedChapter ? searchTarget.verse : undefined}
+            />
+          ) : chapterError ? (
+            <p role="alert">{chapterError} <button className="chip" onClick={() => loadChapter(selectedBook.book, selectedChapter)}>Retry</button></p>
+          ) : <p role="status">Loading chapter…</p>}
           <InlineNav
+            label="Chapter navigation below the text"
             prev={prevNav}
             next={nextNav}
             onGo={inlineGoToChapter}
             style={{ marginTop: 16 }}
           />
         </>
-      ) : searchTried && !searchLoading ? (
+      ) : searchTried && !searchLoading && !searchError ? (
         lastQuery ? <p>No results for “{lastQuery}”.</p> : null
       ) : null}
     </main>

@@ -25,6 +25,12 @@ npm start
 
 Vercel can continue using `npm run vercel-build`, which calls the same build pipeline. A deployment or hosting migration is not required for these local changes. This repository does not contain the remote Vercel project's settings, so its deployed branch and current production release must be checked there.
 
+## Search and navigation
+
+Search accepts full book names and common abbreviations, including `Jn 3:16`, `Mt5:1–12`, `1 Cor 13`, `2 Macc 7` and `Ecclus 2:1`. Spaces before chapter numbers are optional; verse ranges may use hyphens or dashes. Single-chapter references such as `Jude 5` name a verse. Use quotation marks for an exact phrase, such as `"living water"`; ordinary word searches match all entered words and return up to 50 results ranked by relevance.
+
+Selecting a result opens its chapter and highlights the selected verse. Previous/Next controls appear above and below the reader and advance one chapter at a time, continuing into the next book at book boundaries.
+
 ## Commentary
 
 The published collection contains 1,054 selected Catholic commentary notes across all 73 books. Each note is anchored to the current WEB text and ends with abbreviated links to the Catechism, Catholic Encyclopedia or Church Fathers. The reviewed collection and provenance are retained in [the commentary review archive](drafts/commentary/README.md).
