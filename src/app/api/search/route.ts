@@ -14,6 +14,17 @@ export async function GET(req: Request) {
 
   if (q.length > 300) return NextResponse.json({ error: "Please use a shorter passage reference or search phrase." }, { status: 400 });
 
+  if (searchParams.get('scope') === 'commentary') {
+    const query = buildTextQuery(q);
+    if (!query) return NextResponse.json({ results: [] });
+    const results = db.prepare(`SELECT title, substr(text, 1, 260) AS text,
+      book, CAST(chapter AS INTEGER) AS chapter, CAST(verse AS INTEGER) AS verse,
+      note_id AS note, connection_id AS connection
+      FROM commentary_fts WHERE commentary_fts MATCH ?
+      ORDER BY bm25(commentary_fts), rowid LIMIT 50`).all(query);
+    return NextResponse.json({ results });
+  }
+
   const ref = parseRef(q);
   if (ref) {
     if (ref.verse) {

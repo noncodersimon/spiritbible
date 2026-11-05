@@ -1,228 +1,167 @@
 'use client';
 
-import Link from "next/link";
-import { useEffect, useState } from "react";
-import type { Verse } from "@/types/bible";
-import { prevChapter, nextChapter } from "@/lib/canon";
-import DOMPurify from "isomorphic-dompurify";
+import { useEffect, useRef, useState } from 'react';
+import type { Verse } from '@/types/bible';
+import type { ChapterStudy, PassageTarget, SourceLink, StudyConnection } from '@/types/study';
+import { copyText, passageHref, passageLabel, selectedPassage } from '@/lib/passage';
+import ReaderDialog from '@/components/ReaderDialog';
+import DOMPurify from 'isomorphic-dompurify';
 
-
-type Note = {
-  id: number;
-  book: string;
-  chapter: number;
-  verse: number;
-  start: number;
-  end: number;
-  body: string;
-  phrase?: string | null;
-};
-
-export default function ChapterClient({
-  book,
-  chapter,
-  verses,
-  highlightVerse,
-}: {
-  book: string;
-  chapter: number;
-  verses: Verse[];
-  highlightVerse?: number;
-}) {
-  const [notes, setNotes] = useState<Note[]>([]);
-  const [activeNote, setActiveNote] = useState<Note | null>(null);
-
-  // compute nav locally (avoid prop name conflicts)
-  const prevNav = prevChapter(book, chapter);
-  const nextNav = nextChapter(book, chapter);
-
-  const START_BIAS = 0;
-  const END_BIAS = 0;
-
-   // helper for external links
+type Note = { id: number; book: string; chapter: number; verse: number; start: number; end: number; body: string; phrase?: string | null };
+const kindLabels = { quotation: 'Biblical quotation', fulfilment: 'Fulfilment in Scripture', echo: 'Literary echo', typology: 'Catholic reading', theme: 'Shared theme' };
+function Sources({ sources }: { sources: SourceLink[] }) {
+  return <p className="sources">{sources.map((s, i) => <span key={s.url}>{i > 0 && ' · '}<a href={s.url} target="_blank" rel="noopener noreferrer">{s.label}</a></span>)}</p>;
+}
 function sanitizeNoteHTML(raw: string) {
-  // 1) Sanitize (allowing target/rel so we can keep them if already present)
-  const clean = DOMPurify.sanitize(raw ?? "", {
-    ADD_ATTR: ["target", "rel"],
+  return DOMPurify.sanitize(raw, { ADD_ATTR: ['target', 'rel'] }).replace(/<a\b([^>]*\bhref="https?:[^"]*"[^>]*)>/gi, (full, attrs) => {
+    if (!/\btarget\s*=/.test(attrs)) attrs += ' target="_blank"';
+    if (!/\brel\s*=/.test(attrs)) attrs += ' rel="noopener noreferrer nofollow"';
+    return `<a${attrs}>`;
   });
-
-  // 2) Ensure http/https links open safely in a new tab
-  //    - add target and rel if they’re missing
-  return clean.replace(
-    /<a\b([^>]*\bhref="https?:[^"]*"[^>]*)>/gi,
-    (full, attrs) => {
-      let a = attrs;
-      if (!/\btarget\s*=/.test(a)) a += ' target="_blank"';
-      if (!/\brel\s*=/.test(a)) a += ' rel="noopener noreferrer nofollow"';
-      return `<a${a}>`;
-    }
-  );
 }
 
+export default function ChapterClient({ book, chapter, verses, highlightVerse, target, onNavigate }: {
+  book: string; chapter: number; verses: Verse[]; highlightVerse?: number; target?: PassageTarget;
+  onNavigate?: (target: PassageTarget) => void;
+}) {
+  const [notes, setNotes] = useState<Note[]>([]);
+  const [study, setStudy] = useState<ChapterStudy>({ introduction: null, connections: [] });
+  const [studyFailed, setStudyFailed] = useState(false);
+  const [readerReady, setReaderReady] = useState(false);
+  const [activeNote, setActiveNote] = useState<Note | null>(null);
+  const [activeConnections, setActiveConnections] = useState<StudyConnection[] | null>(null);
+  const [selection, setSelection] = useState<ReturnType<typeof selectedPassage>>(null);
+  const [copyStatus, setCopyStatus] = useState('');
+  const textRoot = useRef<HTMLDivElement>(null);
+  const first = target?.verse ?? highlightVerse, last = target?.endVerse ?? first;
+  const partial = target?.start !== undefined && target?.end !== undefined;
 
-  // --- helpers for note highlighting ---
-  function extractQuotedPhrase(body: string): string | null {
-    const m = body.match(/[“"']([^“"']+)[”"']/);
-    return m ? m[1] : null;
-  }
-  function findPhraseInText(text: string, phrase: string): { s: number; e: number } | null {
-    const t = text.toLowerCase(), p = phrase.toLowerCase();
-    const idx = t.indexOf(p);
-    return idx < 0 ? null : { s: idx, e: idx + phrase.length };
-  }
-  function snapToWord(text: string, s: number, e: number) {
-    while (s < e && /[^A-Za-z0-9]/.test(text[s])) s++;
-    while (e > s && /[^A-Za-z0-9]/.test(text[e - 1])) e--;
-    if (e < text.length && /[A-Za-z0-9]/.test(text[e]) && /[A-Za-z0-9]/.test(text[e - 1])) {
-      while (e > s && /[A-Za-z0-9]/.test(text[e - 1])) e--;
-    }
-    if (s > 0 && /[A-Za-z0-9]/.test(text[s]) && /[A-Za-z0-9]/.test(text[s - 1])) {
-      while (s < e && /[A-Za-z0-9]/.test(text[s])) s++;
-      while (s < e && /[^A-Za-z0-9]/.test(text[s])) s++;
-    }
-    return { s, e };
-  }
-
-  // fetch notes for this chapter
   useEffect(() => {
-    setNotes([]);
-    setActiveNote(null);
+    let alive = true, remaining = 2;
+    const ready = () => { if (--remaining === 0 && alive) setReaderReady(true); };
+    setReaderReady(false);
+    setNotes([]); setStudy({ introduction: null, connections: [] }); setStudyFailed(false);
+    setActiveNote(null); setActiveConnections(null); setCopyStatus('');
     fetch(`/api/notes?book=${encodeURIComponent(book)}&chapter=${chapter}`)
-      .then((r) => r.json())
-      .then((d) => setNotes(d.notes ?? []))
-      .catch(() => setNotes([]));
+      .then(r => r.json()).then(d => { if (alive) setNotes(d.notes ?? []); }).catch(() => {}).finally(ready);
+    fetch(`/api/study?book=${encodeURIComponent(book)}&chapter=${chapter}`)
+      .then(r => { if (r.ok === false) throw Error('Study unavailable'); return r.json(); })
+      .then(d => { if (alive) setStudy({ introduction: d.introduction ?? null, connections: d.connections ?? [] }); })
+      .catch(() => { if (alive) setStudyFailed(true); }).finally(ready);
+    return () => { alive = false; };
   }, [book, chapter]);
 
-  // close popup on Esc
   useEffect(() => {
-    if (!activeNote) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setActiveNote(null);
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [activeNote]);
+    if (!readerReady || first === undefined) return;
+    const frame = requestAnimationFrame(() => {
+      const verse = document.getElementById(`v${first}`);
+      if (!target?.note && !target?.connection) verse?.focus({ preventScroll: true });
+      const selected = verse?.querySelector('.passage-highlight') ?? verse;
+      selected?.scrollIntoView({ behavior: 'instant', block: 'center' });
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [readerReady, target, highlightVerse, first]);
 
-  // renderer with highlighting
-// renderer with highlighting (de-duplicates/merges overlaps)
-const renderVerse = (v: Verse) => {
-  // sort by start so we handle in reading order
-  const ns = notes
-    .filter((n) => n.verse === v.verse)
-    .sort((a, b) => a.start - b.start);
-
-  if (!ns.length) return v.text;
-
-  const segs: Array<{ text: string; note?: Note }> = [];
-  let cur = 0; // how far we've already emitted (in v.text)
-
-  for (const n of ns) {
-    // 1) compute [s, e) for this note
-    let s: number, e: number;
-
-    const phrase = n.phrase ?? extractQuotedPhrase(n.body || "");
-    const hit = phrase ? findPhraseInText(v.text, phrase) : null;
-    // An explicit anchor must not silently fall back to obsolete offsets.
-    if (n.phrase && !hit) continue;
-
-    if (hit) {
-      ({ s, e } = hit);
-    } else {
-      s = Math.max(0, Math.min(n.start + START_BIAS, v.text.length));
-      e = Math.max(s, Math.min(n.end + 1 + END_BIAS, v.text.length));
+  useEffect(() => {
+    if (target?.note) setActiveNote(notes.find(n => n.id === target.note) ?? null);
+  }, [notes, target?.note]);
+  useEffect(() => {
+    if (target?.connection) {
+      const found = study.connections.find(c => c.id === target.connection);
+      if (found) setActiveConnections([found]);
     }
+  }, [study.connections, target?.connection]);
+  useEffect(() => {
+    function changed() {
+      setSelection(textRoot.current ? selectedPassage(textRoot.current, window.getSelection(), book, chapter) : null);
+      setCopyStatus('');
+    }
+    document.addEventListener('selectionchange', changed);
+    return () => document.removeEventListener('selectionchange', changed);
+  }, [book, chapter]);
 
-    // word-snap and then trim to avoid overlaps with what we've already emitted
-    ({ s, e } = snapToWord(v.text, s, e));
-
-    // if this segment ends at/before what we've already emitted, skip it
-    if (e <= cur) continue;
-
-    // if the start is inside already-emitted text, trim start forward
-    if (s < cur) s = cur;
-
-    // 2) emit plain text between cur and s (if any)
-    if (cur < s) segs.push({ text: v.text.slice(cur, s) });
-
-    // 3) emit highlighted segment
-    segs.push({ text: v.text.slice(s, e), note: n });
-
-    // 4) advance cursor
-    cur = e;
+  function inRange(verse: number) { return first !== undefined && last !== undefined && verse >= first && verse <= last; }
+  function highlight(text: string, offset: number, v: Verse) {
+    if (!partial || !inRange(v.verse)) return text;
+    const start = v.verse === first ? Math.min(target!.start!, v.text.length) : 0;
+    const end = v.verse === last ? Math.min(target!.end!, v.text.length) : v.text.length;
+    const a = Math.max(0, start - offset), b = Math.min(text.length, end - offset);
+    if (a >= b) return text;
+    return <>{text.slice(0, a)}<span className="passage-highlight">{text.slice(a, b)}</span>{text.slice(b)}</>;
+  }
+  function renderVerse(v: Verse) {
+    const segments: { text: string; offset: number; note?: Note }[] = [];
+    let cursor = 0;
+    for (const n of notes.filter(n => n.verse === v.verse).sort((a, b) => a.start - b.start)) {
+      const start = n.phrase ? v.text.indexOf(n.phrase) : n.start;
+      const end = n.phrase ? start + n.phrase.length : n.end + 1;
+      // Explicit anchors may never fall back to obsolete offsets.
+      if (start < cursor || start < 0 || end <= start || end > v.text.length) continue;
+      if (start > cursor) segments.push({ text: v.text.slice(cursor, start), offset: cursor });
+      segments.push({ text: v.text.slice(start, end), offset: start, note: n }); cursor = end;
+    }
+    if (cursor < v.text.length) segments.push({ text: v.text.slice(cursor), offset: cursor });
+    return segments.map((s, i) => s.note ? <mark key={i} role="button" tabIndex={0}
+      aria-label={`Commentary on ${s.text}`}
+      onClick={() => { if (!window.getSelection()?.toString()) setActiveNote(s.note!); }}
+      onKeyDown={event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); setActiveNote(s.note!); } }}
+      className="commentary-mark">{highlight(s.text, s.offset, v)}</mark> : <span key={i}>{highlight(s.text, s.offset, v)}</span>);
+  }
+  function shareSelection(event: React.ClipboardEvent<HTMLDivElement>) {
+    const selected = textRoot.current && selectedPassage(textRoot.current, window.getSelection(), book, chapter);
+    if (!selected) return;
+    event.clipboardData.setData('text/plain', copyText(selected.text, selected.target, window.location.origin));
+    event.preventDefault();
+    setCopyStatus('Copied with a link to this passage.');
+  }
+  async function copyPassage() {
+    if (!verses.length) return;
+    const selected = selection ?? { text: verses.map(v => v.text).join('\n'), target: { book, chapter, verse: verses[0].verse, endVerse: verses[verses.length - 1].verse } };
+    const text = copyText(selected.text, selected.target, window.location.origin);
+    try {
+      if (!navigator.clipboard?.writeText) throw Error('Clipboard unavailable');
+      await navigator.clipboard.writeText(text);
+      setCopyStatus('Copied with a link to this passage.');
+    } catch {
+      setCopyStatus('Select the passage and use your device’s Copy command to include its link.');
+    }
   }
 
-  // 5) emit tail
-  if (cur < v.text.length) segs.push({ text: v.text.slice(cur) });
-
-  return segs.map((seg, i) =>
-    seg.note ? (
-      <mark
-        key={i}
-        onClick={() => setActiveNote(seg.note!)}
-        style={{
-          background: "var(--note-mark)",
-          borderRadius: 4,
-          padding: "0 2px",
-          cursor: "pointer",
-        }}
-      >
-        {seg.text}
-      </mark>
-    ) : (
-      <span key={i}>{seg.text}</span>
-    )
-  );
-};
-
-  return (
-    <>
-      {verses.map((v) => (
-        <p key={v.verse} id={`v${v.verse}`} className={highlightVerse === v.verse ? "search-target" : undefined} tabIndex={highlightVerse === v.verse ? -1 : undefined}>
-          <sup style={{ userSelect: "none" }}>{v.verse}</sup>{" "}
-          {renderVerse(v)}
-        </p>
-      ))}
-
-
-
-      {activeNote && (
-        <div
-          aria-modal="true"
-          role="dialog"
-          className="fixed inset-0 z-[9999] flex items-end sm:items-center justify-center"
-          onClick={() => setActiveNote(null)} // click-outside closes
-        >
-          {/* backdrop */}
-          <div className="absolute inset-0 bg-black/40" />
-
-          {/* card */}
-          <div
-            className="relative m-3 max-h-[calc(100dvh-1.5rem)] w-full max-w-xl overflow-y-auto overscroll-contain rounded-2xl border border-neutral-200 bg-white p-4 shadow-2xl dark:border-neutral-800 dark:bg-neutral-900"
-            onClick={(e) => e.stopPropagation()} // prevent outside-close
-          >
-            <div className="text-sm text-neutral-500 dark:text-neutral-400 mb-1">
-              {activeNote.book} {activeNote.chapter}:{activeNote.verse}
-            </div>
-
-		<div
-		  className="note-popup text-neutral-900 dark:text-neutral-100"
-		  dangerouslySetInnerHTML={{
-			__html: sanitizeNoteHTML(activeNote?.body ?? ""),
-		  }}
-		/>
-
-
-            <div className="mt-3 text-right">
-              <button
-                onClick={() => setActiveNote(null)}
-                className="rounded-lg border border-neutral-300 bg-white px-3 py-1.5 text-sm hover:bg-neutral-50 dark:border-neutral-700 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:text-neutral-100"
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-    </>
-  );
+  return <>
+    {study.introduction && <details className="book-introduction" key={book}>
+      <summary>About {book}</summary>
+      <p>{study.introduction.summary}</p><Sources sources={study.introduction.sources} />
+    </details>}
+    <div className="reader-tools">
+      <p className="reader-key"><span className="commentary-key">Commentary</span><span className="connection-key">↔ Related passages</span></p>
+      <button className="copy-passage" onMouseDown={event => event.preventDefault()} onClick={copyPassage}>{selection ? 'Copy selection + link' : 'Copy chapter + link'}</button>
+    </div>
+    {copyStatus && <p role="status" className="copy-status">{copyStatus}</p>}
+    {studyFailed && <p className="study-status">Related passages are temporarily unavailable. Reload to try again.</p>}
+    <div ref={textRoot} className="bible-reader" onCopy={shareSelection}>
+      {verses.map(v => {
+        const related = study.connections.filter(c => c.passages.some(p => p.book === book && p.chapter === chapter && p.verse === v.verse));
+        return <p key={v.verse} id={`v${v.verse}`} className={inRange(v.verse) && !partial ? 'search-target' : undefined} tabIndex={inRange(v.verse) ? -1 : undefined}>
+          <sup style={{ userSelect: 'none' }}>{v.verse}</sup>{' '}<span data-verse-text={v.verse}>{renderVerse(v)}</span>
+          {related.length > 0 && <button className="connection-marker" aria-label={`Related passages for ${book} ${chapter}:${v.verse}`} title="Explore related passages" onClick={() => setActiveConnections(related)} />}
+        </p>;
+      })}
+    </div>
+    {activeNote && <ReaderDialog title={passageLabel(activeNote)} onClose={() => setActiveNote(null)}>
+      <div className="note-popup" dangerouslySetInnerHTML={{ __html: sanitizeNoteHTML(activeNote.body) }} />
+    </ReaderDialog>}
+    {activeConnections && <ReaderDialog title="Related passages" onClose={() => setActiveConnections(null)}>
+      {activeConnections.map(c => <article className="connection-card" key={c.id}>
+        <p className="connection-kind">{kindLabels[c.kind]}</p>
+        <h4>{c.title}</h4><p>{c.summary}</p>
+        <ul className="passage-links">{c.passages.map(p => <li key={passageHref(p)}>
+          <a href={passageHref(p)} onClick={event => {
+            if (!onNavigate || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+            event.preventDefault(); setActiveConnections(null); window.getSelection()?.removeAllRanges(); onNavigate(p);
+          }}>{passageLabel(p)}</a><span> — {p.label}</span>
+        </li>)}</ul>
+        <Sources sources={c.sources} />
+      </article>)}
+    </ReaderDialog>}
+  </>;
 }

@@ -243,19 +243,49 @@ button {
   font-size: 0.75rem;
   line-height: 1.5;
 }
-.translation-credit a {
-  display: inline;
-  text-decoration: underline;
-  text-underline-offset: 0.15em;
-}
-
-.search-help {
-  margin: -8px 0 16px;
-  font-size: 0.8rem;
-}
 .search-target {
   background: color-mix(in srgb, var(--accent-text) 8%, transparent);
   outline: 2px solid var(--accent-text);
   outline-offset: 3px;
   border-radius: 3px;
 }
+
+/* Teal links identify connected passages; amber still identifies commentary. */
+:root { --connection-text: #086b65; --passage-tint: #d9e9ff; }
+@media (prefers-color-scheme: dark) {
+  :root { --connection-text: #66d6c6; --passage-tint: #233e5f; }
+}
+.search-options { display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: center; margin: -6px 0 16px; font-size: .8rem; }
+.search-options p { margin: 0; }
+.search-options select { background: var(--surface); border: 1px solid var(--border-soft); border-radius: 5px; padding: 3px 5px; color: inherit; }
+.book-introduction { border-block: 1px solid var(--border-soft); margin: 0 0 12px; padding: 9px 0; }
+.book-introduction summary { cursor: pointer; font-size: .9rem; font-weight: 500; }
+.book-introduction > p { margin-top: 10px; line-height: 1.65; }
+.book-introduction .sources, .connection-card .sources { font-size: .8rem; margin-top: 12px; }
+.book-introduction .sources a, .connection-card .sources a { color: var(--accent-text); text-decoration: underline; text-underline-offset: .15em; }
+.reader-tools { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 14px; font-size: .75rem; }
+.reader-key { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin: 0; }
+.commentary-key { background: var(--note-mark); border-radius: 3px; padding: 0 3px; }
+.connection-key { color: var(--connection-text); }
+.copy-passage { cursor: pointer; text-decoration: underline; text-underline-offset: .2em; padding-block: 6px; }
+.copy-status, .study-status { font-size: .8rem; margin: 0 0 12px; }
+.commentary-mark { background: var(--note-mark); border-radius: 4px; padding: 0 2px; cursor: pointer; }
+.connection-marker { display: inline-block; vertical-align: baseline; color: var(--connection-text); border-bottom: 1px dotted currentColor; margin-left: .3em; padding: 0 .2em; cursor: pointer; user-select: none; font-weight: 600; line-height: 1.2; }
+.connection-marker::before { content: '↔'; }
+.passage-links { padding-left: 20px; margin-top: 16px; }
+.passage-links li { margin: 8px 0; }
+.passage-links a { color: var(--connection-text); font-weight: 600; text-decoration: underline; text-underline-offset: .2em; }
+.passage-links span { font-size: .9rem; }
+.passage-highlight { background: var(--passage-tint); color: var(--foreground); box-shadow: 0 1px 0 var(--accent-text); }
+.reader-dialog-backdrop { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; background: #0006; }
+.reader-dialog { background: var(--surface); color: var(--foreground); border: 1px solid var(--border-soft); border-radius: 16px; box-shadow: 0 18px 50px #0004; margin: 12px; padding: 20px; width: min(100% - 24px, 620px); max-height: calc(100dvh - 24px); overflow-y: auto; overscroll-behavior: contain; line-height: 1.6; }
+.reader-dialog > h3 { margin: 0 0 12px; font-size: 1rem; }
+.reader-dialog .note-popup { color: var(--foreground); }
+.connection-card + .connection-card { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border-soft); }
+.connection-kind { color: var(--connection-text); font-size: .75rem; margin: 0 0 4px; }
+.connection-card h4 { font-weight: 600; margin: 0 0 8px; font-size: 1.15rem; }
+.dialog-actions { text-align: right; margin-top: 16px; }
+.dialog-actions button { padding: 5px 12px; }
+@media (max-width: 640px) { .reader-dialog-backdrop { align-items: flex-end; } .reader-dialog { padding: 16px; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+.connection-marker { min-width: 28px; min-height: 24px; font-size: 1.05em; }

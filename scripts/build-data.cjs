@@ -2,6 +2,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { createHash, randomUUID } = require('node:crypto');
 const Database = require('better-sqlite3');
+const { validateStudy, buildStudy } = require('./study-data.cjs');
 
 const reference = (row) => JSON.stringify([row.book.toLowerCase(), row.chapter, row.verse]);
 const positiveInteger = (n) => Number.isSafeInteger(n) && n > 0;
@@ -51,9 +52,11 @@ function buildData(root = path.resolve(__dirname, '..')) {
   const dataDir = path.join(root, 'data');
   const bibleSource = fs.readFileSync(path.join(dataDir, 'bible.json'));
   const notesSource = fs.readFileSync(path.join(dataDir, 'notes.json'));
+  const studySource = fs.readFileSync(path.join(dataDir, 'study.json'));
   const verses = JSON.parse(bibleSource);
   const notes = JSON.parse(notesSource);
   validateSources(verses, notes);
+  const study = validateStudy(JSON.parse(studySource), verses);
 
   const target = path.join(dataDir, 'bible.sqlite');
   for (const suffix of ['-wal', '-shm', '-journal']) {
@@ -97,9 +100,10 @@ function buildData(root = path.resolve(__dirname, '..')) {
     db.transaction(() => {
       for (const row of verses) verseInsert.run(row);
       for (const row of notes) noteInsert.run({ ...row, phrase: row.phrase ?? null });
-      for (const [file, source] of [['bible.json', bibleSource], ['notes.json', notesSource]]) {
+      for (const [file, source] of [['bible.json', bibleSource], ['notes.json', notesSource], ['study.json', studySource]]) {
         manifestInsert.run(file, createHash('sha256').update(source).digest('hex'));
       }
+      buildStudy(db, study, notes);
       db.exec("INSERT INTO verse_fts(verse_fts) VALUES ('rebuild')");
       db.exec("INSERT INTO verse_fts(verse_fts, rank) VALUES ('integrity-check', 1)");
     })();
@@ -112,7 +116,7 @@ function buildData(root = path.resolve(__dirname, '..')) {
     // This was an output of the old pack command, never an editable source.
     // Next serves public files verbatim; the database belongs on the server only.
     fs.rmSync(path.join(root, 'public', 'data', 'bible.sqlite'), { force: true });
-    return { verses: verses.length, notes: notes.length,
+    return { verses: verses.length, notes: notes.length, connections: study.connections.length, introductions: study.introductions.length,
       blankVerses: verses.filter(row => !row.text.trim()).length, target };
   } finally {
     if (db?.open) db.close();
@@ -123,7 +127,7 @@ function buildData(root = path.resolve(__dirname, '..')) {
 
 if (require.main === module) {
   const result = buildData();
-  console.log(`Built ${result.verses} verses and ${result.notes} notes, including search index: ${result.target}`);
+  console.log(`Built ${result.verses} verses, ${result.notes} notes, ${result.connections} connections and ${result.introductions} book introductions, including search indexes: ${result.target}`);
   if (result.blankVerses) console.warn(`Editorial review needed: ${result.blankVerses} blank verse records preserved from bible.json.`);
 }
 

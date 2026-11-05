@@ -50,9 +50,9 @@ export default function RootLayout({
         {/* Footer */}
         <footer className="site-footer">
           <p className="translation-credit">
-            Bible text: <a href="https://ebible.org/eng-webbe/" target="_blank" rel="noopener noreferrer">World English Bible, British Edition</a>
+            Bible text: World English Bible, British Edition
             {' · '}
-            <a href="https://ebible.org/eng-webbe/copyright.htm" target="_blank" rel="noopener noreferrer">Public domain</a>
+            Public domain
           </p>
           <a href="https://digitelos.co.uk">
             <img src="/digitelos-spiral.svg" alt="" aria-hidden="true" />

@@ -19,6 +19,7 @@ function fixture(t) {
   const write = (file, value) => fs.writeFileSync(path.join(root, 'data', file), JSON.stringify(value));
   write('bible.json', verses);
   write('notes.json', notes);
+  write('study.json', { version: 1, connections: [], introductions: [] });
   return { root, verses, notes, write, target: path.join(root, 'data', 'bible.sqlite') };
 }
 
@@ -62,7 +63,7 @@ test('an invalid import leaves the previous database intact', (t) => {
   f.write('bible.json', [...f.verses, { ...f.verses[0], book: 'john' }]);
   assert.throws(() => buildData(f.root), /Duplicate verse/);
   assert.deepEqual(fs.readFileSync(f.target), previous);
-  assert.deepEqual(fs.readdirSync(path.join(f.root, 'data')).sort(), ['bible.json', 'bible.sqlite', 'notes.json']);
+  assert.deepEqual(fs.readdirSync(path.join(f.root, 'data')).sort(), ['bible.json', 'bible.sqlite', 'notes.json', 'study.json']);
 });
 
 test('notes referring to missing verses or duplicate anchors are rejected', (t) => {

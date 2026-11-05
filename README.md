@@ -11,7 +11,7 @@ npm ci
 npm run dev
 ```
 
-`npm run dev` first regenerates the database from both JSON sources. After editing Bible text or notes, stop the server and run `npm run dev` again. Code and styling changes continue to use Next.js hot reload.
+`npm run dev` first regenerates the database from all JSON sources. After editing Bible text or notes, stop the server and run `npm run dev` again. Code and styling changes continue to use Next.js hot reload.
 
 ## Build and run
 
@@ -29,7 +29,7 @@ Vercel can continue using `npm run vercel-build`, which calls the same build pip
 
 Search accepts full book names and common abbreviations, including `Jn 3:16`, `Mt5:1–12`, `1 Cor 13`, `2 Macc 7` and `Ecclus 2:1`. Spaces before chapter numbers are optional; verse ranges may use hyphens or dashes. Single-chapter references such as `Jude 5` name a verse. Use quotation marks for an exact phrase, such as `"living water"`; ordinary word searches match all entered words and return up to 50 results ranked by relevance.
 
-Selecting a result opens its chapter and highlights the selected verse. Previous/Next controls appear above and below the reader and advance one chapter at a time, continuing into the next book at book boundaries.
+Selecting a result opens its chapter and highlights the selected verse. Choose “Notes & connections” to search the explanations by word or theme. Previous/Next controls appear above and below the reader and advance one chapter at a time, continuing into the next book at book boundaries.
 
 ## Commentary
 
@@ -37,10 +37,16 @@ The published collection contains 1,054 selected Catholic commentary notes acros
 
 Production notes remain authoritative in `data/notes.json`; the archived review files are not runtime inputs or public routes. Future editorial changes must update the production notes and regenerate the database through the normal build pipeline.
 
+## Linked passages and sharing
+
+Teal ↔ buttons reveal sourced connections between passages; amber highlights retain the existing commentary. Every book has a collapsible introduction. Copying selected Bible words appends a reference and a link that highlights the same words when opened. The explicit copy button also supports copying a whole chapter. The reader remembers the last opened passage on this device.
+
+See [linked reading and sharing](docs/linked-reading.md) for URL behaviour and [the editorial review](drafts/study/README.md) for the new collection and its source checks.
+
 ## Data ownership
 
-- Edit `data/bible.json` and `data/notes.json` only through reviewed editorial changes.
-- `npm run data:build` derives `data/bible.sqlite`, its notes table, search index, and source hashes from those files. Stop the server before a manual rebuild and restart it afterwards.
+- Edit `data/bible.json`, `data/notes.json` and `data/study.json` only through reviewed editorial changes.
+- `npm run data:build` derives `data/bible.sqlite`, its notes and study tables, search indexes, and source hashes from those files. Stop the server before a manual rebuild and restart it afterwards.
 - All reading endpoints, book lists, search, and notes read the same generated database. The app opens it read-only.
 - `npm run data:check` detects whether the source files changed after generation.
 - Rebuilds replace rather than append data: deleted notes and verses disappear, and repeated builds do not duplicate them.

@@ -171,4 +171,4 @@ if (require.main===module) {
     else throw Error('Usage: node scripts/commentary-draft.cjs --assemble RESEARCH_DIR | --check | --check-partial FILE');
   } catch(e) { console.error(e.message);process.exitCode=1; }
 }
-module.exports={validateDraft,inspectBody,report,reviewFingerprint};
+module.exports={validateDraft,inspectBody,report,reviewFingerprint,extractSourceText};

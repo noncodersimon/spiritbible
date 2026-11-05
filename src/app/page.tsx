@@ -2,6 +2,8 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import ChapterClient from '@/components/ChapterClient';
+import { passageHref, readPassage } from '@/lib/passage';
+import type { PassageTarget } from '@/types/study';
 
 // --- Types matching your APIs ---
 type BookRow = { book: string; chapters: number };
@@ -12,6 +14,9 @@ type BooksResponse =
 type Verse = { verse: number; text: string };
 
 type SearchHit = {
+  title?: string;
+  note?: number;
+  connection?: string;
   book: string;
   chapter: number;
   verse: number;
@@ -137,6 +142,9 @@ function scrollToReaderTop() {
 
   // --- search state ---
   const [searchQuery, setSearchQuery] = useState('');
+  const [searchScope, setSearchScope] = useState('bible');
+  const searchRequest = useRef(0);
+  const [linkError, setLinkError] = useState<string | null>(null);
   const [searchResults, setSearchResults] = useState<SearchHit[]>([]);
   const [searchLoading, setSearchLoading] = useState(false);
   const [searchTried, setSearchTried] = useState(false);
@@ -155,7 +163,7 @@ function scrollToReaderTop() {
   const [loadedChapterKey, setLoadedChapterKey] = useState<string | null>(null);
   const [chapterError, setChapterError] = useState<string | null>(null);
   const chapterRequest = useRef(0);
-  const [searchTarget, setSearchTarget] = useState<{ book: string; chapter: number; verse: number } | null>(null);
+  const [searchTarget, setSearchTarget] = useState<PassageTarget | null>(null);
 
   // Fetch books (OT + NT)
   useEffect(() => {
@@ -171,10 +179,17 @@ function scrollToReaderTop() {
         const flat = [...data.ot, ...data.nt];
         if (alive) {
           setBookGroups({ ot: data.ot, nt: data.nt });
-          if (!selectedBook && flat.length > 0) {
-            const b = flat[0];
-            setSelectedBook(b);
-            setSelectedChapter(1);
+          if (flat.length > 0) {
+            let target = readPassage(window.location.search);
+            const hasReference = new URLSearchParams(window.location.search).has('ref');
+            if (hasReference && !target) setLinkError('This passage link is not valid. Please choose a book or search for a reference.');
+            if (!hasReference) {
+              try { target = readPassage(localStorage.getItem('spiritbible:last-passage') ?? ''); } catch { /* Storage can be disabled. */ }
+            }
+            const chosen = flat.find(b => b.book === target?.book) ?? flat[0];
+            setSelectedBook(chosen);
+            setSelectedChapter(target?.chapter ?? 1);
+            setSearchTarget(target);
           }
         }
       } catch (err: any) {
@@ -188,27 +203,32 @@ function scrollToReaderTop() {
     };
   }, []); // once
 
-useEffect(() => {
-  if (!books.length || selectedBook) return;
+  const navigate = useCallback((target: PassageTarget, history: 'push' | 'none' = 'push') => {
+    const found = books.find(b => b.book === target.book);
+    if (!found || target.chapter < 1 || target.chapter > found.chapters) return;
+    searchRequest.current++;
+    setSearchLoading(false); setSearchResults([]); setSearchTried(false); setSearchError(null); setLinkError(null);
+    setSelectedBook(found); setSelectedChapter(target.chapter); setSearchTarget(target);
+    if (history === 'push') window.history.pushState(null, '', passageHref(target));
 
-  const targetName = 'Matthew';
-  const found = books.find(
-    (b) => b.book.toLowerCase() === targetName.toLowerCase()
-  );
-  const chosen = found ?? books[0];
+  }, [books]);
 
-  setSelectedBook(chosen);
-  setSelectedChapter(1);
+  useEffect(() => {
+    if (!books.length) return;
+    function restored() {
+      const target = readPassage(window.location.search);
+      navigate(target ?? { book: books[0].book, chapter: 1 }, 'none');
+    }
+    window.addEventListener('popstate', restored);
+    return () => window.removeEventListener('popstate', restored);
+  }, [books, navigate]);
 
-  // Center the chosen book in view
-  // (CSS.escape is in all modern browsers; TS knows it from the DOM lib)
-  const sel = `[data-bk="${CSS.escape(chosen.book)}"]`;
-  const btn = document.querySelector<HTMLButtonElement>(sel);
-  // use block:'nearest' to avoid vertical jump
-  btn?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-}, [books, selectedBook]);
-
-
+  useEffect(() => {
+    if (!selectedBook) return;
+    const button = document.querySelector<HTMLButtonElement>(`[data-bk="${CSS.escape(selectedBook.book)}"]`);
+    const scroller = button?.parentElement;
+    if (button && scroller) scroller.scrollLeft = button.offsetLeft - scroller.offsetLeft - scroller.clientWidth / 2 + button.clientWidth / 2;
+  }, [selectedBook]);
 
   // Chapters array for slider
   const chapters = useMemo<number[]>(() => {
@@ -244,14 +264,23 @@ useEffect(() => {
   }, [selectedBook, selectedChapter, loadChapter]);
 
   useEffect(() => {
-    if (!searchTarget || loadedChapterKey !== `${searchTarget.book}|${searchTarget.chapter}`) return;
-    const frame = requestAnimationFrame(() => {
-      const verse = document.getElementById(`v${searchTarget.verse}`);
-      verse?.focus({ preventScroll: true });
-      verse?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    });
-    return () => cancelAnimationFrame(frame);
+    if (!searchTarget?.verse || loadedChapterKey !== `${searchTarget.book}|${searchTarget.chapter}`) return;
+    const first = chapterVerses.find(v => v.verse === searchTarget.verse);
+    const last = chapterVerses.find(v => v.verse === (searchTarget.endVerse ?? searchTarget.verse));
+    if (!first || !last) {
+      setLinkError('That verse range is not available in this edition. The chapter is shown below.');
+      return;
+    }
+
   }, [searchTarget, loadedChapterKey, chapterVerses]);
+
+  useEffect(() => {
+    if (!selectedBook || !selectedChapter || loadedChapterKey !== `${selectedBook.book}|${selectedChapter}`) return;
+    try {
+      localStorage.setItem('spiritbible:last-passage', passageHref({ book: selectedBook.book, chapter: selectedChapter,
+        ...(searchTarget?.verse ? { verse: searchTarget.verse, endVerse: searchTarget.endVerse } : {}) }).slice(2));
+    } catch { /* Storage is optional. */ }
+  }, [selectedBook, selectedChapter, loadedChapterKey, searchTarget]);
 
   // Prev / Next across books
   const prevNav = useMemo(() => {
@@ -280,39 +309,16 @@ useEffect(() => {
     return null;
   }, [books, selectedBook, selectedChapter]);
 
-  // Pick book / chapter (inline) — NO SCROLL here
-  const onPickBook = (b: BookRow) => {
-    setSearchResults([]); // hide search when browsing
-    setSelectedBook(b);
-    setSelectedChapter(1);
-    setSearchTarget(null);
-    setSearchError(null);
+  const onPickBook = (b: BookRow) => navigate({ book: b.book, chapter: 1 });
+  const onPickChapter = (chapter: number) => { if (selectedBook) navigate({ book: selectedBook.book, chapter }); };
+  const inlineGoToChapter = (book: string, chapter: number) => {
+    navigate({ book, chapter });
+    requestAnimationFrame(scrollToReaderTop);
   };
-
-  const onPickChapter = (ch: number) => {
-    setSearchResults([]); // hide search when browsing
-    setSelectedChapter(ch);
-    setSearchTarget(null);
-    setSearchError(null);
-  };
-
-  // Both navigation rows return to the start of the reader.
-  const inlineGoToChapter = useCallback(
-    (b: string, ch: number) => {
-      setSearchResults([]); // hide search when navigating
-      const found = books.find(
-        (x) => x.book.toLowerCase() === b.toLowerCase()
-      );
-      if (found) setSelectedBook(found);
-      setSelectedChapter(ch);
-      setSearchTarget(null);
-      requestAnimationFrame(scrollToReaderTop);
-    },
-    [books]
-  );
 
   // Search: replaces the chapter view; user clicks a hit to open it
   const doSearch = useCallback(async () => {
+    const request = ++searchRequest.current;
     const q = searchQuery.trim();
     setLastQuery(q);
     setSearchTried(true);
@@ -328,11 +334,12 @@ useEffect(() => {
 
     setSearchLoading(true);
     try {
-      const res = await fetch(`/api/search?q=${encodeURIComponent(q)}`, {
+      const res = await fetch(`/api/search?q=${encodeURIComponent(q)}&scope=${searchScope}`, {
         cache: 'no-store',
       });
 
       const data: any = await res.json();
+      if (request !== searchRequest.current) return;
       if (!res.ok) throw new Error(data.error || 'Search is temporarily unavailable. Please try again.');
 
       // Accept both shapes: {hits: [...] } or {results: [...] }
@@ -343,33 +350,16 @@ useEffect(() => {
 
       setSearchResults(hits);
     } catch (e) {
+      if (request !== searchRequest.current) return;
       setSearchError(e instanceof Error ? e.message : 'Search is temporarily unavailable. Please try again.');
       setSearchResults([]);
     } finally {
-      setSearchLoading(false);
+      if (request === searchRequest.current) setSearchLoading(false);
     }
-  }, [searchQuery]);
+  }, [searchQuery, searchScope]);
 
-  // Open the whole chapter, then focus the selected verse once its text is ready.
-  const openHit = useCallback(
-    (hit: SearchHit) => {
-      const found = books.find(
-        (b) => b.book.toLowerCase() === hit.book.toLowerCase()
-      );
-      if (!found) return;
-
-      setSelectedBook(found);
-      setSelectedChapter(hit.chapter);
-      setSearchTarget({ book: found.book, chapter: hit.chapter, verse: hit.verse });
-
-      // exit search mode
-      setSearchResults([]);
-      setSearchTried(false);
-      setLastQuery('');
-      setSearchError(null);
-    },
-    [books]
-  );
+  const openHit = (hit: SearchHit) => navigate({ book: hit.book, chapter: hit.chapter, verse: hit.verse,
+    ...(hit.note ? { note: Number(hit.note) } : {}), ...(hit.connection ? { connection: hit.connection } : {}) });
 
   return (
     <main className="mx-auto max-w-3xl p-4">
@@ -394,7 +384,12 @@ useEffect(() => {
           Search
         </button>
       </form>
-      <p id="search-help" className="search-help">Try Jn3:16, 1 Cor13:4–7 or &quot;living water&quot;.</p>
+      <div className="search-options">
+        <label>Search in <select aria-label="Search in" value={searchScope} onChange={e => setSearchScope(e.target.value)}>
+          <option value="bible">Bible text</option><option value="commentary">Notes &amp; connections</option>
+        </select></label>
+        <p id="search-help">{searchScope === 'bible' ? 'Try Jn3:16, 1 Cor13:4–7 or “living water”.' : 'Try resurrection, covenant or forgiveness.'}</p>
+      </div>
 
       {/* Both rows share selectedBook; the combined list still drives navigation. */}
       {([
@@ -435,6 +430,7 @@ useEffect(() => {
       {/* Results list OR inline reader */}
       {searchLoading && <p role="status">Searching…</p>}
       {searchError && <p role="alert">{searchError}</p>}
+      {linkError && <p role="alert">{linkError}</p>}
 
       {searchResults.length > 0 ? (
         <>
@@ -458,7 +454,7 @@ useEffect(() => {
                   aria-label={`Open ${r.book} ${r.chapter}:${r.verse}`}
                 >
                   <strong>
-                    {r.book} {r.chapter}:{r.verse}
+                    {r.title ? `${r.title} — ` : ''}{r.book} {r.chapter}:{r.verse}
                   </strong>
                   <div style={{ marginTop: 4 }}>{r.text}</div>
                 </button>
@@ -488,7 +484,8 @@ useEffect(() => {
               book={selectedBook.book}
               chapter={selectedChapter}
               verses={chapterVerses}
-              highlightVerse={searchTarget?.book === selectedBook.book && searchTarget.chapter === selectedChapter ? searchTarget.verse : undefined}
+              target={searchTarget?.book === selectedBook.book && searchTarget.chapter === selectedChapter ? searchTarget : undefined}
+              onNavigate={navigate}
             />
           ) : chapterError ? (
             <p role="alert">{chapterError} <button className="chip" onClick={() => loadChapter(selectedBook.book, selectedChapter)}>Retry</button></p>

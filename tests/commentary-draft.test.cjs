@@ -30,6 +30,7 @@ test('candidate commentary builds a separate database without touching live data
   fs.mkdirSync(path.join(temp,'data'));
   fs.copyFileSync(path.resolve(__dirname,'../data/bible.json'),path.join(temp,'data/bible.json'));
   fs.writeFileSync(path.join(temp,'data/notes.json'),JSON.stringify(notes));
+  fs.writeFileSync(path.join(temp,'data/study.json'),JSON.stringify({version:1,connections:[],introductions:[]}));
   const result=buildData(temp);assert.equal(result.notes,notes.length);assert.equal(result.verses,bible.length);
   const db=new Database(result.target,{readonly:true});
   try{
@@ -47,7 +48,11 @@ function loadTS(relative){
  const compiled=ts.transpileModule(fs.readFileSync(filename,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,esModuleInterop:true,jsx:ts.JsxEmit.ReactJSX}}).outputText;
  const instance=new Module(filename,module);instance.filename=filename;instance.paths=Module._nodeModulePaths(path.dirname(filename));
  const originalRequire=instance.require.bind(instance);
- instance.require=id=>id==='@/lib/canon'?loadTS('../src/lib/canon.ts'):originalRequire(id);
+ instance.require = id => {
+   if (id.startsWith('@/')) { const p = '../src/' + id.slice(2); return loadTS(p + (fs.existsSync(path.resolve(__dirname,p+'.tsx')) ? '.tsx' : '.ts')); }
+   if (id.startsWith('.') && fs.existsSync(path.resolve(path.dirname(filename),id+'.ts'))) return loadTS(path.relative(__dirname,path.resolve(path.dirname(filename),id+'.ts')));
+   return originalRequire(id);
+ };
  instance._compile(compiled,filename);return instance.exports;
 }
 
