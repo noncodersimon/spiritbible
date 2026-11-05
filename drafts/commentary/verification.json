@@ -1,0 +1,17 @@
+{
+  "status": "draft—not published",
+  "notes": 1054,
+  "books": 73,
+  "liveBibleUnchanged": true,
+  "liveNotesUnchanged": true,
+  "fullTestSuite": "passed (5 test files; candidate checks include every proposed popup and isolated SQLite import)",
+  "productionBuild": "passed, including TypeScript check",
+  "browserChecks": "passed:320×400,390×844,1280×800 and dark mode; standalone filtering, review marks and export",
+  "allRetainedNotesIndependentlyReviewedByAI": true,
+  "contentReviewFindings": 11,
+  "contentReviewFindingsResolved": true,
+  "toolingReviewFindingsResolved": 3,
+  "humanReview": "outstanding",
+  "notePayloadSha256": "a3e3b053cc311b0674b78629bd5ba684a2ad13fe911c12c7517070ef61133802",
+  "editorialSha256": "54cac8adff18f1592becfeaec7a71fdf164d59948f1653ebd2e553c4a23adcba"
+}

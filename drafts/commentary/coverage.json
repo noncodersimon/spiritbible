@@ -1,0 +1,326 @@
+{
+  "status": "draft—not published",
+  "notes": 1054,
+  "books": 73,
+  "totalProseWords": 132825,
+  "minimumWords": 114,
+  "maximumWords": 160,
+  "languageNotes": 32,
+  "uniqueSourcePages": 275,
+  "sourceCitations": {
+    "catechism": 876,
+    "fathers": 160,
+    "encyclopedia": 160
+  },
+  "coverage": [
+    {
+      "book": "Genesis",
+      "notes": 42
+    },
+    {
+      "book": "Exodus",
+      "notes": 36
+    },
+    {
+      "book": "Leviticus",
+      "notes": 22
+    },
+    {
+      "book": "Numbers",
+      "notes": 22
+    },
+    {
+      "book": "Deuteronomy",
+      "notes": 28
+    },
+    {
+      "book": "Joshua",
+      "notes": 14
+    },
+    {
+      "book": "Judges",
+      "notes": 14
+    },
+    {
+      "book": "Ruth",
+      "notes": 7
+    },
+    {
+      "book": "1 Samuel",
+      "notes": 18
+    },
+    {
+      "book": "2 Samuel",
+      "notes": 16
+    },
+    {
+      "book": "1 Kings",
+      "notes": 16
+    },
+    {
+      "book": "2 Kings",
+      "notes": 14
+    },
+    {
+      "book": "1 Chronicles",
+      "notes": 9
+    },
+    {
+      "book": "2 Chronicles",
+      "notes": 10
+    },
+    {
+      "book": "Ezra",
+      "notes": 7
+    },
+    {
+      "book": "Nehemiah",
+      "notes": 8
+    },
+    {
+      "book": "Tobit",
+      "notes": 12
+    },
+    {
+      "book": "Judith",
+      "notes": 10
+    },
+    {
+      "book": "Esther",
+      "notes": 9
+    },
+    {
+      "book": "1 Maccabees",
+      "notes": 12
+    },
+    {
+      "book": "2 Maccabees",
+      "notes": 14
+    },
+    {
+      "book": "Job",
+      "notes": 20
+    },
+    {
+      "book": "Psalms",
+      "notes": 55
+    },
+    {
+      "book": "Proverbs",
+      "notes": 22
+    },
+    {
+      "book": "Ecclesiastes",
+      "notes": 12
+    },
+    {
+      "book": "Song of Songs",
+      "notes": 12
+    },
+    {
+      "book": "Wisdom",
+      "notes": 22
+    },
+    {
+      "book": "Sirach",
+      "notes": 27
+    },
+    {
+      "book": "Isaiah",
+      "notes": 31
+    },
+    {
+      "book": "Jeremiah",
+      "notes": 20
+    },
+    {
+      "book": "Lamentations",
+      "notes": 7
+    },
+    {
+      "book": "Baruch",
+      "notes": 8
+    },
+    {
+      "book": "Ezekiel",
+      "notes": 23
+    },
+    {
+      "book": "Daniel",
+      "notes": 20
+    },
+    {
+      "book": "Hosea",
+      "notes": 10
+    },
+    {
+      "book": "Joel",
+      "notes": 6
+    },
+    {
+      "book": "Amos",
+      "notes": 7
+    },
+    {
+      "book": "Obadiah",
+      "notes": 3
+    },
+    {
+      "book": "Jonah",
+      "notes": 5
+    },
+    {
+      "book": "Micah",
+      "notes": 6
+    },
+    {
+      "book": "Nahum",
+      "notes": 3
+    },
+    {
+      "book": "Habakkuk",
+      "notes": 5
+    },
+    {
+      "book": "Zephaniah",
+      "notes": 4
+    },
+    {
+      "book": "Haggai",
+      "notes": 3
+    },
+    {
+      "book": "Zechariah",
+      "notes": 9
+    },
+    {
+      "book": "Malachi",
+      "notes": 5
+    },
+    {
+      "book": "Matthew",
+      "notes": 40
+    },
+    {
+      "book": "Mark",
+      "notes": 27
+    },
+    {
+      "book": "Luke",
+      "notes": 40
+    },
+    {
+      "book": "John",
+      "notes": 47
+    },
+    {
+      "book": "Acts",
+      "notes": 25
+    },
+    {
+      "book": "Romans",
+      "notes": 22
+    },
+    {
+      "book": "1 Corinthians",
+      "notes": 20
+    },
+    {
+      "book": "2 Corinthians",
+      "notes": 12
+    },
+    {
+      "book": "Galatians",
+      "notes": 9
+    },
+    {
+      "book": "Ephesians",
+      "notes": 9
+    },
+    {
+      "book": "Philippians",
+      "notes": 7
+    },
+    {
+      "book": "Colossians",
+      "notes": 7
+    },
+    {
+      "book": "1 Thessalonians",
+      "notes": 5
+    },
+    {
+      "book": "2 Thessalonians",
+      "notes": 4
+    },
+    {
+      "book": "1 Timothy",
+      "notes": 6
+    },
+    {
+      "book": "2 Timothy",
+      "notes": 6
+    },
+    {
+      "book": "Titus",
+      "notes": 4
+    },
+    {
+      "book": "Philemon",
+      "notes": 3
+    },
+    {
+      "book": "Hebrews",
+      "notes": 18
+    },
+    {
+      "book": "James",
+      "notes": 8
+    },
+    {
+      "book": "1 Peter",
+      "notes": 8
+    },
+    {
+      "book": "2 Peter",
+      "notes": 5
+    },
+    {
+      "book": "1 John",
+      "notes": 8
+    },
+    {
+      "book": "2 John",
+      "notes": 2
+    },
+    {
+      "book": "3 John",
+      "notes": 2
+    },
+    {
+      "book": "Jude",
+      "notes": 4
+    },
+    {
+      "book": "Revelation",
+      "notes": 21
+    }
+  ],
+  "bibleSha256": "e53aaeeb4d35ac98bbb097435d1ad27719fa50234fc9c59e7dbbd9807781907a",
+  "liveNotesSha256": "020c72457e2d88aee5cb3c854b632593d1082cb8fd2d41b1af1c2ed34cc050c1",
+  "checks": [
+    "73-book coverage",
+    "100–200 prose words per note",
+    "Exact unique phrase anchors and UTF-16 offsets",
+    "No overlapping highlights",
+    "No identical prose bodies",
+    "Restricted safe HTML and source hosts",
+    "Citation links match structured sources",
+    "Supporting excerpts found in both extracted text and hash-verified fetched HTML"
+  ],
+  "limits": [
+    "Excerpt matching confirms provenance, not that every interpretation follows from its source.",
+    "AI-drafted commentary requires human editorial and theological review before publication.",
+    "Historical Encyclopedia scholarship and individual patristic interpretations are not equivalent to current Church teaching."
+  ]
+}

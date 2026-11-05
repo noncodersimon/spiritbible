@@ -1,0 +1,100 @@
+{
+  "scope": "complete candidate",
+  "candidateNotes": 1054,
+  "standaloneReview": {
+    "filters": true,
+    "decisionUpdates": true,
+    "export": true
+  },
+  "method": "Built local app; /api/notes intercepted in test browser with candidate data; standalone review HTML supplied through a browser-only local HTTP mock. Live JSON unchanged.",
+  "results": [
+    {
+      "viewport": {
+        "width": 320,
+        "height": 400
+      },
+      "colorScheme": "light",
+      "note": "DEU-006",
+      "words": 160,
+      "top": 12,
+      "bottom": 388,
+      "height": 376,
+      "scrollHeight": 903,
+      "clientHeight": 374,
+      "overflowY": "auto",
+      "viewportHeight": 400,
+      "sourceLinkStyle": {
+        "decoration": "underline",
+        "color": "rgb(43, 87, 219)"
+      },
+      "closeReachable": true,
+      "escapeWorks": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "colorScheme": "light",
+      "note": "DEU-006",
+      "words": 160,
+      "top": 95,
+      "bottom": 832,
+      "height": 737,
+      "scrollHeight": 735,
+      "clientHeight": 735,
+      "overflowY": "auto",
+      "viewportHeight": 844,
+      "sourceLinkStyle": {
+        "decoration": "underline",
+        "color": "rgb(43, 87, 219)"
+      },
+      "closeReachable": true,
+      "escapeWorks": true
+    },
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "colorScheme": "light",
+      "note": "DEU-006",
+      "words": 160,
+      "top": 151.5,
+      "bottom": 648.5,
+      "height": 497,
+      "scrollHeight": 495,
+      "clientHeight": 495,
+      "overflowY": "auto",
+      "viewportHeight": 800,
+      "sourceLinkStyle": {
+        "decoration": "underline",
+        "color": "rgb(43, 87, 219)"
+      },
+      "closeReachable": true,
+      "escapeWorks": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "colorScheme": "dark",
+      "note": "DEU-006",
+      "words": 160,
+      "top": 95,
+      "bottom": 832,
+      "height": 737,
+      "scrollHeight": 735,
+      "clientHeight": 735,
+      "overflowY": "auto",
+      "viewportHeight": 844,
+      "sourceLinkStyle": {
+        "decoration": "underline",
+        "color": "rgb(23, 162, 232)"
+      },
+      "closeReachable": true,
+      "escapeWorks": true
+    }
+  ]
+}

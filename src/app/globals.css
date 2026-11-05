@@ -222,3 +222,14 @@ button {
   width: 18px;
   height: 18px;
 }
+
+/* Commentary references remain recognisable as links in either colour scheme. */
+.note-popup a {
+  color: var(--accent-text);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+.note-popup .sources {
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+}

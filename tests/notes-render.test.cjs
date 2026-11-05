@@ -48,16 +48,19 @@ test('all note highlights preserve verse text and popups open and close', async 
       const marks = [...document.querySelectorAll('mark')];
       const expected = notes.filter(n => n.book === book && n.chapter === chapter).sort((a,b)=>a.verse-b.verse||a.start-b.start);
       assert.deepEqual(marks.map(m=>m.textContent),expected.map(n=>n.phrase));
-      for (const mark of marks) {
+      for (const [i, mark] of marks.entries()) {
         await act(async () => { mark.dispatchEvent(new window.MouseEvent('click',{bubbles:true})); });
         assert(document.querySelector('[role="dialog"]'));
-        assert(document.querySelector('.note-popup a[href^="https://www.vatican.va/"]'));
+        const popup = document.querySelector('.note-popup');
+        const expectedBody = JSDOM.fragment(expected[i].body);
+        assert.equal(popup.textContent,expectedBody.textContent);
+        assert.deepEqual([...popup.querySelectorAll('a')].map(a=>a.href),[...expectedBody.querySelectorAll('a')].map(a=>a.href));
         await act(async () => { window.dispatchEvent(new window.KeyboardEvent('keydown',{key:'Escape'})); });
         assert.equal(document.querySelector('[role="dialog"]'),null);
         count++;
       }
     }
-    assert.equal(count,11);
+    assert.equal(count,notes.length);
   } finally {
     await act(async () => root.unmount());
     dom.window.close();

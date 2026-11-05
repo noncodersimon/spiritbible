@@ -69,8 +69,9 @@ test('navigation and references follow source numbering and multiword book names
   assert.equal(parseRef('John 3:16-15'),null);
 });
 
-test('every preserved note has an explicit exact phrase at its inclusive offsets', () => {
-  assert.equal(notes.length,11);
+test('all published commentary has exact anchors across the Catholic canon', () => {
+  assert.equal(notes.length,1054);
+  assert.equal(new Set(notes.map(n => n.book)).size,73);
   for (const note of notes) {
     const text = verse(note.book,note.chapter,note.verse);
     assert(note.phrase);

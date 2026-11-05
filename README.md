@@ -25,6 +25,12 @@ npm start
 
 Vercel can continue using `npm run vercel-build`, which calls the same build pipeline. A deployment or hosting migration is not required for these local changes. This repository does not contain the remote Vercel project's settings, so its deployed branch and current production release must be checked there.
 
+## Commentary
+
+The published collection contains 1,054 selected Catholic commentary notes across all 73 books. Each note is anchored to the current WEB text and ends with abbreviated links to the Catechism, Catholic Encyclopedia or Church Fathers. The reviewed collection and provenance are retained in [the commentary review archive](drafts/commentary/README.md).
+
+Production notes remain authoritative in `data/notes.json`; the archived review files are not runtime inputs or public routes. Future editorial changes must update the production notes and regenerate the database through the normal build pipeline.
+
 ## Data ownership
 
 - Edit `data/bible.json` and `data/notes.json` only through reviewed editorial changes.

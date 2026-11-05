@@ -1,0 +1,8 @@
+{
+  "commit": "5e5aeb6d893add76f880bb9e37ee584d37c24345",
+  "files": {
+    "data/bible.json": "e53aaeeb4d35ac98bbb097435d1ad27719fa50234fc9c59e7dbbd9807781907a",
+    "data/notes.json": "020c72457e2d88aee5cb3c854b632593d1082cb8fd2d41b1af1c2ed34cc050c1",
+    "src/components/ChapterClient.tsx": "ca8acd12d8372fdfbaeccc035d12c449ba9db2f9f0a1edf592cabd346ba3e4f3"
+  }
+}

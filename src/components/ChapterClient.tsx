@@ -195,7 +195,7 @@ const renderVerse = (v: Verse) => {
 
           {/* card */}
           <div
-            className="relative m-3 w-full max-w-xl rounded-2xl border border-neutral-200 bg-white p-4 shadow-2xl dark:border-neutral-800 dark:bg-neutral-900"
+            className="relative m-3 max-h-[calc(100dvh-1.5rem)] w-full max-w-xl overflow-y-auto overscroll-contain rounded-2xl border border-neutral-200 bg-white p-4 shadow-2xl dark:border-neutral-800 dark:bg-neutral-900"
             onClick={(e) => e.stopPropagation()} // prevent outside-close
           >
             <div className="text-sm text-neutral-500 dark:text-neutral-400 mb-1">
