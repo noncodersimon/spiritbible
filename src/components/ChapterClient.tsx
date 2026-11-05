@@ -15,6 +15,7 @@ type Note = {
   start: number;
   end: number;
   body: string;
+  phrase?: string | null;
 };
 
 export default function ChapterClient({
@@ -117,8 +118,10 @@ const renderVerse = (v: Verse) => {
     // 1) compute [s, e) for this note
     let s: number, e: number;
 
-    const phrase = extractQuotedPhrase(n.body || "");
+    const phrase = n.phrase ?? extractQuotedPhrase(n.body || "");
     const hit = phrase ? findPhraseInText(v.text, phrase) : null;
+    // An explicit anchor must not silently fall back to obsolete offsets.
+    if (n.phrase && !hit) continue;
 
     if (hit) {
       ({ s, e } = hit);

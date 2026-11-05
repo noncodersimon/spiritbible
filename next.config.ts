@@ -2,7 +2,10 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
-    "**/*": ["./data/**"], // ensure data/ is available to server code
+    "**/*": ["./data/bible.sqlite"], // only the generated server database; source archives stay out of deployments
+  },
+  outputFileTracingExcludes: {
+    "**/*": ["./data/sources/**"], // the legacy debug route scans data/; never package the source archives
   },
   eslint: { ignoreDuringBuilds: true }
 };

@@ -1,0 +1,440 @@
+[
+  {
+    "code": "GEN",
+    "name": "Genesis",
+    "chapters": 50,
+    "verses": 1533
+  },
+  {
+    "code": "EXO",
+    "name": "Exodus",
+    "chapters": 40,
+    "verses": 1213
+  },
+  {
+    "code": "LEV",
+    "name": "Leviticus",
+    "chapters": 27,
+    "verses": 859
+  },
+  {
+    "code": "NUM",
+    "name": "Numbers",
+    "chapters": 36,
+    "verses": 1288
+  },
+  {
+    "code": "DEU",
+    "name": "Deuteronomy",
+    "chapters": 34,
+    "verses": 959
+  },
+  {
+    "code": "JOS",
+    "name": "Joshua",
+    "chapters": 24,
+    "verses": 658
+  },
+  {
+    "code": "JDG",
+    "name": "Judges",
+    "chapters": 21,
+    "verses": 618
+  },
+  {
+    "code": "RUT",
+    "name": "Ruth",
+    "chapters": 4,
+    "verses": 85
+  },
+  {
+    "code": "1SA",
+    "name": "1 Samuel",
+    "chapters": 31,
+    "verses": 810
+  },
+  {
+    "code": "2SA",
+    "name": "2 Samuel",
+    "chapters": 24,
+    "verses": 695
+  },
+  {
+    "code": "1KI",
+    "name": "1 Kings",
+    "chapters": 22,
+    "verses": 816
+  },
+  {
+    "code": "2KI",
+    "name": "2 Kings",
+    "chapters": 25,
+    "verses": 719
+  },
+  {
+    "code": "1CH",
+    "name": "1 Chronicles",
+    "chapters": 29,
+    "verses": 942
+  },
+  {
+    "code": "2CH",
+    "name": "2 Chronicles",
+    "chapters": 36,
+    "verses": 822
+  },
+  {
+    "code": "EZR",
+    "name": "Ezra",
+    "chapters": 10,
+    "verses": 280
+  },
+  {
+    "code": "NEH",
+    "name": "Nehemiah",
+    "chapters": 13,
+    "verses": 406
+  },
+  {
+    "code": "TOB",
+    "name": "Tobit",
+    "chapters": 14,
+    "verses": 244
+  },
+  {
+    "code": "JDT",
+    "name": "Judith",
+    "chapters": 16,
+    "verses": 339
+  },
+  {
+    "code": "ESG",
+    "name": "Esther",
+    "chapters": 10,
+    "verses": 205
+  },
+  {
+    "code": "1MA",
+    "name": "1 Maccabees",
+    "chapters": 16,
+    "verses": 924
+  },
+  {
+    "code": "2MA",
+    "name": "2 Maccabees",
+    "chapters": 15,
+    "verses": 555
+  },
+  {
+    "code": "JOB",
+    "name": "Job",
+    "chapters": 42,
+    "verses": 1070
+  },
+  {
+    "code": "PSA",
+    "name": "Psalms",
+    "chapters": 150,
+    "verses": 2461
+  },
+  {
+    "code": "PRO",
+    "name": "Proverbs",
+    "chapters": 31,
+    "verses": 915
+  },
+  {
+    "code": "ECC",
+    "name": "Ecclesiastes",
+    "chapters": 12,
+    "verses": 222
+  },
+  {
+    "code": "SNG",
+    "name": "Song of Songs",
+    "chapters": 8,
+    "verses": 117
+  },
+  {
+    "code": "WIS",
+    "name": "Wisdom",
+    "chapters": 19,
+    "verses": 436
+  },
+  {
+    "code": "SIR",
+    "name": "Sirach",
+    "chapters": 51,
+    "verses": 1395
+  },
+  {
+    "code": "ISA",
+    "name": "Isaiah",
+    "chapters": 66,
+    "verses": 1292
+  },
+  {
+    "code": "JER",
+    "name": "Jeremiah",
+    "chapters": 52,
+    "verses": 1364
+  },
+  {
+    "code": "LAM",
+    "name": "Lamentations",
+    "chapters": 5,
+    "verses": 154
+  },
+  {
+    "code": "BAR",
+    "name": "Baruch",
+    "chapters": 6,
+    "verses": 213
+  },
+  {
+    "code": "EZK",
+    "name": "Ezekiel",
+    "chapters": 48,
+    "verses": 1273
+  },
+  {
+    "code": "DAG",
+    "name": "Daniel",
+    "chapters": 14,
+    "verses": 530
+  },
+  {
+    "code": "HOS",
+    "name": "Hosea",
+    "chapters": 14,
+    "verses": 197
+  },
+  {
+    "code": "JOL",
+    "name": "Joel",
+    "chapters": 3,
+    "verses": 73
+  },
+  {
+    "code": "AMO",
+    "name": "Amos",
+    "chapters": 9,
+    "verses": 146
+  },
+  {
+    "code": "OBA",
+    "name": "Obadiah",
+    "chapters": 1,
+    "verses": 21
+  },
+  {
+    "code": "JON",
+    "name": "Jonah",
+    "chapters": 4,
+    "verses": 48
+  },
+  {
+    "code": "MIC",
+    "name": "Micah",
+    "chapters": 7,
+    "verses": 105
+  },
+  {
+    "code": "NAM",
+    "name": "Nahum",
+    "chapters": 3,
+    "verses": 47
+  },
+  {
+    "code": "HAB",
+    "name": "Habakkuk",
+    "chapters": 3,
+    "verses": 56
+  },
+  {
+    "code": "ZEP",
+    "name": "Zephaniah",
+    "chapters": 3,
+    "verses": 53
+  },
+  {
+    "code": "HAG",
+    "name": "Haggai",
+    "chapters": 2,
+    "verses": 38
+  },
+  {
+    "code": "ZEC",
+    "name": "Zechariah",
+    "chapters": 14,
+    "verses": 211
+  },
+  {
+    "code": "MAL",
+    "name": "Malachi",
+    "chapters": 4,
+    "verses": 55
+  },
+  {
+    "code": "MAT",
+    "name": "Matthew",
+    "chapters": 28,
+    "verses": 1071
+  },
+  {
+    "code": "MRK",
+    "name": "Mark",
+    "chapters": 16,
+    "verses": 678
+  },
+  {
+    "code": "LUK",
+    "name": "Luke",
+    "chapters": 24,
+    "verses": 1151
+  },
+  {
+    "code": "JHN",
+    "name": "John",
+    "chapters": 21,
+    "verses": 879
+  },
+  {
+    "code": "ACT",
+    "name": "Acts",
+    "chapters": 28,
+    "verses": 1007
+  },
+  {
+    "code": "ROM",
+    "name": "Romans",
+    "chapters": 16,
+    "verses": 434
+  },
+  {
+    "code": "1CO",
+    "name": "1 Corinthians",
+    "chapters": 16,
+    "verses": 437
+  },
+  {
+    "code": "2CO",
+    "name": "2 Corinthians",
+    "chapters": 13,
+    "verses": 257
+  },
+  {
+    "code": "GAL",
+    "name": "Galatians",
+    "chapters": 6,
+    "verses": 149
+  },
+  {
+    "code": "EPH",
+    "name": "Ephesians",
+    "chapters": 6,
+    "verses": 155
+  },
+  {
+    "code": "PHP",
+    "name": "Philippians",
+    "chapters": 4,
+    "verses": 104
+  },
+  {
+    "code": "COL",
+    "name": "Colossians",
+    "chapters": 4,
+    "verses": 95
+  },
+  {
+    "code": "1TH",
+    "name": "1 Thessalonians",
+    "chapters": 5,
+    "verses": 89
+  },
+  {
+    "code": "2TH",
+    "name": "2 Thessalonians",
+    "chapters": 3,
+    "verses": 47
+  },
+  {
+    "code": "1TI",
+    "name": "1 Timothy",
+    "chapters": 6,
+    "verses": 113
+  },
+  {
+    "code": "2TI",
+    "name": "2 Timothy",
+    "chapters": 4,
+    "verses": 83
+  },
+  {
+    "code": "TIT",
+    "name": "Titus",
+    "chapters": 3,
+    "verses": 46
+  },
+  {
+    "code": "PHM",
+    "name": "Philemon",
+    "chapters": 1,
+    "verses": 25
+  },
+  {
+    "code": "HEB",
+    "name": "Hebrews",
+    "chapters": 13,
+    "verses": 303
+  },
+  {
+    "code": "JAS",
+    "name": "James",
+    "chapters": 5,
+    "verses": 108
+  },
+  {
+    "code": "1PE",
+    "name": "1 Peter",
+    "chapters": 5,
+    "verses": 105
+  },
+  {
+    "code": "2PE",
+    "name": "2 Peter",
+    "chapters": 3,
+    "verses": 61
+  },
+  {
+    "code": "1JN",
+    "name": "1 John",
+    "chapters": 5,
+    "verses": 105
+  },
+  {
+    "code": "2JN",
+    "name": "2 John",
+    "chapters": 1,
+    "verses": 13
+  },
+  {
+    "code": "3JN",
+    "name": "3 John",
+    "chapters": 1,
+    "verses": 14
+  },
+  {
+    "code": "JUD",
+    "name": "Jude",
+    "chapters": 1,
+    "verses": 25
+  },
+  {
+    "code": "REV",
+    "name": "Revelation",
+    "chapters": 22,
+    "verses": 404
+  }
+]

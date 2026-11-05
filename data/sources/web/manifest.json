@@ -1,0 +1,311 @@
+{
+  "edition": "World English Bible British Edition, Catholic book selection",
+  "source_date": "2026-10-30",
+  "retrieved": "2026-11-05",
+  "license": "Public domain; World English Bible is a trademark. Do not use that name for altered wording.",
+  "signing_key_fingerprint": "54D714D76956DA6673DC1EEA5F62009D93505F26",
+  "archives": {
+    "eng-webbe": {
+      "url": "https://ebible.org/Scriptures/eng-webbe_vpl.zip",
+      "sha256": "018b2ac4ebafdbfcd00c69f9a48ee775c2a6f318d20a93476058a1162d63423a"
+    },
+    "eng-web-c": {
+      "url": "https://ebible.org/Scriptures/eng-web-c_vpl.zip",
+      "sha256": "aafbcc4ea5adc530e5465244864fe105f65cad5935be5cc11617ccd1c1988ccf"
+    }
+  },
+  "books": [
+    {
+      "code": "GEN",
+      "name": "Genesis"
+    },
+    {
+      "code": "EXO",
+      "name": "Exodus"
+    },
+    {
+      "code": "LEV",
+      "name": "Leviticus"
+    },
+    {
+      "code": "NUM",
+      "name": "Numbers"
+    },
+    {
+      "code": "DEU",
+      "name": "Deuteronomy"
+    },
+    {
+      "code": "JOS",
+      "name": "Joshua"
+    },
+    {
+      "code": "JDG",
+      "name": "Judges"
+    },
+    {
+      "code": "RUT",
+      "name": "Ruth"
+    },
+    {
+      "code": "1SA",
+      "name": "1 Samuel"
+    },
+    {
+      "code": "2SA",
+      "name": "2 Samuel"
+    },
+    {
+      "code": "1KI",
+      "name": "1 Kings"
+    },
+    {
+      "code": "2KI",
+      "name": "2 Kings"
+    },
+    {
+      "code": "1CH",
+      "name": "1 Chronicles"
+    },
+    {
+      "code": "2CH",
+      "name": "2 Chronicles"
+    },
+    {
+      "code": "EZR",
+      "name": "Ezra"
+    },
+    {
+      "code": "NEH",
+      "name": "Nehemiah"
+    },
+    {
+      "code": "TOB",
+      "name": "Tobit"
+    },
+    {
+      "code": "JDT",
+      "name": "Judith"
+    },
+    {
+      "code": "ESG",
+      "name": "Esther"
+    },
+    {
+      "code": "1MA",
+      "name": "1 Maccabees"
+    },
+    {
+      "code": "2MA",
+      "name": "2 Maccabees"
+    },
+    {
+      "code": "JOB",
+      "name": "Job"
+    },
+    {
+      "code": "PSA",
+      "name": "Psalms"
+    },
+    {
+      "code": "PRO",
+      "name": "Proverbs"
+    },
+    {
+      "code": "ECC",
+      "name": "Ecclesiastes"
+    },
+    {
+      "code": "SNG",
+      "name": "Song of Songs"
+    },
+    {
+      "code": "WIS",
+      "name": "Wisdom"
+    },
+    {
+      "code": "SIR",
+      "name": "Sirach"
+    },
+    {
+      "code": "ISA",
+      "name": "Isaiah"
+    },
+    {
+      "code": "JER",
+      "name": "Jeremiah"
+    },
+    {
+      "code": "LAM",
+      "name": "Lamentations"
+    },
+    {
+      "code": "BAR",
+      "name": "Baruch"
+    },
+    {
+      "code": "EZK",
+      "name": "Ezekiel"
+    },
+    {
+      "code": "DAG",
+      "name": "Daniel"
+    },
+    {
+      "code": "HOS",
+      "name": "Hosea"
+    },
+    {
+      "code": "JOL",
+      "name": "Joel"
+    },
+    {
+      "code": "AMO",
+      "name": "Amos"
+    },
+    {
+      "code": "OBA",
+      "name": "Obadiah"
+    },
+    {
+      "code": "JON",
+      "name": "Jonah"
+    },
+    {
+      "code": "MIC",
+      "name": "Micah"
+    },
+    {
+      "code": "NAM",
+      "name": "Nahum"
+    },
+    {
+      "code": "HAB",
+      "name": "Habakkuk"
+    },
+    {
+      "code": "ZEP",
+      "name": "Zephaniah"
+    },
+    {
+      "code": "HAG",
+      "name": "Haggai"
+    },
+    {
+      "code": "ZEC",
+      "name": "Zechariah"
+    },
+    {
+      "code": "MAL",
+      "name": "Malachi"
+    },
+    {
+      "code": "MAT",
+      "name": "Matthew"
+    },
+    {
+      "code": "MRK",
+      "name": "Mark"
+    },
+    {
+      "code": "LUK",
+      "name": "Luke"
+    },
+    {
+      "code": "JHN",
+      "name": "John"
+    },
+    {
+      "code": "ACT",
+      "name": "Acts"
+    },
+    {
+      "code": "ROM",
+      "name": "Romans"
+    },
+    {
+      "code": "1CO",
+      "name": "1 Corinthians"
+    },
+    {
+      "code": "2CO",
+      "name": "2 Corinthians"
+    },
+    {
+      "code": "GAL",
+      "name": "Galatians"
+    },
+    {
+      "code": "EPH",
+      "name": "Ephesians"
+    },
+    {
+      "code": "PHP",
+      "name": "Philippians"
+    },
+    {
+      "code": "COL",
+      "name": "Colossians"
+    },
+    {
+      "code": "1TH",
+      "name": "1 Thessalonians"
+    },
+    {
+      "code": "2TH",
+      "name": "2 Thessalonians"
+    },
+    {
+      "code": "1TI",
+      "name": "1 Timothy"
+    },
+    {
+      "code": "2TI",
+      "name": "2 Timothy"
+    },
+    {
+      "code": "TIT",
+      "name": "Titus"
+    },
+    {
+      "code": "PHM",
+      "name": "Philemon"
+    },
+    {
+      "code": "HEB",
+      "name": "Hebrews"
+    },
+    {
+      "code": "JAS",
+      "name": "James"
+    },
+    {
+      "code": "1PE",
+      "name": "1 Peter"
+    },
+    {
+      "code": "2PE",
+      "name": "2 Peter"
+    },
+    {
+      "code": "1JN",
+      "name": "1 John"
+    },
+    {
+      "code": "2JN",
+      "name": "2 John"
+    },
+    {
+      "code": "3JN",
+      "name": "3 John"
+    },
+    {
+      "code": "JUD",
+      "name": "Jude"
+    },
+    {
+      "code": "REV",
+      "name": "Revelation"
+    }
+  ]
+}

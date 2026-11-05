@@ -7,7 +7,7 @@ export async function loadVerses(book: string, chapter: number): Promise<Verse[]
       `
       SELECT verse, text
       FROM verse
-      WHERE lower(book) = lower(?) AND chapter = ?
+      WHERE book = ? COLLATE NOCASE AND chapter = ?
       ORDER BY verse
       `
     )

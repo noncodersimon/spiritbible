@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SpiritBible
 
-## Getting Started
+A Next.js Bible reader with a local SQLite search index. The active repository is `noncodersimon/spiritbible`.
 
-First, run the development server:
+## Development
 
-```bash
+Use Node 20 and the committed npm lockfile:
+
+```powershell
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+`npm run dev` first regenerates the database from both JSON sources. After editing Bible text or notes, stop the server and run `npm run dev` again. Code and styling changes continue to use Next.js hot reload.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build and run
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```powershell
+npm test
+npm run build
+npm start
+```
 
-## Learn More
+`npm run build` generates and validates the complete database before building Next.js. `npm start` checks that its source hashes match the JSON files. If production content changes, run the complete build again so prerendered pages also refresh.
 
-To learn more about Next.js, take a look at the following resources:
+Vercel can continue using `npm run vercel-build`, which calls the same build pipeline. A deployment or hosting migration is not required for these local changes. This repository does not contain the remote Vercel project's settings, so its deployed branch and current production release must be checked there.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Data ownership
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Edit `data/bible.json` and `data/notes.json` only through reviewed editorial changes.
+- `npm run data:build` derives `data/bible.sqlite`, its notes table, search index, and source hashes from those files. Stop the server before a manual rebuild and restart it afterwards.
+- All reading endpoints, book lists, search, and notes read the same generated database. The app opens it read-only.
+- `npm run data:check` detects whether the source files changed after generation.
+- Rebuilds replace rather than append data: deleted notes and verses disappear, and repeated builds do not duplicate them.
+- Structural failures leave the previous database intact. Blank verse records are preserved and reported for editorial review; a successful database build does not establish translation quality or a complete Catholic canon.
+- The database is server-only and ignored by Git. The build removes the obsolete generated `public/data/bible.sqlite` copy.
 
-## Deploy on Vercel
+The old migrate, seed, notes-seed, FTS-reset/rebuild, and pack scripts now delegate to the full generator for compatibility. Do not chain them: use `npm run data:build` once. Database-only UK spelling patches are retired; they would bypass the authoritative text. The legacy `build:ukmap` helper is not part of the content pipeline.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Cloud environment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The prepared cloud environment has Node 20 at `/workspace/.tools/node20/bin`. Activate it in a Bash terminal:
+
+```bash
+export PATH=/workspace/.tools/node20/bin:$PATH
+export NEXT_TELEMETRY_DISABLED=1
+export NEXT_TURBOPACK_EXPERIMENTAL_USE_SYSTEM_TLS_CERTS=1
+```
+
+The last setting lets Turbopack use the environment proxy's trusted system certificates. Keep TLS verification enabled. Font downloads require `fonts.googleapis.com` and `fonts.gstatic.com` in the environment network policy. This proxy setting is not normally needed on a personal machine or Vercel.
+
+## Checks and remaining work
+
+`npm test` exercises source preservation, repeat builds, changes/deletions, search refresh, invalid imports, stale-source detection, and generated-file handling. The production build also checks TypeScript.
+
+The repository's default flat ESLint configuration has a pre-existing compatibility error. Its legacy configuration works with this PowerShell command:
+
+```powershell
+$env:ESLINT_USE_FLAT_CONFIG = "false"
+npx eslint src
+```
+
+See [the architecture review](docs/architecture-review.md) for the original findings, and [translation sources](docs/translation-source.md) for the subsequent verified WEB import, Catholic book coverage, numbering, permissions, and note review items. The import preserves CSS and layout and keeps all editorial note bodies. The chapter renderer now uses explicit annotation phrases.
