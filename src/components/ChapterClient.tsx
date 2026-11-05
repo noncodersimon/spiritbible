@@ -82,9 +82,9 @@ export default function ChapterClient({ book, chapter, verses, highlightVerse, t
 
   function inRange(verse: number) { return first !== undefined && last !== undefined && verse >= first && verse <= last; }
   function highlight(text: string, offset: number, v: Verse) {
-    if (!partial || !inRange(v.verse)) return text;
-    const start = v.verse === first ? Math.min(target!.start!, v.text.length) : 0;
-    const end = v.verse === last ? Math.min(target!.end!, v.text.length) : v.text.length;
+    if (!inRange(v.verse)) return text;
+    const start = partial && v.verse === first ? Math.min(target!.start!, v.text.length) : 0;
+    const end = partial && v.verse === last ? Math.min(target!.end!, v.text.length) : v.text.length;
     const a = Math.max(0, start - offset), b = Math.min(text.length, end - offset);
     if (a >= b) return text;
     return <>{text.slice(0, a)}<span className="passage-highlight">{text.slice(a, b)}</span>{text.slice(b)}</>;
@@ -141,7 +141,7 @@ export default function ChapterClient({ book, chapter, verses, highlightVerse, t
     <div ref={textRoot} className="bible-reader" onCopy={shareSelection}>
       {verses.map(v => {
         const related = study.connections.filter(c => c.passages.some(p => p.book === book && p.chapter === chapter && p.verse === v.verse));
-        return <p key={v.verse} id={`v${v.verse}`} className={inRange(v.verse) && !partial ? 'search-target' : undefined} tabIndex={inRange(v.verse) ? -1 : undefined}>
+        return <p key={v.verse} id={`v${v.verse}`} className={inRange(v.verse) ? 'passage-target' : undefined} tabIndex={inRange(v.verse) ? -1 : undefined}>
           <sup style={{ userSelect: 'none' }}>{v.verse}</sup>{' '}<span data-verse-text={v.verse}>{renderVerse(v)}</span>
           {related.length > 0 && <button className="connection-marker" aria-label={`Related passages for ${book} ${chapter}:${v.verse}`} title="Explore related passages" onClick={() => setActiveConnections(related)} />}
         </p>;

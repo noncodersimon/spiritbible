@@ -35,7 +35,11 @@ export async function GET(req: Request) {
          WHERE book = ? AND chapter = ? AND verse BETWEEN ? AND ?
          ORDER BY verse`
       ).all(ref.book, ref.chapter, ref.verse, end);
-      return NextResponse.json({ results: rows });
+      const verses = rows as { verse: number }[];
+      if (verses[0]?.verse !== ref.verse || verses.at(-1)?.verse !== end) {
+        return NextResponse.json({ error: "That verse range is not available in this edition. Please check the reference." }, { status: 400 });
+      }
+      return NextResponse.json({ results: rows, reference: ref });
     } else {
       const rows = db.prepare(
         `SELECT book, chapter, verse, text
@@ -43,7 +47,8 @@ export async function GET(req: Request) {
          WHERE book = ? AND chapter = ?
          ORDER BY verse`
       ).all(ref.book, ref.chapter);
-      return NextResponse.json({ results: rows });
+      const verses = rows as { verse: number }[];
+      return NextResponse.json({ results: rows, reference: { ...ref, verse: verses[0]?.verse, endVerse: verses.at(-1)?.verse } });
     }
   }
 

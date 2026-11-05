@@ -243,12 +243,8 @@ button {
   font-size: 0.75rem;
   line-height: 1.5;
 }
-.search-target {
-  background: color-mix(in srgb, var(--accent-text) 8%, transparent);
-  outline: 2px solid var(--accent-text);
-  outline-offset: 3px;
-  border-radius: 3px;
-}
+/* Programmatic reading focus is indicated by the selected words, not a box. */
+.bible-reader .passage-target:focus { outline: none; }
 
 /* Teal links identify connected passages; amber still identifies commentary. */
 :root { --connection-text: #086b65; --passage-tint: #d9e9ff; }
@@ -276,7 +272,8 @@ button {
 .passage-links li { margin: 8px 0; }
 .passage-links a { color: var(--connection-text); font-weight: 600; text-decoration: underline; text-underline-offset: .2em; }
 .passage-links span { font-size: .9rem; }
-.passage-highlight { background: var(--passage-tint); color: var(--foreground); box-shadow: 0 1px 0 var(--accent-text); }
+.passage-highlight { background: var(--passage-tint); color: var(--foreground); }
+.commentary-mark .passage-highlight { background: transparent; }
 .reader-dialog-backdrop { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; background: #0006; }
 .reader-dialog { background: var(--surface); color: var(--foreground); border: 1px solid var(--border-soft); border-radius: 16px; box-shadow: 0 18px 50px #0004; margin: 12px; padding: 20px; width: min(100% - 24px, 620px); max-height: calc(100dvh - 24px); overflow-y: auto; overscroll-behavior: contain; line-height: 1.6; }
 .reader-dialog > h3 { margin: 0 0 12px; font-size: 1rem; }

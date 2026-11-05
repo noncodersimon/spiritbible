@@ -29,7 +29,7 @@ Vercel can continue using `npm run vercel-build`, which calls the same build pip
 
 Search accepts full book names and common abbreviations, including `Jn 3:16`, `Mt5:1–12`, `1 Cor 13`, `2 Macc 7` and `Ecclus 2:1`. Spaces before chapter numbers are optional; verse ranges may use hyphens or dashes. Single-chapter references such as `Jude 5` name a verse. Use quotation marks for an exact phrase, such as `"living water"`; ordinary word searches match all entered words and return up to 50 results ranked by relevance.
 
-Selecting a result opens its chapter and highlights the selected verse. Choose “Notes & connections” to search the explanations by word or theme. Previous/Next controls appear above and below the reader and advance one chapter at a time, continuing into the next book at book boundaries.
+Recognised Bible references open their chapter directly, highlighting the requested words or verse range without verse boxes. Word searches show a results list; selecting a result opens its chapter and highlights the verse. Choose “Notes & connections” to search the explanations by word or theme. Previous/Next controls appear above and below the reader and advance one chapter at a time, continuing into the next book at book boundaries.
 
 ## Commentary
 

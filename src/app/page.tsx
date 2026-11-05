@@ -316,7 +316,7 @@ function scrollToReaderTop() {
     requestAnimationFrame(scrollToReaderTop);
   };
 
-  // Search: replaces the chapter view; user clicks a hit to open it
+  // References open directly; word searches show a list of matching passages.
   const doSearch = useCallback(async () => {
     const request = ++searchRequest.current;
     const q = searchQuery.trim();
@@ -342,6 +342,11 @@ function scrollToReaderTop() {
       if (request !== searchRequest.current) return;
       if (!res.ok) throw new Error(data.error || 'Search is temporarily unavailable. Please try again.');
 
+      if (data.reference) {
+        navigate(data.reference);
+        return;
+      }
+
       // Accept both shapes: {hits: [...] } or {results: [...] }
       const hits: SearchHit[] =
         (Array.isArray(data?.hits) && data.hits) ||
@@ -356,7 +361,7 @@ function scrollToReaderTop() {
     } finally {
       if (request === searchRequest.current) setSearchLoading(false);
     }
-  }, [searchQuery, searchScope]);
+  }, [searchQuery, searchScope, navigate]);
 
   const openHit = (hit: SearchHit) => navigate({ book: hit.book, chapter: hit.chapter, verse: hit.verse,
     ...(hit.note ? { note: Number(hit.note) } : {}), ...(hit.connection ? { connection: hit.connection } : {}) });
