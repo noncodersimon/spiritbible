@@ -4,7 +4,7 @@ A Next.js Bible reader with a local SQLite search index. The active repository i
 
 ## Development
 
-Use Node 20 and the committed npm lockfile:
+Use Node 26 and the committed npm lockfile:
 
 ```powershell
 npm ci
@@ -39,10 +39,10 @@ The old migrate, seed, notes-seed, FTS-reset/rebuild, and pack scripts now deleg
 
 ## Cloud environment
 
-The prepared cloud environment has Node 20 at `/workspace/.tools/node20/bin`. Activate it in a Bash terminal:
+The prepared cloud environment has Node 26 at `/workspace/.tools/node26/bin`. Activate it in a Bash terminal:
 
 ```bash
-export PATH=/workspace/.tools/node20/bin:$PATH
+export PATH=/workspace/.tools/node26/bin:$PATH
 export NEXT_TELEMETRY_DISABLED=1
 export NEXT_TURBOPACK_EXPERIMENTAL_USE_SYSTEM_TLS_CERTS=1
 ```

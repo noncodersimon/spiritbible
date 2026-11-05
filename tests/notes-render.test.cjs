@@ -26,10 +26,10 @@ function loadTS(relative) {
 
 test('all note highlights preserve verse text and popups open and close', async () => {
   const dom = new JSDOM('<div id="root"></div>', { url: 'http://localhost' });
-  const saved = Object.fromEntries(['window','document','navigator','fetch','IS_REACT_ACT_ENVIRONMENT'].map(k => [k,global[k]]));
+  const saved = Object.fromEntries(['window','document','navigator','fetch','IS_REACT_ACT_ENVIRONMENT'].map(k => [k,Object.getOwnPropertyDescriptor(global,k)]));
   global.window = dom.window;
   global.document = dom.window.document;
-  global.navigator = dom.window.navigator;
+  Object.defineProperty(global,'navigator',{value:dom.window.navigator,configurable:true});
   global.IS_REACT_ACT_ENVIRONMENT = true;
   global.fetch = async url => {
     const params = new URL(url, 'http://localhost').searchParams;
@@ -61,6 +61,9 @@ test('all note highlights preserve verse text and popups open and close', async 
   } finally {
     await act(async () => root.unmount());
     dom.window.close();
-    Object.assign(global,saved);
+    for (const [key, descriptor] of Object.entries(saved)) {
+      if (descriptor) Object.defineProperty(global,key,descriptor);
+      else delete global[key];
+    }
   }
 });
