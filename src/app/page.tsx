@@ -378,10 +378,7 @@ useEffect(() => {
         { id: 'old-testament', label: 'Old Testament', items: bookGroups.ot },
         { id: 'new-testament', label: 'New Testament', items: bookGroups.nt },
       ]).map(({ id, label, items }) => (
-        <section key={id} aria-labelledby={`${id}-heading`}>
-          <h2 id={`${id}-heading`} style={{ fontSize: 14, fontWeight: 600, margin: '8px 0 0' }}>
-            {label}
-          </h2>
+        <section key={id} aria-label={label}>
           <HorizontalScroller<BookRow>
             label={`${label} books`}
             items={items}
