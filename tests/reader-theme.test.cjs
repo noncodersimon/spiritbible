@@ -118,6 +118,7 @@ test('note and connection importance preserves verse text and mixed markers prio
   const ChapterClient = loadTS('../src/components/ChapterClient.tsx').default;
   await act(async () => root.render(React.createElement(ChapterClient, { book: 'John', chapter: 1, verses })));
   assert.equal(document.querySelector('[data-verse-text]').textContent, verses[0].text);
+  assert.equal(document.querySelector('.significance-key'), null);
   const marks = [...document.querySelectorAll('mark')];
   assert(marks[0].classList.contains('significance-interest'));
   assert(marks[1].classList.contains('significance-fundamental'), 'old notes default to fundamental');
@@ -125,7 +126,7 @@ test('note and connection importance preserves verse text and mixed markers prio
   marks[0].focus();
   await click(marks[0]);
   assert.equal(document.activeElement, document.querySelector('[role="dialog"]'));
-  assert.equal(document.querySelector('.note-significance').textContent, 'Of interest commentary');
+  assert.equal(document.querySelector('.note-significance'), null);
   assert.equal(document.querySelector('.note-popup').textContent, 'First note.');
   await key(window, 'Escape');
   assert.equal(document.activeElement, marks[0], 'closing commentary restores the invoking marker');
@@ -136,8 +137,8 @@ test('note and connection importance preserves verse text and mixed markers prio
   await click(marker);
   assert.equal(document.activeElement, document.querySelector('[role="dialog"]'));
   assert.equal(document.querySelectorAll('.connection-card').length, 2);
-  assert.match(document.querySelector('.connection-card.significance-interest .connection-kind').textContent, /Of interest/);
-  assert.match(document.querySelector('.connection-card.significance-fundamental .connection-kind').textContent, /Fundamental/);
+  assert.equal(document.querySelector('.connection-card.significance-interest .connection-kind').textContent, 'Shared theme');
+  assert.equal(document.querySelector('.connection-card.significance-fundamental .connection-kind').textContent, 'Shared theme');
   assert.equal(document.querySelector('.passage-links a').getAttribute('href'), '/?ref=John+1%3A1');
   await key(window, 'Escape');
   assert.equal(document.activeElement, marker, 'closing related passages restores the invoking marker');

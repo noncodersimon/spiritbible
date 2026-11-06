@@ -135,7 +135,7 @@ export default function ChapterClient({ book, chapter, verses, highlightVerse, t
       <p>{study.introduction.summary}</p><Sources sources={study.introduction.sources} />
     </details>}
     <div className="reader-tools">
-      <div className="reader-legend"><p className="reader-key"><span className="commentary-key">Commentary</span><span className="connection-key">↔ Related passages</span></p><p className="significance-key"><strong>Bold: fundamental</strong><span>Subtle / dotted: of interest</span></p></div>
+      <p className="reader-key"><span className="commentary-key">Commentary</span><span className="connection-key">↔ Related passages</span></p>
       <button className="copy-passage" onMouseDown={event => event.preventDefault()} onClick={copyPassage}>{selection ? 'Copy selection + link' : 'Copy chapter + link'}</button>
     </div>
     {copyStatus && <p role="status" className="copy-status">{copyStatus}</p>}
@@ -150,12 +150,11 @@ export default function ChapterClient({ book, chapter, verses, highlightVerse, t
       })}
     </div>
     {activeNote && <ReaderDialog title={passageLabel(activeNote)} onClose={() => setActiveNote(null)}>
-      <p className={`note-significance significance-${significanceOf(activeNote)}`}>{significanceLabel(activeNote)} commentary</p>
       <div className="note-popup" dangerouslySetInnerHTML={{ __html: sanitizeNoteHTML(activeNote.body) }} />
     </ReaderDialog>}
     {activeConnections && <ReaderDialog title="Related passages" onClose={() => setActiveConnections(null)}>
       {activeConnections.map(c => <article className={`connection-card significance-${significanceOf(c)}`} key={c.id}>
-        <p className="connection-kind">{significanceLabel(c)} · {kindLabels[c.kind]}</p>
+        <p className="connection-kind">{kindLabels[c.kind]}</p>
         <h4>{c.title}</h4><p>{c.summary}</p>
         <ul className="passage-links">{c.passages.map(p => <li key={passageHref(p)}>
           <a href={passageHref(p)} onClick={event => {

@@ -273,9 +273,6 @@ button {
 .book-introduction .sources, .connection-card .sources { font-size: .8rem; margin-top: 12px; }
 .book-introduction .sources a, .connection-card .sources a { color: var(--accent-text); text-decoration: underline; text-underline-offset: .15em; }
 .reader-tools { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 14px; font-size: .75rem; }
-.reader-legend { display: grid; gap: 4px; }
-.significance-key { display: flex; flex-wrap: wrap; gap: 3px 12px; margin: 0; font-size: .7rem; }
-.significance-key strong { font-weight: 650; }
 .reader-key { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin: 0; }
 .commentary-key { background: var(--note-mark); border-radius: 3px; padding: 0 3px; }
 .connection-key { color: var(--connection-text); }
@@ -283,8 +280,6 @@ button {
 .copy-status, .study-status { font-size: .8rem; margin: 0 0 12px; }
 .commentary-mark { background: var(--note-mark); border-radius: 4px; padding: 0 2px; cursor: pointer; font-weight: 650; }
 .commentary-mark.significance-interest { background: var(--note-interest); font-weight: inherit; text-decoration: underline dotted var(--note-edge); text-underline-offset: .18em; }
-.note-significance { width: fit-content; margin: 0 0 12px; padding: 2px 7px; border-radius: 4px; background: var(--note-mark); font-size: .75rem; font-weight: 650; }
-.note-significance.significance-interest { background: var(--note-interest); font-weight: 400; border-bottom: 1px dotted var(--note-edge); }
 .connection-marker { display: inline-block; vertical-align: baseline; color: var(--connection-text); background: var(--connection-mark); border-bottom: 2px solid currentColor; border-radius: 3px; margin-left: .3em; padding: 0 .2em; cursor: pointer; user-select: none; font-weight: 600; line-height: 1.2; }
 .connection-marker.significance-interest { color: var(--connection-interest); background: transparent; border-bottom: 1px dotted currentColor; font-weight: 400; }
 .connection-card.significance-interest .connection-kind, .connection-card.significance-interest .passage-links a { color: var(--connection-interest); }
