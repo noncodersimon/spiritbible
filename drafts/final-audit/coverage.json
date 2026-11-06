@@ -1,23 +1,28 @@
 {
   "baseCommit": "31ac24c",
-  "totalNotes": 1205,
-  "newNotes": 43,
+  "totalNotes": 1208,
+  "newNotes": 46,
   "revisedNotes": 1162,
   "retainedNotes": 0,
-  "totalConnections": 145,
-  "newConnections": 36,
+  "totalConnections": 148,
+  "newConnections": 39,
   "notesBySignificance": {
-    "fundamental": 896,
+    "fundamental": 899,
     "interest": 309
   },
   "connectionsBySignificance": {
-    "fundamental": 133,
+    "fundamental": 136,
     "interest": 12
   },
   "books": 73,
   "previousWords": 147044,
-  "currentWords": 83560,
+  "currentWords": 84162,
   "minimumWords": 45,
-  "maximumWords": 87,
-  "sourceEvidenceRecords": 1336
+  "maximumWords": 99,
+  "sourceEvidenceRecords": 1364,
+  "papalSupplement": {
+    "revisedNotes": 14,
+    "newNotes": 3,
+    "newConnections": 3
+  }
 }

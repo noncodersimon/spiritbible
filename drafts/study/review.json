@@ -3172,6 +3172,73 @@
           "excerptSha256": "d70f084bad99a64fc11f4aabc472275abd0f3753824949f5653250f27c13ece2"
         }
       ]
+    },
+    {
+      "id": "papal-word-and-eucharist",
+      "itemSha256": "a5fd858abad9246e7d4f349f9f1550f7f34f6b3abccc565b5dd0e539b13a86fb",
+      "evidence": [
+        {
+          "url": "https://www.vatican.va/content/benedict-xvi/en/apost_exhortations/documents/hf_ben-xvi_exh_20100930_verbum-domini.html",
+          "excerpt": "The presence of Jesus, first with his words and then with the act of breaking bread, made it possible for the disciples to recognize him.",
+          "sha256": "6b1d2530a907f960ebe15fed48fe7181bed0b664a6f1978f908c0cbc7909d64c",
+          "supports": "At Emmaus Christ’s explanation and breaking of bread together enable recognition.",
+          "excerptSha256": "c915472cd1ff406f594918433141a4b519e83b4a32f654be597c88851ba3d19d"
+        },
+        {
+          "url": "https://www.vatican.va/content/benedict-xvi/en/apost_exhortations/documents/hf_ben-xvi_exh_20100930_verbum-domini.html",
+          "excerpt": "The Eucharist opens us to an understanding of Scripture, just as Scripture for its part illumines and explains the mystery of the Eucharist.",
+          "sha256": "6b1d2530a907f960ebe15fed48fe7181bed0b664a6f1978f908c0cbc7909d64c",
+          "supports": "Scripture and Eucharist mutually illuminate one another.",
+          "excerptSha256": "bf94e869e534d693d3598183ea7dd315c1babce3e740580ed5a13f03b184faae"
+        }
+      ]
+    },
+    {
+      "id": "papal-judgement-and-hope-for-victims",
+      "itemSha256": "3eef73e98ec41430a69f693dfd13a4fe45dcb7479e26025121fb6fc851292a6c",
+      "evidence": [
+        {
+          "url": "https://www.vatican.va/content/benedict-xvi/en/encyclicals/documents/hf_ben-xvi_enc_20071130_spe-salvi.html",
+          "excerpt": "Yes, there is a resurrection of the flesh[33]. There is justice[34]. There is an “undoing” of past suffering, a reparation that sets things aright. For this reason, faith in the Last Judgement is first and foremost hope—the need for which was made abundantly clear in the upheavals of recent centuries.",
+          "sha256": "3bca40e81d8ac003c85c749846436e2494fd8425bdc614e9775f8d69fe046f61",
+          "supports": "Resurrection and final judgement answer injustice suffered by history’s victims; grace does not cancel justice.",
+          "excerptSha256": "2e397c75a866951c0a54aa4d503bcf85bf84d010472bcdfa7436c15b2f690dc4"
+        },
+        {
+          "url": "https://www.vatican.va/content/benedict-xvi/en/encyclicals/documents/hf_ben-xvi_enc_20071130_spe-salvi.html",
+          "excerpt": "Grace does not cancel out justice. It does not make wrong into right. It is not a sponge which wipes everything away, so that whatever someone has done on earth ends up being of equal value.",
+          "sha256": "3bca40e81d8ac003c85c749846436e2494fd8425bdc614e9775f8d69fe046f61",
+          "supports": "Mercy does not trivialise wrongdoing or erase the distinction between perpetrators and victims.",
+          "excerptSha256": "255fbfcfeb57bef35710af5250f157e7c3c32182dd53141263f286bc062f1628"
+        }
+      ]
+    },
+    {
+      "id": "papal-mercy-giver-and-receiver",
+      "itemSha256": "9cfd4a8816095adffb536a63154c54e75aa9019589a2ff05321b12927d8b2fe6",
+      "evidence": [
+        {
+          "url": "https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_30111980_dives-in-misericordia.html",
+          "excerpt": "When we base ourselves on this disquieting model, we are able with all humility to show mercy to others, knowing that Christ accepts it as if it were shown to Himself.121",
+          "sha256": "973197a7980dfbe0cbdd40f01aab32e00c1060297ec0b5ac8822464c1c95419e",
+          "supports": "John Paul II explicitly connects the merciful beatitude with Christ receiving care in Matthew 25 (footnotes 120–121).",
+          "excerptSha256": "78ee7be5fd51d5e7a9774f50dc0e9bf0d3e2533210b5afd1f97182adaeffd026"
+        },
+        {
+          "url": "https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_30111980_dives-in-misericordia.html",
+          "excerpt": "In reciprocal relationships between persons merciful love is never a unilateral act or process.",
+          "sha256": "973197a7980dfbe0cbdd40f01aab32e00c1060297ec0b5ac8822464c1c95419e",
+          "supports": "Mercy is reciprocal rather than a relation of superior donor to inferior recipient.",
+          "excerptSha256": "f4bddea67c429fc4f75eba767a05ac01672a87e5ce332f4eb989a466f1cfa5c9"
+        },
+        {
+          "url": "https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_30111980_dives-in-misericordia.html",
+          "excerpt": "An act of merciful love is only really such when we are deeply convinced at the moment that we perform it that we are at the same time receiving mercy from the people who are accepting it from us.",
+          "sha256": "973197a7980dfbe0cbdd40f01aab32e00c1060297ec0b5ac8822464c1c95419e",
+          "supports": "The person giving mercy also receives, deepening communion and equality rather than requiring material repayment.",
+          "excerptSha256": "018b664cc74c81d40628ca8f2d7784095b3cc5c87fb11e9b386918ee150eeefe"
+        }
+      ]
     }
   ]
 }

@@ -1,0 +1,15 @@
+{
+  "base": "http://127.0.0.1:3061",
+  "notes": 17,
+  "connections": 3,
+  "endpoints": 6,
+  "chapters": 21,
+  "checks": [
+    "Reviewed API payloads",
+    "Every affected note popup and source link",
+    "New related-passage navigation and highlighting",
+    "New commentary search entries",
+    "320px popup layout"
+  ],
+  "pageErrors": 0
+}

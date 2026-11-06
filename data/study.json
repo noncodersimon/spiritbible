@@ -5110,6 +5110,92 @@
           "label": "Teresa, Interior Castle VII.4.17–23"
         }
       ]
+    },
+    {
+      "id": "papal-word-and-eucharist",
+      "title": "The word opened, the bread broken",
+      "kind": "theme",
+      "summary": "At Emmaus, Jesus opens the Scriptures and is recognised in the breaking of bread. In John, the one who gives life identifies the bread with his own flesh, offered for the world. Benedict XVI reads these passages together: Scripture and Eucharist illuminate one another because the same Christ speaks and gives himself. Scripture teaches us to recognise the gift; Communion deepens our understanding of the word. The Church's movement from listening to sharing the Lord's table grows from this unity. Both draw us into an encounter with the crucified and risen Jesus.",
+      "passages": [
+        {
+          "book": "Luke",
+          "chapter": 24,
+          "verse": 27,
+          "endVerse": 32,
+          "label": "Scripture opened and Jesus recognised in broken bread"
+        },
+        {
+          "book": "John",
+          "chapter": 6,
+          "verse": 48,
+          "endVerse": 51,
+          "label": "The living bread is Christ’s flesh for the world"
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.vatican.va/content/benedict-xvi/en/apost_exhortations/documents/hf_ben-xvi_exh_20100930_verbum-domini.html",
+          "label": "Benedict XVI, Verbum Domini 54–55"
+        }
+      ],
+      "significance": "fundamental"
+    },
+    {
+      "id": "papal-judgement-and-hope-for-victims",
+      "title": "Justice that death cannot silence",
+      "kind": "theme",
+      "significance": "fundamental",
+      "summary": "Revelation's murdered witnesses cry to God for justice; Paul entrusts judgement to God while commanding us to feed an enemy. Read together, these passages refuse both private revenge and the dismissal of suffering. Benedict XVI presents the Last Judgement as hope that history's victims will not remain finally abandoned. Resurrection means that justice can reach those whom no later earthly improvement could restore. Grace does not declare their injuries unimportant or make wrongdoing good. Entrusting judgement to Christ allows us to resist evil without making hatred our answer, while remaining responsible for the good we can do now.",
+      "passages": [
+        {
+          "book": "Revelation",
+          "chapter": 6,
+          "verse": 9,
+          "endVerse": 11,
+          "label": "The slain witnesses appeal to God’s justice"
+        },
+        {
+          "book": "Romans",
+          "chapter": 12,
+          "verse": 19,
+          "endVerse": 21,
+          "label": "Entrust judgement to God and overcome evil with good"
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.vatican.va/content/benedict-xvi/en/encyclicals/documents/hf_ben-xvi_enc_20071130_spe-salvi.html",
+          "label": "Benedict XVI, Spe Salvi 42–44"
+        }
+      ]
+    },
+    {
+      "id": "papal-mercy-giver-and-receiver",
+      "title": "Mercy changes the giver as well as the receiver",
+      "kind": "theme",
+      "summary": "Jesus promises mercy to the merciful and identifies himself with those receiving food, welcome and care. John Paul II reads these passages together to challenge the assumption that help flows only from the strong to the weak. The person who gives also receives: accepting another’s need can deepen humility, humanity and communion with Christ. This does not make assistance a bargain or require gratitude from its recipient. It changes the giver’s stance. We meet a person whose dignity is equal to ours, through whom we too may receive something we cannot provide for ourselves.",
+      "passages": [
+        {
+          "book": "Matthew",
+          "chapter": 5,
+          "verse": 7,
+          "label": "The merciful themselves receive mercy"
+        },
+        {
+          "book": "Matthew",
+          "chapter": 25,
+          "verse": 34,
+          "endVerse": 40,
+          "label": "Christ receives the care given to those in need"
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_30111980_dives-in-misericordia.html",
+          "label": "John Paul II, Dives in Misericordia 14"
+        }
+      ],
+      "significance": "fundamental"
     }
   ],
   "introductions": [

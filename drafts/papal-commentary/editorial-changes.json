@@ -1,0 +1,752 @@
+[
+  {
+    "id": "2MA-010",
+    "book": "2 Maccabees",
+    "chapter": 12,
+    "verse": 43,
+    "phrase": "he took thought for the resurrection",
+    "title": "Prayer for the dead rests on hope",
+    "theme": "prayer-for-the-dead",
+    "body": "<p>Judas joins acknowledgement of wrongdoing to hope in resurrection and prayer for the fallen. The Catechism cites this episode when teaching prayer for the dead, especially through the Eucharistic sacrifice, that those being purified may attain the vision of God. Benedict XVI explains why this remains personal: our lives are deeply intertwined, and love, gratitude and prayer need not stop at death. We can still entrust those we love to God's healing mercy. Neither the collection nor the offering purchases salvation. This is intercession within a communion that death cannot simply dissolve, whose fulfilment belongs to God.</p><p class=\"sources\"><a href=\"https://www.vatican.va/archive/ENG0015/__P2N.HTM\" target=\"_blank\" rel=\"noopener noreferrer\">CCC 1032</a> · <a href=\"https://www.vatican.va/content/benedict-xvi/en/encyclicals/documents/hf_ben-xvi_enc_20071130_spe-salvi.html\" target=\"_blank\" rel=\"noopener noreferrer\">Benedict XVI, Spe Salvi 48</a></p>",
+    "sources": [
+      {
+        "url": "https://www.vatican.va/archive/ENG0015/__P2N.HTM",
+        "label": "CCC 1032",
+        "locator": "CCC 1032",
+        "supports": "Catholic principle applied to the narrative.",
+        "type": "catechism",
+        "retrievalSha256": "b8fdc86cb447e50e5f5b13aba5e3e5d2a985705228183644a42fb84d23aac7ff",
+        "excerptHash": "8491416ed43cd2786fe2b12ac187238f75d9d1a668ca419bab8ecf83ac13722c",
+        "evidenceVerified": true
+      },
+      {
+        "url": "https://www.vatican.va/content/benedict-xvi/en/encyclicals/documents/hf_ben-xvi_enc_20071130_spe-salvi.html",
+        "label": "Benedict XVI, Spe Salvi 48",
+        "locator": "paragraph 48",
+        "supports": "Prayer for another remains part of a real communion even beyond death.",
+        "type": "papal",
+        "retrievalSha256": "3bca40e81d8ac003c85c749846436e2494fd8425bdc614e9775f8d69fe046f61",
+        "excerptHash": "28c1b3f1a641a44cd561d68283b245d9e56e8c4e367940ad721a63ba815ab2f1",
+        "evidenceVerified": true
+      }
+    ],
+    "interpretation": "doctrine",
+    "languageNote": false,
+    "start": 187,
+    "end": 222,
+    "wordCount": 97,
+    "noteId": 337,
+    "significance": "fundamental"
+  },
+  {
+    "id": "SNG-001",
+    "book": "Song of Songs",
+    "chapter": 1,
+    "verse": 2,
+    "phrase": "your love is better than wine",
+    "title": "Bodily affection can speak of a greater love",
+    "theme": "human-and-divine-love",
+    "body": "<p>The Song celebrates bodily desire as part of the whole person&#x27;s love. The Catechism receives this human affection as a reflection of God&#x27;s love. Benedict XVI adds that love matures through the unity of body and soul: desire discovers the beloved&#x27;s good and grows into care, fidelity and a willingness to give. Its purification protects the dignity and joy of embodied love. This gives the poem&#x27;s spiritual reception a firm starting point. Communion with God can be expressed through human love because grace deepens the person who loves, without turning every poetic detail into a secret code.</p><p class=\"sources\"><a href=\"https://www.vatican.va/archive/ENG0015/__P51.HTM\" target=\"_blank\" rel=\"noopener noreferrer\">CCC 1611</a> · <a href=\"https://www.vatican.va/content/benedict-xvi/en/encyclicals/documents/hf_ben-xvi_enc_20051225_deus-caritas-est.html\" target=\"_blank\" rel=\"noopener noreferrer\">Benedict XVI, Deus Caritas Est 5–6</a></p>",
+    "sources": [
+      {
+        "url": "https://www.vatican.va/archive/ENG0015/__P51.HTM",
+        "label": "CCC 1611",
+        "locator": "paragraphs 1611",
+        "supports": "The Song expresses human love and also reflects God’s faithful love, strong as death and unquenched by waters.",
+        "type": "catechism",
+        "retrievalSha256": "39b44d6fe6b5e1b5e6e17a04beeae3739d14c4a24ac955c9979871775f787891",
+        "excerptHash": "7c852d4373486b6d414be2a856a15b4123611fd3d945e092a43a67a0790aea3d",
+        "evidenceVerified": true
+      },
+      {
+        "url": "https://www.vatican.va/content/benedict-xvi/en/encyclicals/documents/hf_ben-xvi_enc_20051225_deus-caritas-est.html",
+        "label": "Benedict XVI, Deus Caritas Est 5–6",
+        "locator": "paragraphs 5–6",
+        "supports": "Embodied love belongs to the whole person and matures as desire seeks the beloved’s good.",
+        "type": "papal",
+        "retrievalSha256": "0f21533523e1bcdb06482dd3290c470be3e83024de199fbc9ac2cc8de5cdc554",
+        "excerptHash": "3b6d83ec596eb436af783abf5e780f87528b67bba4161b9163d1f3cd9fdbc150",
+        "evidenceVerified": true
+      },
+      {
+        "url": "https://www.vatican.va/content/benedict-xvi/en/encyclicals/documents/hf_ben-xvi_enc_20051225_deus-caritas-est.html",
+        "label": "Benedict XVI, Deus Caritas Est 5–6",
+        "locator": "paragraph 6",
+        "supports": "Benedict’s reading of the Song describes desire becoming care for the beloved.",
+        "type": "papal",
+        "retrievalSha256": "0f21533523e1bcdb06482dd3290c470be3e83024de199fbc9ac2cc8de5cdc554",
+        "excerptHash": "e2dfe15725f729643b50f6d01bd07bfcdbd0eeb7a3ac419a868e596531e01fbb",
+        "evidenceVerified": true
+      }
+    ],
+    "interpretation": "mixed",
+    "languageNote": false,
+    "start": 50,
+    "end": 78,
+    "wordCount": 97,
+    "noteId": 450,
+    "significance": "fundamental"
+  },
+  {
+    "id": "PAPAL-ROOT-001",
+    "book": "Matthew",
+    "chapter": 19,
+    "verse": 21,
+    "phrase": "come, follow me",
+    "title": "A life shared with Christ",
+    "theme": "Discipleship and moral freedom",
+    "body": "<p>The young man asks what he must do; Jesus finally calls him into a relationship that will reshape what he loves. John Paul II reads this invitation as the heart of Christian morality: holding fast to Christ and sharing his life. Through the Spirit, Christ makes the disciple capable of his own self-giving love. The commandments remain indispensable, while giving to the poor exposes the attachment that prevents this man from following. His sorrow also makes the next promise necessary: what human strength cannot accomplish remains possible with God.</p><p class=\"sources\"><a href=\"https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_06081993_veritatis-splendor.html\" target=\"_blank\" rel=\"noopener noreferrer\">John Paul II, Veritatis Splendor 17–23</a></p>",
+    "sources": [
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_06081993_veritatis-splendor.html",
+        "label": "John Paul II, Veritatis Splendor 17–23",
+        "locator": "paragraph 17",
+        "supports": "The personal call to follow Christ does not make the commandments dispensable.",
+        "type": "papal",
+        "retrievalSha256": "144095cc862884c494016c2e4d7e5c71880f500961efe4e42734835174b7366d",
+        "excerptHash": "7b9467b83582f7cfcae459ed855df9c254059d950c197b1a1853d0b8a9c139db",
+        "evidenceVerified": true
+      },
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_06081993_veritatis-splendor.html",
+        "label": "John Paul II, Veritatis Splendor 17–23",
+        "locator": "paragraph 19",
+        "supports": "Following Christ means personal participation in his life, not only accepting rules.",
+        "type": "papal",
+        "retrievalSha256": "144095cc862884c494016c2e4d7e5c71880f500961efe4e42734835174b7366d",
+        "excerptHash": "a01a1459a2e19df6bef8623afda7973722ec77fb583851d6e253cbe0b9962d84",
+        "evidenceVerified": true
+      },
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_06081993_veritatis-splendor.html",
+        "label": "John Paul II, Veritatis Splendor 17–23",
+        "locator": "paragraph 21",
+        "supports": "Conformity to Christ is enabled by grace and the Spirit.",
+        "type": "papal",
+        "retrievalSha256": "144095cc862884c494016c2e4d7e5c71880f500961efe4e42734835174b7366d",
+        "excerptHash": "faa304327ae32702dbb04d51de0c8ff88e60ac0c74045899dd2b9a03b315249d",
+        "evidenceVerified": true
+      },
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_06081993_veritatis-splendor.html",
+        "label": "John Paul II, Veritatis Splendor 17–23",
+        "locator": "paragraph 22",
+        "supports": "The young man’s difficulty is answered by the gift that makes self-giving love possible.",
+        "type": "papal",
+        "retrievalSha256": "144095cc862884c494016c2e4d7e5c71880f500961efe4e42734835174b7366d",
+        "excerptHash": "0a33de94ce9c513bc85ea2946a78baa3b3fe0af688e8b9aa9f91007d722993d7",
+        "evidenceVerified": true
+      }
+    ],
+    "interpretation": "doctrine",
+    "languageNote": false,
+    "significance": "fundamental",
+    "start": 135,
+    "end": 149,
+    "wordCount": 89
+  },
+  {
+    "id": "LUK-029",
+    "book": "Luke",
+    "chapter": 10,
+    "verse": 33,
+    "phrase": "he was moved with compassion",
+    "title": "The neighbour is the one we become",
+    "theme": "the neighbour is the one we become",
+    "body": "<p>Jesus turns a question about the limits of obligation into a story about becoming a neighbour. The Samaritan lets compassion interrupt his journey, giving time and resources across a boundary of hostility. John Paul II sees this care continuing in medicine, nursing and organised assistance. Such institutions are indispensable, but cannot by themselves replace the human heart. Effective provision and personal attention belong together: the person being helped needs more than a place in a system. The Catechism calls us to regard each neighbour as another self.</p><p class=\"sources\"><a href=\"https://www.vatican.va/archive/ENG0015/__P6O.HTM\" target=\"_blank\" rel=\"noopener noreferrer\">CCC 1931</a> · <a href=\"https://www.vatican.va/content/john-paul-ii/en/apost_letters/1984/documents/hf_jp-ii_apl_11021984_salvifici-doloris.html\" target=\"_blank\" rel=\"noopener noreferrer\">John Paul II, Salvifici Doloris 28–29</a></p>",
+    "sources": [
+      {
+        "url": "https://www.vatican.va/archive/ENG0015/__P6O.HTM",
+        "label": "CCC 1931",
+        "locator": "Paragraph 1931",
+        "supports": "Every person must be regarded without exception as another self and neighbour.",
+        "type": "catechism",
+        "retrievalSha256": "24365b577f77b2a959b86a95ea8722b81d080d03452d62fc4cea7da14ce8eeb0",
+        "excerptHash": "69cd8aca710285e74a67e0d06918dad43720b6f490e43446d20a251d2860f013",
+        "evidenceVerified": true
+      },
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/apost_letters/1984/documents/hf_jp-ii_apl_11021984_salvifici-doloris.html",
+        "label": "John Paul II, Salvifici Doloris 28–29",
+        "locator": "paragraphs 28–29",
+        "supports": "The Samaritan’s compassion becomes effective help, continued in organised care without replacing personal love.",
+        "type": "papal",
+        "retrievalSha256": "743c0dc1b2d998516a3ad4b3a166cc6f4406d16e327424841e6266138559c248",
+        "excerptHash": "3e031eecd681341f42f4eeda084e04c0baf2fb504aa648ae38016f8b0f06fb32",
+        "evidenceVerified": true
+      }
+    ],
+    "interpretation": "mixed",
+    "languageNote": false,
+    "start": 78,
+    "end": 105,
+    "wordCount": 87,
+    "noteId": 781,
+    "significance": "fundamental"
+  },
+  {
+    "id": "LUK-034",
+    "book": "Luke",
+    "chapter": 15,
+    "verse": 20,
+    "phrase": "while he was still far off",
+    "title": "Mercy moves before the speech is finished",
+    "theme": "mercy moves before the speech is finished",
+    "body": "<p>The father runs towards his son before hearing his confession. Return matters, but restoration exceeds anything the son expects to earn. John Paul II explains the father’s joy through a dignity that failure has not erased: the prodigal remains his son. Mercy therefore helps him face the truth without reducing him to his wrongdoing. It restores belonging rather than humiliating someone from a position of superiority. The Catechism reads this return as conversion and new life. The elder brother leaves us a question: can we share the joy of another person’s restoration?</p><p class=\"sources\"><a href=\"https://www.vatican.va/archive/ENG0015/__P4B.HTM\" target=\"_blank\" rel=\"noopener noreferrer\">CCC 1439</a> · <a href=\"https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_30111980_dives-in-misericordia.html\" target=\"_blank\" rel=\"noopener noreferrer\">John Paul II, Dives in Misericordia 6</a></p>",
+    "sources": [
+      {
+        "url": "https://www.vatican.va/archive/ENG0015/__P4B.HTM",
+        "label": "CCC 1439",
+        "locator": "Paragraph 1439",
+        "supports": "The prodigal son reveals conversion, the merciful father, and restored dignity.",
+        "type": "catechism",
+        "retrievalSha256": "c9e64c407aa01979643e832059de67b83a1807ae2df657d475901ebdc0f4f1a4",
+        "excerptHash": "9150c4a69c5946eb60ab0a8b48aa339c67d01a52558eef9e62cbb318f273e959",
+        "evidenceVerified": true
+      },
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_30111980_dives-in-misericordia.html",
+        "label": "John Paul II, Dives in Misericordia 6",
+        "locator": "paragraph 6",
+        "supports": "The father’s merciful joy recognises enduring sonship and restores the person rather than humiliating him.",
+        "type": "papal",
+        "retrievalSha256": "973197a7980dfbe0cbdd40f01aab32e00c1060297ec0b5ac8822464c1c95419e",
+        "excerptHash": "c4da8fc85b27893cbb5fe1d88ac7d43261d550c0f25cb50ded915fb0e96f2efe",
+        "evidenceVerified": true
+      }
+    ],
+    "interpretation": "mixed",
+    "languageNote": false,
+    "start": 38,
+    "end": 63,
+    "wordCount": 92,
+    "noteId": 786,
+    "significance": "fundamental"
+  },
+  {
+    "id": "JHN-014",
+    "book": "John",
+    "chapter": 3,
+    "verse": 16,
+    "phrase": "God so loved the world",
+    "title": "Love is the beginning of salvation",
+    "theme": "love is the beginning of salvation",
+    "body": "<p>God’s love begins the movement of salvation: the Son is given so that we may live through him. John Paul II also hears here a revelation of human worth. The greatness of the gift shows how precious humanity is to its Creator. To understand ourselves deeply, he says, we must bring our uncertainty, weakness and sin into an encounter with Christ. Redemption can awaken wonder at a dignity we had lost sight of. This is no excuse to remain unchanged: belief entrusts the whole person to the love that comes to save.</p><p class=\"sources\"><a href=\"https://www.vatican.va/archive/ENG0015/__P1J.HTM\" target=\"_blank\" rel=\"noopener noreferrer\">CCC 458</a> · <a href=\"https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_04031979_redemptor-hominis.html\" target=\"_blank\" rel=\"noopener noreferrer\">John Paul II, Redemptor Hominis 10</a></p>",
+    "sources": [
+      {
+        "url": "https://www.vatican.va/archive/ENG0015/__P1J.HTM",
+        "label": "CCC 458",
+        "locator": "Paragraph 458",
+        "supports": "The Incarnation manifests God’s love and gift of life through the Son.",
+        "type": "catechism",
+        "retrievalSha256": "bdc270ea44753fdd370af44411d4e632bd4d4666d68aa517bf72d3a2dd4280d1",
+        "excerptHash": "5bd543f5565f483129e09e2599ab2e11b75e7b39950ddbc633345de153c3cef8",
+        "evidenceVerified": true
+      },
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_04031979_redemptor-hominis.html",
+        "label": "John Paul II, Redemptor Hominis 10",
+        "locator": "paragraph 10",
+        "supports": "Christ’s redemption reveals human dignity and invites the whole uncertain, wounded person into a transforming encounter.",
+        "type": "papal",
+        "retrievalSha256": "8f3b19d4570ad7aa2d6e86d7c1fe525d4464af9172015b4d9ae0979fd54f77d2",
+        "excerptHash": "10122c3fc229849f975cad6c8b9eadd6bbaa1114ff20ef26615d1b845bb28ab5",
+        "evidenceVerified": true
+      },
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_04031979_redemptor-hominis.html",
+        "label": "John Paul II, Redemptor Hominis 10: encounter with Christ",
+        "locator": "paragraph 10",
+        "supports": "The whole person, including uncertainty, weakness and sinfulness, is invited to draw near to Christ for deeper self-understanding.",
+        "type": "papal",
+        "retrievalSha256": "8f3b19d4570ad7aa2d6e86d7c1fe525d4464af9172015b4d9ae0979fd54f77d2",
+        "excerptHash": "a85bfd842c171aa2bb567fc93e7dd48495072c2b37ccb3d529850cca9a91fa27",
+        "evidenceVerified": true
+      }
+    ],
+    "interpretation": "mixed",
+    "languageNote": false,
+    "start": 4,
+    "end": 25,
+    "wordCount": 92,
+    "noteId": 806,
+    "significance": "fundamental"
+  },
+  {
+    "id": "PAPAL-BENEDICT-LOVE-002",
+    "book": "John",
+    "chapter": 6,
+    "verse": 56,
+    "phrase": "lives in me, and I in him",
+    "title": "Receiving and adoring the same Lord",
+    "theme": "eucharist",
+    "body": "<p>Jesus describes Communion as a shared life: he dwells in the one who receives him. Benedict XVI explains why receiving the Eucharist and adoring Christ belong together. We welcome someone whose presence calls for faith, gratitude and love. The Church&#x27;s prayer before the reserved Eucharist grows from this encounter and helps it mature. Adoration carries the celebration into attentive communion with the same Lord. Benedict also connects it with our common life: drawing closer to Christ should weaken the barriers that keep us apart from one another.</p><p class=\"sources\"><a href=\"https://www.vatican.va/content/benedict-xvi/en/apost_exhortations/documents/hf_ben-xvi_exh_20070222_sacramentum-caritatis.html\" target=\"_blank\" rel=\"noopener noreferrer\">Benedict XVI, Sacramentum Caritatis 66</a></p>",
+    "sources": [
+      {
+        "url": "https://www.vatican.va/content/benedict-xvi/en/apost_exhortations/documents/hf_ben-xvi_exh_20070222_sacramentum-caritatis.html",
+        "label": "Benedict XVI, Sacramentum Caritatis 66",
+        "locator": "paragraph 66: receiving and adoring",
+        "supports": "Adoration is inherent in receiving Christ and continues Eucharistic celebration.",
+        "type": "papal",
+        "retrievalSha256": "8e075afb0e1550f823178e32cefcef04f2163990031fc3dbd207ad582f46cff0",
+        "excerptHash": "e3487d6a97a16f06946c9fbe28d80f828319598cb09341af49b2b044c487d77d",
+        "evidenceVerified": true
+      },
+      {
+        "url": "https://www.vatican.va/content/benedict-xvi/en/apost_exhortations/documents/hf_ben-xvi_exh_20070222_sacramentum-caritatis.html",
+        "label": "Benedict XVI, Sacramentum Caritatis 66",
+        "locator": "paragraph 66: adoration outside Mass",
+        "supports": "Adoration outside Mass prolongs and intensifies the celebration.",
+        "type": "papal",
+        "retrievalSha256": "8e075afb0e1550f823178e32cefcef04f2163990031fc3dbd207ad582f46cff0",
+        "excerptHash": "14fe6a4d98d18318c54e6fd76bc8e709b0106a54cec98c93efce0eeccb43cd14",
+        "evidenceVerified": true
+      },
+      {
+        "url": "https://www.vatican.va/content/benedict-xvi/en/apost_exhortations/documents/hf_ben-xvi_exh_20070222_sacramentum-caritatis.html",
+        "label": "Benedict XVI, Sacramentum Caritatis 66",
+        "locator": "paragraph 66: social mission",
+        "supports": "Personal encounter in Eucharistic adoration strengthens the Eucharist’s social mission.",
+        "type": "papal",
+        "retrievalSha256": "8e075afb0e1550f823178e32cefcef04f2163990031fc3dbd207ad582f46cff0",
+        "excerptHash": "1d0945d184075640fd92d2c3f99cf4f3e3d3235731a83b45a7b27b097df085bf",
+        "evidenceVerified": true
+      }
+    ],
+    "interpretation": "mixed",
+    "languageNote": false,
+    "significance": "fundamental",
+    "start": 41,
+    "end": 65,
+    "wordCount": 87
+  },
+  {
+    "id": "JHN-025",
+    "book": "John",
+    "chapter": 7,
+    "verse": 38,
+    "phrase": "rivers of living water",
+    "title": "The received gift becomes a source for others",
+    "theme": "the received gift becomes a source for others",
+    "body": "<p>The image moves from thirst to abundance: the gift received begins to flow outward. John identifies it with the Holy Spirit, living water flowing from Christ and welling up in us. Benedict XVI reads this promise alongside Jesus&#x27; pierced side and draws a practical conclusion: anyone who gives love must also receive it. We cannot sustain a life of generosity by treating ourselves as an independent source. Returning to Christ and accepting love as a gift belong within service itself. Consolation, truth and mercy can then reach others through what we have welcomed.</p><p class=\"sources\"><a href=\"https://www.vatican.va/archive/ENG0015/__P21.HTM\" target=\"_blank\" rel=\"noopener noreferrer\">CCC 694</a> · <a href=\"https://www.vatican.va/content/benedict-xvi/en/encyclicals/documents/hf_ben-xvi_enc_20051225_deus-caritas-est.html\" target=\"_blank\" rel=\"noopener noreferrer\">Benedict XVI, Deus Caritas Est 7</a></p>",
+    "sources": [
+      {
+        "url": "https://www.vatican.va/archive/ENG0015/__P21.HTM",
+        "label": "CCC 694",
+        "locator": "Paragraph 694",
+        "supports": "The Spirit is living water flowing from Christ and welling up in believers.",
+        "type": "catechism",
+        "retrievalSha256": "64c449df10d69e061b2559a19bb998cc91f9b2d3769cb3d208a805b33a263499",
+        "excerptHash": "f457f16dfee39fc49ef55cddddac1b8157d109e45896377943daeb2f4d15df66",
+        "evidenceVerified": true
+      },
+      {
+        "url": "https://www.vatican.va/content/benedict-xvi/en/encyclicals/documents/hf_ben-xvi_enc_20051225_deus-caritas-est.html",
+        "label": "Benedict XVI, Deus Caritas Est 7",
+        "locator": "paragraph 7: giving and receiving love",
+        "supports": "Generous love needs continuing reception of love; Benedict links John7 with Christ’s pierced side.",
+        "type": "papal",
+        "retrievalSha256": "0f21533523e1bcdb06482dd3290c470be3e83024de199fbc9ac2cc8de5cdc554",
+        "excerptHash": "f7b535ced5719c5b3d781917c1ffc6d99aec82170a662c674a53f7f3a378afc4",
+        "evidenceVerified": true
+      },
+      {
+        "url": "https://www.vatican.va/content/benedict-xvi/en/encyclicals/documents/hf_ben-xvi_enc_20051225_deus-caritas-est.html",
+        "label": "Benedict XVI, Deus Caritas Est 7",
+        "locator": "paragraph 7: returning to Christ as source",
+        "supports": "The believer becomes a source by repeatedly receiving from Christ.",
+        "type": "papal",
+        "retrievalSha256": "0f21533523e1bcdb06482dd3290c470be3e83024de199fbc9ac2cc8de5cdc554",
+        "excerptHash": "f5dd1efa6dc2935eb3e3236eca11526fd3c77cc91a55201ec4bb2f61deb30d10",
+        "evidenceVerified": true
+      }
+    ],
+    "interpretation": "mixed",
+    "languageNote": false,
+    "start": 76,
+    "end": 97,
+    "wordCount": 93,
+    "noteId": 818,
+    "significance": "fundamental"
+  },
+  {
+    "id": "ROM-017",
+    "book": "Romans",
+    "chapter": 12,
+    "verse": 1,
+    "phrase": "your bodies a living sacrifice",
+    "start": 66,
+    "end": 95,
+    "title": "Worship becomes a way of life",
+    "theme": "sacrifice",
+    "body": "<p>Paul brings sacrificial language into ordinary bodily life. Work, relationships and choices can become an offering to God. The Catechism grounds this gift in union with Christ&#x27;s perfect self-offering. Benedict XVI draws out its Eucharistic depth: receiving Christ transforms us, so that the worship celebrated at the altar takes shape in our whole existence. Our thoughts, affections and practical actions belong within that communion. Sacrifice means freely offering ourselves in love; injury or submission to cruelty is not its measure. The life nourished by Christ becomes a life given with him.</p><p class=\"sources\"><a href=\"https://www.vatican.va/archive/ENG0015/__P7D.HTM\" target=\"_blank\" rel=\"noopener noreferrer\">CCC 2100</a> · <a href=\"https://www.vatican.va/content/benedict-xvi/en/apost_exhortations/documents/hf_ben-xvi_exh_20070222_sacramentum-caritatis.html\" target=\"_blank\" rel=\"noopener noreferrer\">Benedict XVI, Sacramentum Caritatis 70–71</a></p>",
+    "sources": [
+      {
+        "url": "https://www.vatican.va/archive/ENG0015/__P7D.HTM",
+        "label": "CCC 2100",
+        "locator": "paragraph 2100",
+        "supports": "Genuine sacrifice expresses inward love and becomes possible through union with Christ's self-gift.",
+        "type": "catechism",
+        "retrievalSha256": "e67e8311513560da6dbd970907c5cda5077a033ee97da4379ff24960d4967588",
+        "excerptHash": "adc050bcb837ad84755b1959077d3c29f7064eb0ebd9d42043195d9fe19d0c49",
+        "evidenceVerified": true
+      },
+      {
+        "url": "https://www.vatican.va/content/benedict-xvi/en/apost_exhortations/documents/hf_ben-xvi_exh_20070222_sacramentum-caritatis.html",
+        "label": "Benedict XVI, Sacramentum Caritatis 70–71",
+        "locator": "paragraph 70",
+        "supports": "Eucharistic reception transforms believers and makes their whole lives worship in communion with the Church.",
+        "type": "papal",
+        "retrievalSha256": "8e075afb0e1550f823178e32cefcef04f2163990031fc3dbd207ad582f46cff0",
+        "excerptHash": "976326d7167acc82c4e12757aff6981b6db9444c9374e88474c7992544a96d32",
+        "evidenceVerified": true
+      },
+      {
+        "url": "https://www.vatican.va/content/benedict-xvi/en/apost_exhortations/documents/hf_ben-xvi_exh_20070222_sacramentum-caritatis.html",
+        "label": "Benedict XVI, Sacramentum Caritatis 70–71",
+        "locator": "paragraph 71",
+        "supports": "Eucharistic worship includes thoughts, affections, words and deeds.",
+        "type": "papal",
+        "retrievalSha256": "8e075afb0e1550f823178e32cefcef04f2163990031fc3dbd207ad582f46cff0",
+        "excerptHash": "516fb7c7b00cc6a10ebb2118fcd562b8ea7f099ab36ce1d66eb779720aac7546",
+        "evidenceVerified": true
+      }
+    ],
+    "interpretation": "doctrine",
+    "languageNote": false,
+    "wordCount": 91,
+    "noteId": 881,
+    "significance": "fundamental"
+  },
+  {
+    "id": "1CO-002",
+    "book": "1 Corinthians",
+    "chapter": 1,
+    "verse": 23,
+    "phrase": "we preach Christ crucified",
+    "start": 4,
+    "end": 29,
+    "title": "Power revealed through self-giving",
+    "theme": "cross",
+    "body": "<p>The cross overturns familiar measures of divine success. Chrysostom points to Christ’s astonishing love for those who had not earned it. John Paul II adds that the crucified Christ challenges reason when it treats its own system as the measure of everything. The mind is invited to receive a love that exceeds its expectations and deepens its search for truth. Suffering is not good simply because it hurts. The saving truth is Christ’s self-gift, which teaches both intellect and desire a different meaning of greatness.</p><p class=\"sources\"><a href=\"https://www.newadvent.org/fathers/220104.htm\" target=\"_blank\" rel=\"noopener noreferrer\">Chrysostom, Hom. 1 Cor. 4</a>; <a href=\"https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_14091998_fides-et-ratio.html\" target=\"_blank\" rel=\"noopener noreferrer\">John Paul II, Fides et Ratio 23</a></p>",
+    "sources": [
+      {
+        "url": "https://www.newadvent.org/fathers/220104.htm",
+        "label": "Chrysostom, Hom. 1 Cor. 4",
+        "locator": "section 2",
+        "supports": "Christ’s humiliation reveals saving wisdom and loving kindness.",
+        "type": "fathers",
+        "retrievalSha256": "df4255cce88df2cd0db3ba1657663f0d5b58c7fdd5c0fdbea0301d4f7860b3b2",
+        "excerptHash": "a0fa0370125d3d194ffc0187638f87870b6b38a7d5c7a6ee7e5acf1096e590b9",
+        "evidenceVerified": true
+      },
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_14091998_fides-et-ratio.html",
+        "label": "John Paul II, Fides et Ratio 23",
+        "locator": "paragraph 23",
+        "supports": "The Cross opens reason to the mystery of saving love rather than making thought worthless.",
+        "type": "papal",
+        "retrievalSha256": "5f36fcbb7826c939a959bcec24d8ee1ce23679d17c22fb78c8fc805f4ddeb6ab",
+        "excerptHash": "70f3fc0b174cae4d6e46030fd940b493f6dcd6222781d7d0619e2f58e03aa633",
+        "evidenceVerified": true
+      },
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_14091998_fides-et-ratio.html",
+        "label": "John Paul II, Fides et Ratio 23",
+        "locator": "paragraph 23, final paragraph",
+        "supports": "Faith challenges reason when it treats a self-made system as the final measure of truth.",
+        "type": "papal",
+        "retrievalSha256": "5f36fcbb7826c939a959bcec24d8ee1ce23679d17c22fb78c8fc805f4ddeb6ab",
+        "excerptHash": "cecc85510232a7d06dd51c0f4a02169ca8fd18ddc6010f58d43d559ae830da64",
+        "evidenceVerified": true
+      }
+    ],
+    "interpretation": "patristic",
+    "languageNote": false,
+    "wordCount": 85,
+    "noteId": 888,
+    "significance": "fundamental"
+  },
+  {
+    "id": "1CO-005",
+    "book": "1 Corinthians",
+    "chapter": 3,
+    "verse": 13,
+    "phrase": "the fire itself will test",
+    "start": 99,
+    "end": 123,
+    "title": "What survives God’s truth",
+    "theme": "purification",
+    "body": "<p>Paul describes work built upon Christ: some endures, while some is lost although the builder is saved. Catholic tradition draws on this image for Purgatory, the final purification of those assured of salvation, distinct from condemnation. Benedict XVI explores a theological reading in which the purifying fire is the encounter with Christ himself. His love exposes and heals the falsehood we have accumulated. The painful truth serves our restoration, opening us fully to God. This image does not supply a timetable for the afterlife. It also challenges Christian service now: religious appearances cannot make pride enduring material.</p><p class=\"sources\"><a href=\"https://www.vatican.va/archive/ENG0015/__P2N.HTM\" target=\"_blank\" rel=\"noopener noreferrer\">CCC 1031</a> · <a href=\"https://www.vatican.va/content/benedict-xvi/en/encyclicals/documents/hf_ben-xvi_enc_20071130_spe-salvi.html\" target=\"_blank\" rel=\"noopener noreferrer\">Benedict XVI, Spe Salvi 46–47</a></p>",
+    "sources": [
+      {
+        "url": "https://www.vatican.va/archive/ENG0015/__P2N.HTM",
+        "label": "CCC 1031",
+        "locator": "paragraph 1031",
+        "supports": "Catholic teaching distinguishes final purification from condemnation.",
+        "type": "catechism",
+        "retrievalSha256": "b8fdc86cb447e50e5f5b13aba5e3e5d2a985705228183644a42fb84d23aac7ff",
+        "excerptHash": "71dc7479743af3debcd237fade0020d4d8215d94c78ecab55c89daa079c5b228",
+        "evidenceVerified": true
+      },
+      {
+        "url": "https://www.vatican.va/content/benedict-xvi/en/encyclicals/documents/hf_ben-xvi_enc_20071130_spe-salvi.html",
+        "label": "Benedict XVI, Spe Salvi 46–47",
+        "locator": "paragraphs 46–47",
+        "supports": "Theological reading of purification as a transforming encounter with Christ; paragraph 47 also explicitly excludes earthly measurement of its duration.",
+        "type": "papal",
+        "retrievalSha256": "3bca40e81d8ac003c85c749846436e2494fd8425bdc614e9775f8d69fe046f61",
+        "excerptHash": "771fbafd1c728d46d71a8b64ccae48c7f65b6ebcbc2c736485eb4872c8e18ee4",
+        "evidenceVerified": true
+      }
+    ],
+    "interpretation": "doctrine",
+    "languageNote": false,
+    "wordCount": 97,
+    "noteId": 891,
+    "significance": "fundamental"
+  },
+  {
+    "id": "1CO-014",
+    "book": "1 Corinthians",
+    "chapter": 11,
+    "verse": 26,
+    "phrase": "you proclaim the Lord’s death",
+    "start": 55,
+    "end": 83,
+    "title": "A memorial that looks forward",
+    "theme": "eucharist",
+    "body": "<p>The Eucharist makes Christ’s unique sacrifice sacramentally present; the Church receives his accomplished gift rather than adding another crucifixion. Paul’s words also look forward: until he comes. John Paul II connects this hope with the promise of bodily resurrection and responsibility for the world today. Receiving a foretaste of renewed life should deepen work for peace, justice and the protection of vulnerable people. Waiting for Christ is therefore active. The future celebrated at the altar calls for a changed life in the present, as Paul’s challenge to a divided community makes plain.</p><p class=\"sources\"><a href=\"https://www.vatican.va/archive/ENG0015/__P41.HTM\" target=\"_blank\" rel=\"noopener noreferrer\">CCC 1362</a> · <a href=\"https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_20030417_eccl-de-euch.html\" target=\"_blank\" rel=\"noopener noreferrer\">John Paul II, Ecclesia de Eucharistia 18–20</a></p>",
+    "sources": [
+      {
+        "url": "https://www.vatican.va/archive/ENG0015/__P41.HTM",
+        "label": "CCC 1362",
+        "locator": "paragraph 1362",
+        "supports": "The Eucharistic memorial makes Christ’s unique sacrifice sacramentally present.",
+        "type": "catechism",
+        "retrievalSha256": "18ec5363c123e885b43e037fd3723a2d3af20cc1be8a9d76e9b78a1491c44c7e",
+        "excerptHash": "e41984c5677ba5d685a5f130997d6f7b1567f5d2abb1952c88681ff0d51e714e",
+        "evidenceVerified": true
+      },
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_20030417_eccl-de-euch.html",
+        "label": "John Paul II, Ecclesia de Eucharistia 18–20",
+        "locator": "paragraphs 18–20",
+        "supports": "Eucharistic expectation includes bodily resurrection and increases responsibility for present earthly life.",
+        "type": "papal",
+        "retrievalSha256": "6204a9de71f804c77a9470fa65bf9facb5926858a5980ecab330b5e31970f99f",
+        "excerptHash": "85e9b9538ed28cb4b124a9bf7e9c6cf69b97d7e31b00d656c24eb2d952f0ebcf",
+        "evidenceVerified": true
+      },
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_20030417_eccl-de-euch.html",
+        "label": "John Paul II, Ecclesia de Eucharistia 18: bodily resurrection",
+        "locator": "paragraph 18",
+        "supports": "The Eucharist gives a pledge of bodily resurrection, joining present Communion with the future Christ promises.",
+        "type": "papal",
+        "retrievalSha256": "6204a9de71f804c77a9470fa65bf9facb5926858a5980ecab330b5e31970f99f",
+        "excerptHash": "125b543bce165e2e86e4b858a9c6d5bb44b1ebfa8ddeb649f80406ff19626c38",
+        "evidenceVerified": true
+      }
+    ],
+    "interpretation": "doctrine",
+    "languageNote": false,
+    "wordCount": 92,
+    "noteId": 900,
+    "significance": "fundamental"
+  },
+  {
+    "id": "EPH-008",
+    "book": "Ephesians",
+    "chapter": 4,
+    "verse": 15,
+    "phrase": "speaking truth in love",
+    "start": 4,
+    "end": 25,
+    "title": "Truthful speech serves growth",
+    "theme": "truth",
+    "body": "<p>Truth and love serve the body's growth together. Correct facts can humiliate, while comforting words can evade what someone needs to face. Benedict XVI adds the complementary point: love itself needs truth, or it becomes a good feeling whose meaning we can change to suit ourselves. Genuine care seeks what actually helps another person flourish. The Catechism therefore asks communication to respect privacy, safety and the hearer's right to know. Speaking truth in love concerns purpose and responsibility as well as tone: enough honesty to help, with enough discretion to avoid needless injury.</p><p class=\"sources\"><a href=\"https://www.vatican.va/archive/ENG0015/__P8L.HTM\" target=\"_blank\" rel=\"noopener noreferrer\">CCC 2489</a> · <a href=\"https://www.vatican.va/content/benedict-xvi/en/encyclicals/documents/hf_ben-xvi_enc_20090629_caritas-in-veritate.html\" target=\"_blank\" rel=\"noopener noreferrer\">Benedict XVI, Caritas in Veritate 2–3</a></p>",
+    "sources": [
+      {
+        "url": "https://www.vatican.va/archive/ENG0015/__P8L.HTM",
+        "label": "CCC 2489",
+        "locator": "paragraph 2489",
+        "supports": "Truthful communication must be guided by charity, justice and respect for persons.",
+        "type": "catechism",
+        "retrievalSha256": "be130481c22f4c9f973e828d76e5155fe332164e92b8fe4e0c2cbcba3426a118",
+        "excerptHash": "8fae90415580b988e4086fd780059780465fe0158e69cddba1519d9814c911b3",
+        "evidenceVerified": true
+      },
+      {
+        "url": "https://www.vatican.va/content/benedict-xvi/en/encyclicals/documents/hf_ben-xvi_enc_20090629_caritas-in-veritate.html",
+        "label": "Benedict XVI, Caritas in Veritate 2–3",
+        "locator": "paragraphs 2–3",
+        "supports": "Paul’s truth-in-love formula is complemented by love-in-truth; charity cannot be reduced to arbitrary sentiment.",
+        "type": "papal",
+        "retrievalSha256": "a04520350793ddac65fbc1bbbc5659c305ccf3aa76dd49a04bff8042924b34fe",
+        "excerptHash": "6b76e28dd768cd93b42cf97f3131259de05d956916dca088c93b2221765fcd6a",
+        "evidenceVerified": true
+      }
+    ],
+    "interpretation": "doctrine",
+    "languageNote": false,
+    "wordCount": 93,
+    "noteId": 935,
+    "significance": "fundamental"
+  },
+  {
+    "id": "COL-003",
+    "book": "Colossians",
+    "chapter": 1,
+    "verse": 24,
+    "phrase": "for his body’s sake",
+    "start": 132,
+    "end": 150,
+    "title": "Sharing the fruits of a complete sacrifice",
+    "theme": "suffering",
+    "body": "<p>Christ’s sacrifice is complete; Paul shares its saving love through service of the Church rather than repairing an inadequate cross. John Paul II also hears an answer to the sufferer’s fear of becoming useless: needing help does not exclude a person from giving through prayer and love united with Christ. This participation can continue when outward activity is severely limited. Its value comes from communion with him, not from the intensity of pain. Suffering should still be relieved; no one has to display spiritual usefulness to deserve care.</p><p class=\"sources\"><a href=\"https://www.vatican.va/archive/ENG0015/__P1O.HTM\" target=\"_blank\" rel=\"noopener noreferrer\">CCC 618</a> · <a href=\"https://www.vatican.va/content/john-paul-ii/en/apost_letters/1984/documents/hf_jp-ii_apl_11021984_salvifici-doloris.html\" target=\"_blank\" rel=\"noopener noreferrer\">John Paul II, Salvifici Doloris 27</a></p>",
+    "sources": [
+      {
+        "url": "https://www.vatican.va/archive/ENG0015/__P1O.HTM",
+        "label": "CCC 618",
+        "locator": "paragraph 618",
+        "supports": "Christ’s unique sacrifice enables his members to participate in his saving work.",
+        "type": "catechism",
+        "retrievalSha256": "6b6ac0afc23ee42dd6ec70b0a26b2135b428efe98c7c8cff47c2f9523b32146d",
+        "excerptHash": "0044f56139dd62ed669e3ddfda7a0e0b0975737981b41b7ab0d506ff67aeb336",
+        "evidenceVerified": true
+      },
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/apost_letters/1984/documents/hf_jp-ii_apl_11021984_salvifici-doloris.html",
+        "label": "John Paul II, Salvifici Doloris 27",
+        "locator": "paragraph 27",
+        "supports": "The sufferer’s union with Christ gives a real spiritual service to others, answering a fear of uselessness.",
+        "type": "papal",
+        "retrievalSha256": "743c0dc1b2d998516a3ad4b3a166cc6f4406d16e327424841e6266138559c248",
+        "excerptHash": "62f90a63bcd648bb41b07a7133f2c830d1aa5603629dcadb1101c8c38b29218a",
+        "evidenceVerified": true
+      }
+    ],
+    "interpretation": "doctrine",
+    "languageNote": false,
+    "wordCount": 88,
+    "noteId": 946,
+    "significance": "fundamental"
+  },
+  {
+    "id": "HEB-016",
+    "book": "Hebrews",
+    "chapter": 11,
+    "verse": 1,
+    "phrase": "assurance of things hoped for",
+    "start": 13,
+    "end": 41,
+    "title": "Faith acts upon a trustworthy promise",
+    "theme": "faith",
+    "body": "<p>The chapter unfolds faith through people who act on God's promise before seeing its fulfilment. The Catechism names Abraham as an embodiment of this assurance. Benedict XVI draws out a further dimension: faith already gives us a beginning of the life we await. God's promised future touches the present, changing what we can live for and endure. This confidence rests on the trustworthy God, not on wishing an outcome into existence. Some witnesses meet success; others suffer and die still awaiting the promise. Faith sustains their direction towards God without guaranteeing immediate earthly fulfilment.</p><p class=\"sources\"><a href=\"https://www.vatican.va/archive/ENG0015/__PV.HTM\" target=\"_blank\" rel=\"noopener noreferrer\">CCC 146</a> · <a href=\"https://www.vatican.va/content/benedict-xvi/en/encyclicals/documents/hf_ben-xvi_enc_20071130_spe-salvi.html\" target=\"_blank\" rel=\"noopener noreferrer\">Benedict XVI, Spe Salvi 7</a></p>",
+    "sources": [
+      {
+        "url": "https://www.vatican.va/archive/ENG0015/__PV.HTM",
+        "label": "CCC 146",
+        "locator": "paragraph 146",
+        "supports": "Abraham exemplifies faith as trusting assurance in what God promises.",
+        "type": "catechism",
+        "retrievalSha256": "7b60dcfabf72a1f8959cc8e09e54eae4e20ad45c9dceec42bec1e25c25583fa3",
+        "excerptHash": "4d1a125bcd3dcc66ccc0dd3add9802aa7ce42a7a5ff86580f742b3557cd726dd",
+        "evidenceVerified": true
+      },
+      {
+        "url": "https://www.vatican.va/content/benedict-xvi/en/encyclicals/documents/hf_ben-xvi_enc_20071130_spe-salvi.html",
+        "label": "Benedict XVI, Spe Salvi 7",
+        "locator": "paragraph 7",
+        "supports": "Faith gives a present participation in the reality hoped for, so the future changes present living.",
+        "type": "papal",
+        "retrievalSha256": "3bca40e81d8ac003c85c749846436e2494fd8425bdc614e9775f8d69fe046f61",
+        "excerptHash": "ac9705e353fc76c525d17a1529140b972f346dcd96de85ce1325680006a28096",
+        "evidenceVerified": true
+      }
+    ],
+    "interpretation": "doctrine",
+    "languageNote": false,
+    "wordCount": 94,
+    "noteId": 994,
+    "significance": "fundamental"
+  },
+  {
+    "id": "1JN-005",
+    "book": "1 John",
+    "chapter": 3,
+    "verse": 18,
+    "phrase": "in deed and truth",
+    "start": 78,
+    "end": 94,
+    "title": "Begin with the need before you",
+    "theme": "charity",
+    "body": "<p>Augustine connects this command to the neighbour in need described just before it. If we cannot yet imagine laying down our life for someone, we can begin by sharing our resources. Charity grows through such ordinary acts. Benedict XVI adds that generosity cannot replace justice: before offering a gift, we must respect what already belongs to the other person. A donation does not make withholding someone's rightful pay loving. Love in deed and truth therefore joins practical mercy to fair treatment. We can begin with the need before us while also examining whether our own conduct contributes to it.</p><p class=\"sources\"><a href=\"https://www.newadvent.org/fathers/170205.htm\" target=\"_blank\" rel=\"noopener noreferrer\">Augustine, Hom. 1 John 5</a> · <a href=\"https://www.vatican.va/content/benedict-xvi/en/encyclicals/documents/hf_ben-xvi_enc_20090629_caritas-in-veritate.html\" target=\"_blank\" rel=\"noopener noreferrer\">Benedict XVI, Caritas in Veritate 6</a></p>",
+    "sources": [
+      {
+        "url": "https://www.newadvent.org/fathers/170205.htm",
+        "label": "Augustine, Hom. 1 John 5",
+        "locator": "section 12",
+        "supports": "Concrete sharing with a needy neighbour is the beginning through which charity grows.",
+        "type": "fathers",
+        "retrievalSha256": "c6b24d5dd81b21311f7b27152cd105d070c716262357aea726945586c513b8ec",
+        "excerptHash": "b84a5511ecbec693b7b52ce625117f0bbc729b528c4664f6d8035078efa487e5",
+        "evidenceVerified": true
+      },
+      {
+        "url": "https://www.vatican.va/content/benedict-xvi/en/encyclicals/documents/hf_ben-xvi_enc_20090629_caritas-in-veritate.html",
+        "label": "Benedict XVI, Caritas in Veritate 6",
+        "locator": "paragraph 6",
+        "supports": "Charity goes beyond justice but cannot substitute giving one’s own goods for first respecting what is owed to another; the wages example is an application.",
+        "type": "papal",
+        "retrievalSha256": "a04520350793ddac65fbc1bbbc5659c305ccf3aa76dd49a04bff8042924b34fe",
+        "excerptHash": "bef9e1dcbbe2f43d89bfb4e0f7c741091a0bcce303757c7f693cd1434400b23b",
+        "evidenceVerified": true
+      }
+    ],
+    "interpretation": "patristic",
+    "languageNote": false,
+    "wordCount": 99,
+    "noteId": 1022,
+    "significance": "interest"
+  },
+  {
+    "id": "PAPAL-BENEDICT-LOVE-001",
+    "book": "1 John",
+    "chapter": 4,
+    "verse": 20,
+    "phrase": "whom he has seen",
+    "title": "Love opens our eyes to God",
+    "theme": "charity",
+    "body": "<p>John makes our treatment of a visible person a test of our professed love for the invisible God. Benedict XVI draws out a further consequence: serving our neighbour can itself open our eyes to God&#x27;s love. Attention changes the person who gives it. We learn to see another through Christ&#x27;s concern, including someone we do not naturally like. Prayer nourishes this readiness, and practical love gives prayer depth and honesty. The two belong to one movement of grace: receiving God&#x27;s love and becoming able to recognise and share it.</p><p class=\"sources\"><a href=\"https://www.vatican.va/content/benedict-xvi/en/encyclicals/documents/hf_ben-xvi_enc_20051225_deus-caritas-est.html\" target=\"_blank\" rel=\"noopener noreferrer\">Benedict XVI, Deus Caritas Est 16–18</a></p>",
+    "sources": [
+      {
+        "url": "https://www.vatican.va/content/benedict-xvi/en/encyclicals/documents/hf_ben-xvi_enc_20051225_deus-caritas-est.html",
+        "label": "Benedict XVI, Deus Caritas Est 16–18",
+        "locator": "paragraph 16",
+        "supports": "Love of neighbour opens a path to encounter with God.",
+        "type": "papal",
+        "retrievalSha256": "0f21533523e1bcdb06482dd3290c470be3e83024de199fbc9ac2cc8de5cdc554",
+        "excerptHash": "1ecd96c76b6c713eca0a51a35ddf130608ceba45861e87e1139ca342ca049292",
+        "evidenceVerified": true
+      },
+      {
+        "url": "https://www.vatican.va/content/benedict-xvi/en/encyclicals/documents/hf_ben-xvi_enc_20051225_deus-caritas-est.html",
+        "label": "Benedict XVI, Deus Caritas Est 16–18",
+        "locator": "paragraph 18",
+        "supports": "Service increases sensitivity to God’s action and love, and prayer sustains love beyond natural sympathy.",
+        "type": "papal",
+        "retrievalSha256": "0f21533523e1bcdb06482dd3290c470be3e83024de199fbc9ac2cc8de5cdc554",
+        "excerptHash": "3cb729006347a27c2f81d238480bc9a8bbd1674f4a067a51f2b2450cf3b076dd",
+        "evidenceVerified": true
+      }
+    ],
+    "interpretation": "mixed",
+    "languageNote": false,
+    "significance": "fundamental",
+    "start": 102,
+    "end": 117,
+    "wordCount": 89
+  }
+]

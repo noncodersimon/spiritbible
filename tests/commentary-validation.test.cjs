@@ -5,6 +5,7 @@ const os=require('node:os');
 const path=require('node:path');
 const crypto=require('node:crypto');
 const {validateDraft,reviewFingerprint}=require('../scripts/commentary-draft.cjs');
+const {isPapalWriting}=require('../scripts/source-policy.cjs');
 const sha=x=>crypto.createHash('sha256').update(x).digest('hex');
 function fixture(){
  const sentence='This fixture supplies enough words to exercise validation without serving as real commentary.';
@@ -65,4 +66,20 @@ test('spiritual classics are limited to the approved primary CCEL works',()=>{
  assert.doesNotThrow(()=>validateDraft([note],{complete:false}));
  const bad={...note,body:note.body.replace(url,'https://ccel.org/fiction.html'),sources:[{...note.sources[0],url:'https://ccel.org/fiction.html'}]};
  assert.throws(()=>validateDraft([bad],{complete:false}),/source URL|collection/);
+});
+
+test('papal citations accept the two authorised Vatican collections and keep their source type distinct',()=>{
+ const urls=[
+  'https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_14091998_fides-et-ratio.html',
+  'https://www.vatican.va/content/benedict-xvi/en/encyclicals/documents/hf_ben-xvi_enc_20071130_spe-salvi.html',
+ ];
+ const noteFor=url=>{const n=fixture();n.body=n.body.replace(n.sources[0].url,url);n.sources[0]={...n.sources[0],url,type:'papal'};return n;};
+ for(const url of urls) assert.doesNotThrow(()=>validateDraft([noteFor(url)],{complete:false}));
+ const wrongType=noteFor(urls[0]);wrongType.sources[0].type='catechism';
+ assert.throws(()=>validateDraft([wrongType],{complete:false}),/collection/);
+ for(const url of [urls[0].replace('john-paul-ii','francesco'),urls[0].replace('www.vatican.va','www.vatican.va.example.com'),urls[0].replace('https:','http:'),urls[0].replace('https://','https://reader:secret@'),urls[0].replace('www.vatican.va/','www.vatican.va:8443/'),'https://www.vatican.va/news.html']) {
+  assert.equal(isPapalWriting(new URL(url)),false,'The papal predicate must reject unsafe origins independently');
+  assert.throws(()=>validateDraft([noteFor(url)],{complete:false}),/source URL|collection/);
+ }
+ assert.equal(isPapalWriting(new URL(urls[0].replace('www.vatican.va/','www.vatican.va:443/'))),true);
 });

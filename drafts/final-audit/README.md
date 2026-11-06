@@ -15,7 +15,7 @@ These are reading priorities, not grades of doctrinal authority. The interface d
 
 ## Sources and interpretation
 
-Sources remain the Vatican Catechism, New Advent's Church Fathers and Catholic Encyclopedia, and the previously approved CCEL editions of Teresa's *Interior Castle*, Catherine's *Dialogue* and *The Cloud of Unknowing*. No additional papal collection was introduced. An actual quotation from John Paul II already present in the Catechism is identified as such; no text imitates or invents papal authorship.
+The initial audit used the Vatican Catechism, New Advent's Church Fathers and Catholic Encyclopedia, and the approved CCEL editions of Teresa's *Interior Castle*, Catherine's *Dialogue* and *The Cloud of Unknowing*. The user subsequently authorised official Vatican writings by John Paul II and Benedict XVI. The focused additions and revisions are documented in [the papal supplement](../papal-commentary/README.md); the complete current payload remains here. Distinctive papal readings are attributed and linked to their documents; no text imitates or invents papal authorship.
 
 The notes distinguish a passage's literary setting, Catholic doctrinal reception, an individual Father's interpretation and a later spiritual application. Difficult ancient texts are not presented as permission for contemporary harm. Where a source supports an interpretive boundary rather than a complete historical resolution, the note keeps that limitation visible.
 
@@ -29,7 +29,7 @@ This is a source-checked editorial review, not ecclesiastical approval or a clai
 - `notes.json`, `study.json`: the release payloads, checked against production data.
 - `source-evidence.json`: exact supporting excerpts and retrieval hashes for revised/new notes.
 - `coverage.json`: release counts, classifications and commentary lengths.
-- `reports/`: author checklists, independent reviews, thematic audit and browser validation results.
+- `reports/`: author checklists, independent reviews, thematic audit and browser validation results for the initial full audit. Subsequent papal-supplement reports are in `../papal-commentary/reports/`.
 
 Earlier draft archives retain the material from their own release. Their historical checks do not require the current prose to remain identical to those earlier drafts.
 

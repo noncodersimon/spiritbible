@@ -1,0 +1,134 @@
+[
+  {
+    "url": "https://www.vatican.va/content/benedict-xvi/en/encyclicals/documents/hf_ben-xvi_enc_20071130_spe-salvi.html",
+    "references": [
+      "Benedict XVI, Spe Salvi 42–44",
+      "Benedict XVI, Spe Salvi 46–47",
+      "Benedict XVI, Spe Salvi 48",
+      "Benedict XVI, Spe Salvi 7"
+    ],
+    "notes": [
+      "1CO-005",
+      "2MA-010",
+      "HEB-016"
+    ],
+    "connections": [
+      "papal-judgement-and-hope-for-victims"
+    ]
+  },
+  {
+    "url": "https://www.vatican.va/content/benedict-xvi/en/encyclicals/documents/hf_ben-xvi_enc_20051225_deus-caritas-est.html",
+    "references": [
+      "Benedict XVI, Deus Caritas Est 16–18",
+      "Benedict XVI, Deus Caritas Est 5–6",
+      "Benedict XVI, Deus Caritas Est 7"
+    ],
+    "notes": [
+      "JHN-025",
+      "PAPAL-BENEDICT-LOVE-001",
+      "SNG-001"
+    ],
+    "connections": []
+  },
+  {
+    "url": "https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_06081993_veritatis-splendor.html",
+    "references": [
+      "John Paul II, Veritatis Splendor 17–23"
+    ],
+    "notes": [
+      "PAPAL-ROOT-001"
+    ],
+    "connections": []
+  },
+  {
+    "url": "https://www.vatican.va/content/john-paul-ii/en/apost_letters/1984/documents/hf_jp-ii_apl_11021984_salvifici-doloris.html",
+    "references": [
+      "John Paul II, Salvifici Doloris 27",
+      "John Paul II, Salvifici Doloris 28–29"
+    ],
+    "notes": [
+      "COL-003",
+      "LUK-029"
+    ],
+    "connections": []
+  },
+  {
+    "url": "https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_30111980_dives-in-misericordia.html",
+    "references": [
+      "John Paul II, Dives in Misericordia 14",
+      "John Paul II, Dives in Misericordia 6"
+    ],
+    "notes": [
+      "LUK-034"
+    ],
+    "connections": [
+      "papal-mercy-giver-and-receiver"
+    ]
+  },
+  {
+    "url": "https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_04031979_redemptor-hominis.html",
+    "references": [
+      "John Paul II, Redemptor Hominis 10",
+      "John Paul II, Redemptor Hominis 10: encounter with Christ"
+    ],
+    "notes": [
+      "JHN-014"
+    ],
+    "connections": []
+  },
+  {
+    "url": "https://www.vatican.va/content/benedict-xvi/en/apost_exhortations/documents/hf_ben-xvi_exh_20070222_sacramentum-caritatis.html",
+    "references": [
+      "Benedict XVI, Sacramentum Caritatis 66",
+      "Benedict XVI, Sacramentum Caritatis 70–71"
+    ],
+    "notes": [
+      "PAPAL-BENEDICT-LOVE-002",
+      "ROM-017"
+    ],
+    "connections": []
+  },
+  {
+    "url": "https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_14091998_fides-et-ratio.html",
+    "references": [
+      "John Paul II, Fides et Ratio 23"
+    ],
+    "notes": [
+      "1CO-002"
+    ],
+    "connections": []
+  },
+  {
+    "url": "https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_20030417_eccl-de-euch.html",
+    "references": [
+      "John Paul II, Ecclesia de Eucharistia 18: bodily resurrection",
+      "John Paul II, Ecclesia de Eucharistia 18–20"
+    ],
+    "notes": [
+      "1CO-014"
+    ],
+    "connections": []
+  },
+  {
+    "url": "https://www.vatican.va/content/benedict-xvi/en/encyclicals/documents/hf_ben-xvi_enc_20090629_caritas-in-veritate.html",
+    "references": [
+      "Benedict XVI, Caritas in Veritate 2–3",
+      "Benedict XVI, Caritas in Veritate 6"
+    ],
+    "notes": [
+      "1JN-005",
+      "EPH-008"
+    ],
+    "connections": []
+  },
+  {
+    "url": "https://www.vatican.va/content/benedict-xvi/en/apost_exhortations/documents/hf_ben-xvi_exh_20100930_verbum-domini.html",
+    "references": [
+      "Benedict XVI, Verbum Domini 54–55"
+    ],
+    "notes": [],
+    "connections": [
+      "papal-word-and-eucharist"
+    ]
+  }
+]
