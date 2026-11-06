@@ -33,7 +33,7 @@ Recognised Bible references open their chapter directly, highlighting the reques
 
 ## Commentary
 
-The published collection contains 1,054 selected Catholic commentary notes across all 73 books. Each note is anchored to the current WEB text and ends with abbreviated links to the Catechism, Catholic Encyclopedia or Church Fathers. The reviewed collection and provenance are retained in [the commentary review archive](drafts/commentary/README.md).
+The collection contains 1,162 selected Catholic commentary notes across all 73 books. Each note is anchored to the current WEB text and ends with abbreviated source links. Sources include the Catechism, Catholic Encyclopedia, Church Fathers and selected primary spiritual classics from CCEL. The original collection is retained in [the commentary review archive](drafts/commentary/README.md); the selective expansion, source evidence and book-by-book audits are in [the deeper commentary review](drafts/deeper-commentary/README.md).
 
 Production notes remain authoritative in `data/notes.json`; the archived review files are not runtime inputs or public routes. Future editorial changes must update the production notes and regenerate the database through the normal build pipeline.
 

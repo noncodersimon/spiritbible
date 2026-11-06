@@ -1,4 +1,5 @@
 const { createRequire } = require('node:module');
+const { isSourceURL } = require('./source-policy.cjs');
 const { JSDOM } = createRequire(require.resolve('isomorphic-dompurify'))('jsdom');
 const kinds = new Set(['quotation', 'fulfilment', 'echo', 'typology', 'theme']);
 const words = text => text.trim().split(/\s+/u).length;
@@ -6,9 +7,7 @@ function sourceLinks(sources, id) {
   if (!Array.isArray(sources) || !sources.length) throw Error(`Missing study sources: ${id}`);
   for (const source of sources) {
     const u = new URL(source.url);
-    if (!source.label?.trim() || u.protocol !== 'https:' || u.username || u.password ||
-        !(u.hostname === 'www.vatican.va' && (u.pathname.startsWith('/archive/ENG0015/') || u.pathname.startsWith('/content/catechism/')) ||
-          u.hostname === 'www.newadvent.org' && /^\/(cathen|fathers)\//.test(u.pathname))) throw Error(`Invalid study source: ${id}`);
+    if (!source.label?.trim() || !isSourceURL(u)) throw Error(`Invalid study source: ${id}`);
   }
 }
 function prose(text, min, max, id) {

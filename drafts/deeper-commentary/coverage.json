@@ -1,0 +1,488 @@
+{
+  "date": "2026-11-06",
+  "baseCommit": "1f1c348",
+  "booksAudited": 73,
+  "newNotes": 108,
+  "totalNotes": 1162,
+  "newConnections": 31,
+  "totalConnections": 109,
+  "newConnectionEndpoints": 82,
+  "newProseWords": 18452,
+  "newSourcePages": 94,
+  "spiritualClassicNotes": 5,
+  "spiritualClassicConnections": 1,
+  "minimumNoteWords": 117,
+  "maximumNoteWords": 151,
+  "groups": [
+    {
+      "group": "torah-history",
+      "notes": 15,
+      "connections": 8
+    },
+    {
+      "group": "wisdom",
+      "notes": 19,
+      "connections": 5
+    },
+    {
+      "group": "prophets",
+      "notes": 25,
+      "connections": 6
+    },
+    {
+      "group": "gospels",
+      "notes": 24,
+      "connections": 5
+    },
+    {
+      "group": "letters",
+      "notes": 20,
+      "connections": 6
+    },
+    {
+      "group": "mystics",
+      "notes": 5,
+      "connections": 1
+    }
+  ],
+  "coverage": [
+    {
+      "book": "Genesis",
+      "existingNotes": 42,
+      "newNotes": 4,
+      "newConnections": 1
+    },
+    {
+      "book": "Exodus",
+      "existingNotes": 36,
+      "newNotes": 1,
+      "newConnections": 3
+    },
+    {
+      "book": "Leviticus",
+      "existingNotes": 22,
+      "newNotes": 1,
+      "newConnections": 1
+    },
+    {
+      "book": "Numbers",
+      "existingNotes": 22,
+      "newNotes": 1,
+      "newConnections": 1
+    },
+    {
+      "book": "Deuteronomy",
+      "existingNotes": 28,
+      "newNotes": 1,
+      "newConnections": 0
+    },
+    {
+      "book": "Joshua",
+      "existingNotes": 14,
+      "newNotes": 0,
+      "newConnections": 0
+    },
+    {
+      "book": "Judges",
+      "existingNotes": 14,
+      "newNotes": 0,
+      "newConnections": 0
+    },
+    {
+      "book": "Ruth",
+      "existingNotes": 7,
+      "newNotes": 0,
+      "newConnections": 0
+    },
+    {
+      "book": "1 Samuel",
+      "existingNotes": 18,
+      "newNotes": 1,
+      "newConnections": 1
+    },
+    {
+      "book": "2 Samuel",
+      "existingNotes": 16,
+      "newNotes": 0,
+      "newConnections": 0
+    },
+    {
+      "book": "1 Kings",
+      "existingNotes": 16,
+      "newNotes": 2,
+      "newConnections": 1
+    },
+    {
+      "book": "2 Kings",
+      "existingNotes": 14,
+      "newNotes": 1,
+      "newConnections": 0
+    },
+    {
+      "book": "1 Chronicles",
+      "existingNotes": 9,
+      "newNotes": 0,
+      "newConnections": 1
+    },
+    {
+      "book": "2 Chronicles",
+      "existingNotes": 10,
+      "newNotes": 1,
+      "newConnections": 2
+    },
+    {
+      "book": "Ezra",
+      "existingNotes": 7,
+      "newNotes": 0,
+      "newConnections": 1
+    },
+    {
+      "book": "Nehemiah",
+      "existingNotes": 8,
+      "newNotes": 1,
+      "newConnections": 1
+    },
+    {
+      "book": "Tobit",
+      "existingNotes": 12,
+      "newNotes": 0,
+      "newConnections": 0
+    },
+    {
+      "book": "Judith",
+      "existingNotes": 10,
+      "newNotes": 0,
+      "newConnections": 0
+    },
+    {
+      "book": "Esther",
+      "existingNotes": 9,
+      "newNotes": 1,
+      "newConnections": 0
+    },
+    {
+      "book": "1 Maccabees",
+      "existingNotes": 12,
+      "newNotes": 0,
+      "newConnections": 0
+    },
+    {
+      "book": "2 Maccabees",
+      "existingNotes": 14,
+      "newNotes": 0,
+      "newConnections": 0
+    },
+    {
+      "book": "Job",
+      "existingNotes": 20,
+      "newNotes": 3,
+      "newConnections": 0
+    },
+    {
+      "book": "Psalms",
+      "existingNotes": 55,
+      "newNotes": 4,
+      "newConnections": 3
+    },
+    {
+      "book": "Proverbs",
+      "existingNotes": 22,
+      "newNotes": 5,
+      "newConnections": 1
+    },
+    {
+      "book": "Ecclesiastes",
+      "existingNotes": 12,
+      "newNotes": 3,
+      "newConnections": 1
+    },
+    {
+      "book": "Song of Songs",
+      "existingNotes": 12,
+      "newNotes": 0,
+      "newConnections": 0
+    },
+    {
+      "book": "Wisdom",
+      "existingNotes": 22,
+      "newNotes": 1,
+      "newConnections": 0
+    },
+    {
+      "book": "Sirach",
+      "existingNotes": 27,
+      "newNotes": 3,
+      "newConnections": 3
+    },
+    {
+      "book": "Isaiah",
+      "existingNotes": 31,
+      "newNotes": 7,
+      "newConnections": 1
+    },
+    {
+      "book": "Jeremiah",
+      "existingNotes": 20,
+      "newNotes": 2,
+      "newConnections": 1
+    },
+    {
+      "book": "Lamentations",
+      "existingNotes": 7,
+      "newNotes": 1,
+      "newConnections": 1
+    },
+    {
+      "book": "Baruch",
+      "existingNotes": 8,
+      "newNotes": 1,
+      "newConnections": 0
+    },
+    {
+      "book": "Ezekiel",
+      "existingNotes": 23,
+      "newNotes": 3,
+      "newConnections": 1
+    },
+    {
+      "book": "Daniel",
+      "existingNotes": 20,
+      "newNotes": 2,
+      "newConnections": 0
+    },
+    {
+      "book": "Hosea",
+      "existingNotes": 10,
+      "newNotes": 1,
+      "newConnections": 0
+    },
+    {
+      "book": "Joel",
+      "existingNotes": 6,
+      "newNotes": 1,
+      "newConnections": 0
+    },
+    {
+      "book": "Amos",
+      "existingNotes": 7,
+      "newNotes": 0,
+      "newConnections": 0
+    },
+    {
+      "book": "Obadiah",
+      "existingNotes": 3,
+      "newNotes": 0,
+      "newConnections": 0
+    },
+    {
+      "book": "Jonah",
+      "existingNotes": 5,
+      "newNotes": 1,
+      "newConnections": 0
+    },
+    {
+      "book": "Micah",
+      "existingNotes": 6,
+      "newNotes": 1,
+      "newConnections": 0
+    },
+    {
+      "book": "Nahum",
+      "existingNotes": 3,
+      "newNotes": 0,
+      "newConnections": 0
+    },
+    {
+      "book": "Habakkuk",
+      "existingNotes": 5,
+      "newNotes": 1,
+      "newConnections": 0
+    },
+    {
+      "book": "Zephaniah",
+      "existingNotes": 4,
+      "newNotes": 0,
+      "newConnections": 1
+    },
+    {
+      "book": "Haggai",
+      "existingNotes": 3,
+      "newNotes": 1,
+      "newConnections": 0
+    },
+    {
+      "book": "Zechariah",
+      "existingNotes": 9,
+      "newNotes": 1,
+      "newConnections": 2
+    },
+    {
+      "book": "Malachi",
+      "existingNotes": 5,
+      "newNotes": 2,
+      "newConnections": 0
+    },
+    {
+      "book": "Matthew",
+      "existingNotes": 40,
+      "newNotes": 4,
+      "newConnections": 4
+    },
+    {
+      "book": "Mark",
+      "existingNotes": 27,
+      "newNotes": 3,
+      "newConnections": 6
+    },
+    {
+      "book": "Luke",
+      "existingNotes": 40,
+      "newNotes": 5,
+      "newConnections": 7
+    },
+    {
+      "book": "John",
+      "existingNotes": 47,
+      "newNotes": 6,
+      "newConnections": 4
+    },
+    {
+      "book": "Acts",
+      "existingNotes": 25,
+      "newNotes": 8,
+      "newConnections": 3
+    },
+    {
+      "book": "Romans",
+      "existingNotes": 22,
+      "newNotes": 1,
+      "newConnections": 2
+    },
+    {
+      "book": "1 Corinthians",
+      "existingNotes": 20,
+      "newNotes": 3,
+      "newConnections": 2
+    },
+    {
+      "book": "2 Corinthians",
+      "existingNotes": 12,
+      "newNotes": 2,
+      "newConnections": 1
+    },
+    {
+      "book": "Galatians",
+      "existingNotes": 9,
+      "newNotes": 0,
+      "newConnections": 2
+    },
+    {
+      "book": "Ephesians",
+      "existingNotes": 9,
+      "newNotes": 1,
+      "newConnections": 0
+    },
+    {
+      "book": "Philippians",
+      "existingNotes": 7,
+      "newNotes": 1,
+      "newConnections": 1
+    },
+    {
+      "book": "Colossians",
+      "existingNotes": 7,
+      "newNotes": 0,
+      "newConnections": 1
+    },
+    {
+      "book": "1 Thessalonians",
+      "existingNotes": 5,
+      "newNotes": 1,
+      "newConnections": 1
+    },
+    {
+      "book": "2 Thessalonians",
+      "existingNotes": 4,
+      "newNotes": 0,
+      "newConnections": 1
+    },
+    {
+      "book": "1 Timothy",
+      "existingNotes": 6,
+      "newNotes": 2,
+      "newConnections": 0
+    },
+    {
+      "book": "2 Timothy",
+      "existingNotes": 6,
+      "newNotes": 1,
+      "newConnections": 2
+    },
+    {
+      "book": "Titus",
+      "existingNotes": 4,
+      "newNotes": 0,
+      "newConnections": 0
+    },
+    {
+      "book": "Philemon",
+      "existingNotes": 3,
+      "newNotes": 0,
+      "newConnections": 0
+    },
+    {
+      "book": "Hebrews",
+      "existingNotes": 18,
+      "newNotes": 3,
+      "newConnections": 4
+    },
+    {
+      "book": "James",
+      "existingNotes": 8,
+      "newNotes": 3,
+      "newConnections": 2
+    },
+    {
+      "book": "1 Peter",
+      "existingNotes": 8,
+      "newNotes": 2,
+      "newConnections": 0
+    },
+    {
+      "book": "2 Peter",
+      "existingNotes": 5,
+      "newNotes": 0,
+      "newConnections": 1
+    },
+    {
+      "book": "1 John",
+      "existingNotes": 8,
+      "newNotes": 0,
+      "newConnections": 3
+    },
+    {
+      "book": "2 John",
+      "existingNotes": 2,
+      "newNotes": 0,
+      "newConnections": 0
+    },
+    {
+      "book": "3 John",
+      "existingNotes": 2,
+      "newNotes": 0,
+      "newConnections": 0
+    },
+    {
+      "book": "Jude",
+      "existingNotes": 4,
+      "newNotes": 0,
+      "newConnections": 0
+    },
+    {
+      "book": "Revelation",
+      "existingNotes": 21,
+      "newNotes": 3,
+      "newConnections": 2
+    }
+  ]
+}

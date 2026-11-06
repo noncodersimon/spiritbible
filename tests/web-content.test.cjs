@@ -70,7 +70,9 @@ test('navigation and references follow source numbering and multiword book names
 });
 
 test('all published commentary has exact anchors across the Catholic canon', () => {
-  assert.equal(notes.length,1054);
+  const original = require('../drafts/commentary/notes.json');
+  const additions = require('../drafts/deeper-commentary/notes.json');
+  assert.deepEqual(notes, [...original, ...additions], 'preserve shared note IDs when adding commentary');
   assert.equal(new Set(notes.map(n => n.book)).size,73);
   for (const note of notes) {
     const text = verse(note.book,note.chapter,note.verse);

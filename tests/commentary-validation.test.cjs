@@ -56,3 +56,13 @@ test('review marks are invalidated by source, anchor, passage and context change
  assert.notEqual(reviewFingerprint({...n,verse:2},context),original);
  assert.notEqual(reviewFingerprint(n,[{...context[0],text:'Revised surrounding verse text.'}]),original);
 });
+
+test('spiritual classics are limited to the approved primary CCEL works',()=>{
+ const note=fixture();
+ const url='https://ccel.org/ccel/teresa/castle2/castle2.v.i.html';
+ note.body=note.body.replace(note.sources[0].url,url);
+ note.sources[0]={...note.sources[0],url,type:'spiritual-classic',label:'Teresa, Interior Castle I.1',locator:'First Mansions, chapter 1'};
+ assert.doesNotThrow(()=>validateDraft([note],{complete:false}));
+ const bad={...note,body:note.body.replace(url,'https://ccel.org/fiction.html'),sources:[{...note.sources[0],url:'https://ccel.org/fiction.html'}]};
+ assert.throws(()=>validateDraft([bad],{complete:false}),/source URL|collection/);
+});

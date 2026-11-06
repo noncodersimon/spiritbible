@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "reviewedOn": "2026-11-05",
-  "method": "Each item was written from the linked biblical passages and cited sources, then independently checked by a second AI agent. Corrections and overlap removal are recorded in README.md.",
+  "reviewedOn": "2026-11-06",
+  "method": "Primary biblical contexts and linked source sections were read for every item, with independent AI editorial review and source-excerpt/hash validation. Original and supplementary review records are preserved in their archives.",
   "items": [
     {
       "id": "mary-ark-of-the-covenant",
@@ -2442,6 +2442,448 @@
           "sha256": "ef16a945c5ab159ad7d1a9f44f4144faccd18cd5b0cbc4f15d1aa35840fdd9e1",
           "supports": "The book’s literary setting, contents and central themes; the introduction also follows the biblical text itself and does not adopt disputed historical claims as settled.",
           "excerptSha256": "d70f084bad99a64fc11f4aabc472275abd0f3753824949f5653250f27c13ece2"
+        }
+      ]
+    },
+    {
+      "id": "deep-faith-and-medicine",
+      "itemSha256": "853553940c46181566842d005ffb9cf60bee1ab74cd5d40ccf06a1568426bdd1",
+      "evidence": [
+        {
+          "itemId": "deep-faith-and-medicine",
+          "url": "https://www.vatican.va/archive/ENG0015/__P4K.HTM",
+          "excerpt": "The Church has received this charge from the Lord and strives to carry it out by taking care of the sick as well as by accompanying them with her prayer of intercession.",
+          "sha256": "3bbbd7e1ff1f70c440084bad63600b7a9e26ef76475e075bb327f21664e688e1",
+          "supports": "Catholic care for illness explicitly combines practical treatment and intercessory prayer; Sirach clarifies the isolated Asa passage.",
+          "excerptSha256": "9d09f7b3ccfc3e650311fa655ae63851eed0429f8f2d4c61c24c00ed11cae63a"
+        }
+      ]
+    },
+    {
+      "id": "deep-mercy-to-captives-and-neighbour",
+      "itemSha256": "060bdfac3fdadadd86e35b95961b7efda4bf3921f21c4aad29d90247337d3312",
+      "evidence": [
+        {
+          "itemId": "deep-mercy-to-captives-and-neighbour",
+          "url": "https://www.vatican.va/archive/ENG0015/__P8F.HTM",
+          "excerpt": "The works of mercy are charitable actions by which we come to the aid of our neighbor in his spiritual and bodily necessities.241",
+          "sha256": "3e5e89184489bc76e82f8a8d7f454ffbe7936818ec1575623176154cdb916f2b",
+          "supports": "The connection is explicitly thematic; the Catechism grounds the shared pattern of practical bodily mercy.",
+          "excerptSha256": "861855f767e7b015ba2cc56b850a5ab73852e89fd45cc5a537fbf2bd57880480"
+        }
+      ]
+    },
+    {
+      "id": "deep-ezra-and-mixed-households",
+      "itemSha256": "a40df3da2388128efe59f694fbf79ffea58d1f5983a80660e9d9e6f5885694ed",
+      "evidence": [
+        {
+          "itemId": "deep-ezra-and-mixed-households",
+          "url": "https://www.vatican.va/archive/ENG0015/__P53.HTM",
+          "excerpt": "Sincere married love, the humble and patient practice of the family virtues, and perseverance in prayer can prepare the non-believing spouse to accept the grace of conversion.",
+          "sha256": "1f119380458f031a202b4d2e9346872efe176189e5f3555d4caf54e26fc46d4a",
+          "supports": "Catholic teaching takes religious difference seriously while affirming patient married love and the other spouse’s free conversion.",
+          "excerptSha256": "96ee7ebdb21fdc0639fb07ca6a2ec04bde0e956e53c3c42076673afbcddbf51d"
+        }
+      ]
+    },
+    {
+      "id": "deep-moses-elijah-face-of-christ",
+      "itemSha256": "22f2ea436ffeafe6d9ec90b391491acda0876380c6e2de1fc3ba0f8331452e96",
+      "evidence": [
+        {
+          "itemId": "deep-moses-elijah-face-of-christ",
+          "url": "https://www.vatican.va/archive/ENG0015/__P91.HTM",
+          "excerpt": "But only on the mountain of the Transfiguration will Moses and Elijah behold the unveiled face of him whom they sought",
+          "sha256": "5eeabbeeb9c3617e500418710a3b1a459478e70ef8494d69c036f512cdfc145b",
+          "supports": "The Catechism explicitly joins the earlier encounters of Moses and Elijah with the unveiled face of Christ at the Transfiguration.",
+          "excerptSha256": "23f3f3363d446000450c6bbec346a6d8918083cf68c74a90c45716bbb591da56"
+        }
+      ]
+    },
+    {
+      "id": "deep-abigail-wisdom-and-peace",
+      "itemSha256": "10abfe01a135d194ef592f2b1e79f18505bb63ce607303e1569ba03d7e6f2795",
+      "evidence": [
+        {
+          "itemId": "deep-abigail-wisdom-and-peace",
+          "url": "https://www.vatican.va/archive/ENG0015/__P81.HTM",
+          "excerpt": "Peace is the work of justice and the effect of charity.",
+          "sha256": "df22b25b92251931f19d7ff1f0fab89e59fad9c9b8a8a33fadfb385631d45643",
+          "supports": "Peace joins justice and charity; Abigail’s intervention illustrates the wisdom praised by James without claiming direct literary dependence.",
+          "excerptSha256": "e6bb83021dd829bb575bc8f357a73230b7b96c61759787b1e71e751a6839daec"
+        }
+      ]
+    },
+    {
+      "id": "deep-judah-lion-freely-given-life",
+      "itemSha256": "01d1d35b05e5e3d2bd57b277cdd05949589c96194b3f3f3ec878778267877b90",
+      "evidence": [
+        {
+          "itemId": "deep-judah-lion-freely-given-life",
+          "url": "https://www.newadvent.org/fathers/120116.htm",
+          "excerpt": "not the necessity, but the voluntary character of His death, in the title of lion.",
+          "sha256": "bc5875c8afaebd15a91bc6fe6079d1236082f1461b4065c3eecc5a91449512f8",
+          "supports": "Augustine explicitly interprets Judah’s lion through Christ’s voluntary death and John10:18; Revelation supplies the canonical Lion/Lamb juxtaposition.",
+          "excerptSha256": "ea04cbf19a5a349d75e72d4abc4fcaa8ace76eaeac9eeba23eac4f19f979467a"
+        }
+      ]
+    },
+    {
+      "id": "deep-restoring-the-house-of-prayer",
+      "itemSha256": "0fbe5acce08d16d6c7e228415a3429ed27e13e3f853153fcc25f1dc722255721",
+      "evidence": [
+        {
+          "itemId": "deep-restoring-the-house-of-prayer",
+          "url": "https://www.vatican.va/archive/ENG0015/__P1N.HTM",
+          "excerpt": "Jesus went up to the Temple as the privileged place of encounter with God.",
+          "sha256": "754db478f7fb7087000876466297f50d9ab36f2a9df9574e533accf319a7d836",
+          "supports": "CCC584 explains Jesus’ temple action through reverence and the house of prayer; comparison with Nehemiah is explicitly thematic.",
+          "excerptSha256": "0cabe9240960a5cef3469c2321bf7c0a509589c19ba9e2a33a2d97ac17fc6b00"
+        }
+      ]
+    },
+    {
+      "id": "deep-aaron-names-and-intercession",
+      "itemSha256": "d0b44165f01495107bb7b305b86be612936a29ca91061155b9383cd5dae47c73",
+      "evidence": [
+        {
+          "itemId": "deep-aaron-names-and-intercession",
+          "url": "https://www.vatican.va/archive/ENG0015/__P4T.HTM",
+          "excerpt": "Everything that the priesthood of the Old Covenant prefigured finds its fulfillment in Christ Jesus",
+          "sha256": "9b55359ddf7f2cf5d7c7d9070a4f5ae0f8c4c5bbe578b82ab770a948e13f146e",
+          "supports": "The Catechism affirms the fulfilment of the earlier priesthood in Christ; the particular breastplate comparison is explicitly presented as Christian contemplation, not as an express interpretation by Hebrews.",
+          "excerptSha256": "586114804efe88e71d59c45d975fc768b913925e67f147e64b3d6a898b7f36ee"
+        }
+      ]
+    },
+    {
+      "id": "deep-open-ears-offered-body",
+      "itemSha256": "e26db034960d91824ad89367a1ce556c1b68e5376bffdb431b5f05762a737a35",
+      "evidence": [
+        {
+          "itemId": "deep-open-ears-offered-body",
+          "url": "https://www.vatican.va/archive/ENG0015/__P1J.HTM",
+          "excerpt": "Consequently, when Christ came into the world, he said, \"Sacrifices and offerings you have not desired, but a body have you prepared for me;",
+          "sha256": "bdc270ea44753fdd370af44411d4e632bd4d4666d68aa517bf72d3a2dd4280d1",
+          "supports": "The Catechism explicitly uses Hebrews’ quotation of the psalm to explain the Son’s Incarnation and obedient coming.",
+          "excerptSha256": "967abe66de8702ee1832b06739f13361854112559604a0609e6fa3311c1e1140"
+        }
+      ]
+    },
+    {
+      "id": "deep-zeal-and-bearing-reproach",
+      "itemSha256": "852958953f9991787e95f4bc1045eb3d5fb7a3e4dd3e9f814231974972c678e9",
+      "evidence": [
+        {
+          "itemId": "deep-zeal-and-bearing-reproach",
+          "url": "https://www.newadvent.org/fathers/1801069.htm",
+          "excerpt": "And the reproaches of men reproaching You have fallen upon Me. Of this testimony Paul the Apostle has also made use",
+          "sha256": "4f64c6463f180aab0dc9d9f33c2048e7bbea40102a1b39e4bab8c04900163129",
+          "supports": "Augustine explicitly links Psalm69:9 with Jesus’ temple action in John2 and with Paul’s use in Romans15.",
+          "excerptSha256": "3e3d4264dd5fa7e8f1a604e474c753b95e5994078beac5d25fe67bbaad37affe"
+        }
+      ]
+    },
+    {
+      "id": "deep-lasting-years-of-the-son",
+      "itemSha256": "cf8041ba297adcce30a0e833c04afb6938855ecff564d241d5b33c1133f1fc9d",
+      "evidence": [
+        {
+          "itemId": "deep-lasting-years-of-the-son",
+          "url": "https://www.newadvent.org/fathers/1801102.htm",
+          "excerpt": "for us who are mortal the Immortal One deigned to die, for our sakes He showed His example of resurrection.",
+          "sha256": "adb31091e2f92062d89831f7b914aef93045e7dbb0f800a63a91e6b2f444e57a",
+          "supports": "Augustine connects the psalm’s lasting divine years with Christ entering mortality and revealing resurrection; the direct application to the Son is checked in Hebrews1.",
+          "excerptSha256": "fe6445433672e8ff669e804b265353d01ae4a2b5d19013b65d8aece0173db6c7"
+        }
+      ]
+    },
+    {
+      "id": "deep-answering-and-silence",
+      "itemSha256": "f9baa29491158eba2aafeea783778483416e74130152fe0aab27be51557f527a",
+      "evidence": [
+        {
+          "itemId": "deep-answering-and-silence",
+          "url": "https://www.vatican.va/archive/ENG0015/__P65.HTM",
+          "excerpt": "Prudence is the virtue that disposes practical reason to discern our true good in every circumstance and to choose the right means of achieving it;",
+          "sha256": "229c2e4fa593d53533c6e0f98a56223e10a61aaa73579eaa155ad1438e857211",
+          "supports": "Prudence applies the moral good to particular circumstances, explaining the wisdom texts’ attention to fitting response rather than mechanically uniform action.",
+          "excerptSha256": "e62f9f4f011db0d031f0e0ef6999a570d17ac455483f2e6e3f95f72b7e150ec1"
+        }
+      ]
+    },
+    {
+      "id": "deep-speech-as-fruit",
+      "itemSha256": "904ee2c033ebdf8011489744871864cf1ea57c84a3ae7fb2b0aae91da1d75d92",
+      "evidence": [
+        {
+          "itemId": "deep-speech-as-fruit",
+          "url": "https://www.vatican.va/archive/ENG0015/__P8Q.HTM",
+          "excerpt": "The heart is the seat of moral personality:",
+          "sha256": "1ec580cdfd38d60561f177095e020756276e09a6603313407d7d48882f9c4332",
+          "supports": "The Catechism locates moral action in the heart and explains purification through charity, chastity and love of truth.",
+          "excerptSha256": "494fd4e8c2f9657c4e87ff1e640adbc0a77c7a5d0707caf7bf0ab9ae8c80ac13"
+        }
+      ]
+    },
+    {
+      "id": "deep-rachel-tears",
+      "itemSha256": "e04e90a3e563454f835145d14ef6f31e6cad23edfe3d94cf30306465028506b0",
+      "evidence": [
+        {
+          "itemId": "deep-rachel-tears",
+          "url": "https://www.vatican.va/archive/ENG0015/__P1L.HTM",
+          "excerpt": "The flight into Egypt and the massacre of the innocents217 make manifest the opposition of darkness to the light",
+          "sha256": "bf2601074ef0b6b7a754cc28535cad9bc80034d009270e6c448fd86bf3a2f0da",
+          "supports": "The massacre belongs to violent opposition to Christ, not an endorsement of the atrocity.",
+          "excerptSha256": "55e5a2f6eec68a0955a1c661b01401ddc4fd8e8e4a37583ca5034493af44105b"
+        }
+      ]
+    },
+    {
+      "id": "deep-inherited-harm-not-personal-guilt",
+      "itemSha256": "fa09a7143cb97195c8df22c20a0f0ce52ab209d72ba1f5a3588da18dda1e4fec",
+      "evidence": [
+        {
+          "itemId": "deep-inherited-harm-not-personal-guilt",
+          "url": "https://www.vatican.va/archive/ENG0015/__P6D.HTM",
+          "excerpt": "Sins give rise to social situations and institutions that are contrary to the divine goodness",
+          "sha256": "bb573e8a147737c3397c72f29370f5411d45e1058aa5971cae530755f9071896",
+          "supports": "Personal wrongdoing produces social consequences and structures that burden others.",
+          "excerptSha256": "5e9b2e1a986333e3d79471221571765016c0f875511171b5ee4a0ffe2a9874ec"
+        }
+      ]
+    },
+    {
+      "id": "deep-accusation-and-intercession",
+      "itemSha256": "5f27fd8fbcdca204ea53a9c3e0d675fb7d59ebce0a37fcc1325646c05e4ad1f7",
+      "evidence": [
+        {
+          "itemId": "deep-accusation-and-intercession",
+          "url": "https://www.vatican.va/archive/ENG0015/__P98.HTM",
+          "excerpt": "He is the one intercessor with the Father on behalf of all men, especially sinners",
+          "sha256": "9644c7398018d523ff5bcb9f471583abc6ea1ceb717914e827ab0b9e458b6d9a",
+          "supports": "Christ's intercession grounds hope for sinners rather than denial of real guilt.",
+          "excerptSha256": "31f4c785574954399cfee874d71871f4f0957b241810cc108bb43009d3b5fdaa"
+        }
+      ]
+    },
+    {
+      "id": "deep-struck-shepherd-and-return",
+      "itemSha256": "26a867901ca66365a454bd8db8ce1816b80e3198c243881561969523e8ea47e8",
+      "evidence": [
+        {
+          "itemId": "deep-struck-shepherd-and-return",
+          "url": "https://www.vatican.va/archive/ENG0015/__P1O.HTM",
+          "excerpt": "Jesus freely accepted his Passion and death",
+          "sha256": "6b6ac0afc23ee42dd6ec70b0a26b2135b428efe98c7c8cff47c2f9523b32146d",
+          "supports": "Christ freely accepts the Passion in divine love, rather than being an unwilling victim of the Father.",
+          "excerptSha256": "3e0172a1c9818aef3d97579bd2aeb96faa3edfe2abb60dfa04b0df7952a79c7b"
+        }
+      ]
+    },
+    {
+      "id": "deep-honour-for-the-overlooked",
+      "itemSha256": "09aba75b83a39a64c13d987349bbe073f8bfb7f47a6c0439c31e88440d325c67",
+      "evidence": [
+        {
+          "itemId": "deep-honour-for-the-overlooked",
+          "url": "https://www.vatican.va/archive/ENG0015/__P2B.HTM",
+          "excerpt": "If one member suffers, all suffer together; if one member is honored, all rejoice together.",
+          "sha256": "2aa6f9ebf5e634580a8f8e9a316db3ee66b194160801b72d77c17d9f7e81def4",
+          "supports": "Communion involves shared suffering and honour, not individual self-sufficiency.",
+          "excerptSha256": "5b843f25224313883d1de13ebbe3f0a56ded80e9817c38aaa286b9219e5b52ae"
+        }
+      ]
+    },
+    {
+      "id": "deep-heavens-open-at-jordan",
+      "itemSha256": "306190c744c66cff5d360e76fca0858fd18336489c7a325896bb1da25589d21a",
+      "evidence": [
+        {
+          "itemId": "deep-heavens-open-at-jordan",
+          "url": "https://www.vatican.va/archive/ENG0015/__P1L.HTM",
+          "excerpt": "the heavens that Adam's sin had closed",
+          "sha256": "bf2601074ef0b6b7a754cc28535cad9bc80034d009270e6c448fd86bf3a2f0da",
+          "supports": "Christ's baptism opens heaven and anticipates new creation.",
+          "excerptSha256": "ad0a2977f072c3e61a7321ee6a8440347bcba52e6e2850ae2b22de6405563b5b"
+        }
+      ]
+    },
+    {
+      "id": "deep-gifts-beyond-our-circle",
+      "itemSha256": "f87c9020af7a0aedef0f4b33bb335121e0227fc2e023b353df43538365f13e04",
+      "evidence": [
+        {
+          "itemId": "deep-gifts-beyond-our-circle",
+          "url": "https://www.vatican.va/archive/ENG0015/__P28.HTM",
+          "excerpt": "Charisms are to be accepted with gratitude by the person who receives them and by all members of the Church as well.",
+          "sha256": "e12bdc56ede385aab2f1a6062a783f8e4d68fa4dbe197b341b8e26043e5e83f3",
+          "supports": "The Spirit’s gifts serve the common good, are received gratefully and require discernment.",
+          "excerptSha256": "8216cb2d72d2898843883904210ed221a6ebf73a0240586f22e624af01664ec3"
+        }
+      ]
+    },
+    {
+      "id": "deep-finger-spirit-writing",
+      "itemSha256": "45f001deb109d16e7948be00f6d5027f1c18c65a31c8c264c95b4c0775d36df6",
+      "evidence": [
+        {
+          "itemId": "deep-finger-spirit-writing",
+          "url": "https://www.vatican.va/archive/ENG0015/__P21.HTM",
+          "excerpt": "It is by the finger of God that [Jesus] cast out demons.",
+          "sha256": "64c449df10d69e061b2559a19bb998cc91f9b2d3769cb3d208a805b33a263499",
+          "supports": "The Catechism links Luke’s finger of God, the covenant tablets and the Spirit writing on hearts.",
+          "excerptSha256": "5a68d2b2641448f4811284393a0f84c3f76b821ef0d49f73003bdbf5f560faa8"
+        }
+      ]
+    },
+    {
+      "id": "deep-family-first-allegiance",
+      "itemSha256": "fc44721a73f80bb9f25e5fb94abdadad8c103ffce645c104815d2b9ed4766c1d",
+      "evidence": [
+        {
+          "itemId": "deep-family-first-allegiance",
+          "url": "https://www.vatican.va/archive/ENG0015/__P7V.HTM",
+          "excerpt": "Family ties are important but not absolute.",
+          "sha256": "47df41395af83710af394df8d1bd7b9fe57c3ed37ef8f5d8c7511c7fa9d61fd6",
+          "supports": "Family relationships are real duties but cannot supersede a person’s vocation to follow Christ.",
+          "excerptSha256": "4edaa4b70b87ad70e03bba54de90b03487f0cf2eaf1228789b4ba45a2d74bffc"
+        }
+      ]
+    },
+    {
+      "id": "deep-jesus-human-knowing",
+      "itemSha256": "477ee3cd61a109c8834857b901da8b5647e57b8fcfe49c00ae11f6f1702e60b0",
+      "evidence": [
+        {
+          "itemId": "deep-jesus-human-knowing",
+          "url": "https://www.vatican.va/archive/ENG0015/__P1J.HTM",
+          "excerpt": "This human soul that the Son of God assumed is endowed with a true human knowledge.",
+          "sha256": "bdc270ea44753fdd370af44411d4e632bd4d4666d68aa517bf72d3a2dd4280d1",
+          "supports": "Christ’s true human knowledge grows in historical conditions while united to divine wisdom; the Catechism discusses the unknown hour.",
+          "excerptSha256": "8e8751828271ebd140c2fedcc5b37e982b6a34e562a0439ed20396a532aa36d4"
+        }
+      ]
+    },
+    {
+      "id": "deep-hands-gift-spirit",
+      "itemSha256": "71a31e2cd2119ec87cbef0ad16b6ca03b3e9ab50e9fe78e2c708cb7de71f42f0",
+      "evidence": [
+        {
+          "itemId": "deep-hands-gift-spirit",
+          "url": "https://www.vatican.va/archive/ENG0015/__P3Q.HTM",
+          "excerpt": "the imposition of hands is rightly recognized by the Catholic tradition as the origin of the sacrament of Confirmation",
+          "sha256": "b27547a333f40fe053c601aa2922d0cbbc3dd07e01df0f5534b58afb41143f4d",
+          "supports": "The Church recognises the apostolic laying on of hands as the origin of Confirmation, completing baptismal grace.",
+          "excerptSha256": "234ad31c8725ce782c82c1144ee28c75ab683821bfcef34dc62ff62872c909a6"
+        }
+      ]
+    },
+    {
+      "id": "deep-testing-spiritual-experience",
+      "itemSha256": "d4a569340570563cfaa4aa63673dcda88a7621d98b97b0cd69036bf78aeff64b",
+      "evidence": [
+        {
+          "itemId": "deep-testing-spiritual-experience",
+          "url": "https://www.vatican.va/archive/ENG0015/__P28.HTM",
+          "excerpt": "No charism is exempt from being referred and submitted to the Church's shepherds.",
+          "sha256": "e12bdc56ede385aab2f1a6062a783f8e4d68fa4dbe197b341b8e26043e5e83f3",
+          "supports": "Charisms require ecclesial discernment for the common good.",
+          "excerptSha256": "9955160b415003eaf235cec49006bcf31c6290060f2b1467f54e8800d2a995a6"
+        },
+        {
+          "itemId": "deep-testing-spiritual-experience",
+          "url": "https://www.vatican.va/archive/ENG0015/__PH.HTM",
+          "excerpt": "It is not their role to improve or complete Christ's definitive Revelation, but to help live more fully by it in a certain period of history.",
+          "sha256": "63d101804898e24469ee81663d782eb8c12ff5e2e774db651b01887b8a272bac",
+          "supports": "Private revelations neither improve nor complete Christ’s revelation.",
+          "excerptSha256": "bff1f2502bb9e0465e929f0c0cb59dc22c1fbe22ff50c7a0eee9b5de47094ba4"
+        }
+      ]
+    },
+    {
+      "id": "deep-restoring-a-brother",
+      "itemSha256": "12dec3561809a5aa5e932d80a502153cadb79458ccbb203964166d83b9d320e6",
+      "evidence": [
+        {
+          "itemId": "deep-restoring-a-brother",
+          "url": "https://www.vatican.va/archive/ENG0015/__P66.HTM",
+          "excerpt": "charity demands beneficence and fraternal correction; it is benevolence; it fosters reciprocity and remains disinterested and generous; it is friendship and communion:",
+          "sha256": "c31461fddf5af72fa6e304a62b607dddcfd4483b61031134574d5419c7327306",
+          "supports": "Fraternal correction belongs within charity, mercy and communion.",
+          "excerptSha256": "485c5adf26989c43f2d38d11d812564330e7d5b6ac95d82bbe463a13e7f07995"
+        }
+      ]
+    },
+    {
+      "id": "deep-two-senses-of-world",
+      "itemSha256": "2a3f91095bcb38c1bc8a1bd83437ac50bf0bfe913850ada32e6915c9a534193d",
+      "evidence": [
+        {
+          "itemId": "deep-two-senses-of-world",
+          "url": "https://www.newadvent.org/fathers/170202.htm",
+          "excerpt": "God does not forbid you to love these things, howbeit, not to set your affections upon them for blessedness, but to approve and praise them to this end, that you may love your Creator.",
+          "sha256": "1ee5a2d16e126ceeafc8b816b8c20eef7f6ffb5644e2e0c96ea37a8d0143222e",
+          "supports": "Augustine distinguishes created goodness, excessive attachment and the inhabitants called world.",
+          "excerptSha256": "8a06178162e9be952c417b3c5f27dfd438c8f6714bb134d84d641bc38c2ff47b"
+        }
+      ]
+    },
+    {
+      "id": "deep-learning-to-read-scripture",
+      "itemSha256": "43b8ca1b183bce2c9682df4a24e97050bd17608cc55933827286c6b4505e484d",
+      "evidence": [
+        {
+          "itemId": "deep-learning-to-read-scripture",
+          "url": "https://www.vatican.va/archive/ENG0015/__PQ.HTM",
+          "excerpt": "It is the task of exegetes to work, according to these rules, towards a better understanding and explanation of the meaning of Sacred Scripture",
+          "sha256": "cfae421a952779db54b895b22820f1cfcbd19852508f25638d9fbc02996fa0db",
+          "supports": "Biblical scholarship serves understanding within the Church’s responsibility to interpret Scripture.",
+          "excerptSha256": "756226b790dc3139d007728bdcf3a901cfcbfd5c919dcece7531e8e77e6982c8"
+        }
+      ]
+    },
+    {
+      "id": "deep-word-not-bound",
+      "itemSha256": "620191d68a3da57d906451a89d9895de83c2297dfd1258b5e2331d40509bb43d",
+      "evidence": [
+        {
+          "itemId": "deep-word-not-bound",
+          "url": "https://www.newadvent.org/fathers/230704.htm",
+          "excerpt": "Human chains cannot bind the word of God.",
+          "sha256": "09bc7f3f50e063ba6345ca05212ffafcdf3f9ce128f671e2476a561812c2ba81",
+          "supports": "Chrysostom contrasts the prisoner’s chains with the word’s freedom.",
+          "excerptSha256": "2f3a777394b0eee93c0f25c45c57362cfb3ffdd88cd5f77d4775505aa59bb6e3"
+        }
+      ]
+    },
+    {
+      "id": "deep-singing-the-word",
+      "itemSha256": "39ff33eba933631aed92236a3c6e00229d9890e91dfc2ad8ff34f06a7b1e6b3f",
+      "evidence": [
+        {
+          "itemId": "deep-singing-the-word",
+          "url": "https://www.vatican.va/archive/ENG0015/__P38.HTM",
+          "excerpt": "Those sounds flowed into my ears distilling the truth in my heart.",
+          "sha256": "3b609135318fa5d5f41f73cb8ac25213b75cee2540839c9f6534d5cf50e90522",
+          "supports": "Sacred music serves the reception of truth in the heart; the preceding paragraph traces psalm-singing from the Old Covenant into the Church.",
+          "excerptSha256": "31ef1e37ab14130bdf02bb073742a8a42e112cbb8ef199dc29bda535d8720c02"
+        }
+      ]
+    },
+    {
+      "id": "deep-contemplation-humanity-christ",
+      "itemSha256": "7d6b8251058fc48a77cbb87daf926074ef4651f0a6acbe3fe196308498aab0cf",
+      "evidence": [
+        {
+          "itemId": "deep-contemplation-humanity-christ",
+          "url": "https://ccel.org/ccel/teresa/castle2/castle2.x.viii.html",
+          "excerpt": "If they lose their Guide, our good Jesus, they cannot find the way and it will be much if they have stayed safely in the former mansions.",
+          "sha256": "2fa4cc9be2d47df8fa194607e1a5e834650bcd06aba7ddf9a29579a677b472f4",
+          "supports": "Teresa rejects leaving Christ’s humanity behind in advanced contemplation, quotes John14:6/9, and distinguishes simple loving attention from connected meditation.",
+          "excerptSha256": "6be20403b7cebad4c2e97d4a3276e3ef68ded1de8d310971005ac7d4b38cee00"
         }
       ]
     }

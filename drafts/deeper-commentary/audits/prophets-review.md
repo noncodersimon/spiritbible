@@ -1,0 +1,28 @@
+# Independent review of prophet additions
+
+Review completed for the final 25 notes and six connections. The initial eighteen-note findings are preserved below, followed by resolutions and the full connection review.
+
+## Interim findings
+
+No substantive source or theological error found in the first eighteen notes. Actual CCC passages support the distinctions attributed to them. Isaiah55:8 correctly recovers the immediate setting of offered forgiveness, rather than using transcendence as an explanation for arbitrary harm. Isaiah10:15 preserves the difference between providence and the perpetrator's evil intention. Lamentations3:55 explicitly distinguishes its original invocation from later Christian prayer in Jesus' name. Ezekiel16:49 avoids claiming that social neglect exhausts the Sodom narrative, and it preserves Jerusalem's self-implicating comparison.
+
+One requested refinement: Hosea11:4's opening question about whether divine attraction diminishes freedom overlaps the Gospels group's John6:44 note. The latter's distinct centre is Augustine's account of delight and desire. I advised the prophets author to foreground the historical parental tenderness of Hosea's surrounding teaches/lifts/feeds imagery, keeping any general freedom/coercion explanation subordinate. This is a coordination matter, not a source defect.
+
+Specificity generally distinguishes these notes from neighbouring older annotations: Jeremiah38:12's careful physical rescue from general mercy; Ecclesiastes/Job group non-overlap checked; Ezekiel37's two sticks as reconciliation within Israel distinct from dry-bones resurrection; Daniel9's scriptural promise prompting active prayer distinct from general hope. Isaiah50:4 shares the prophetic-prayer source used at Isaiah6:8, but its specific receiving/listening-before-speaking-to-the-weary focus adds a distinct application.
+
+## Completed review: final 25 notes and six connections
+
+Author accepted the duplication findings: removed Amos8:5 because Proverbs11:1 already develops the same dishonest-scales/commercial-practice/CCC2409 teaching, removed Hosea11:4 to leave the grace-drawing theme with the Gospels' distinctive Augustine treatment, and refocused Isaiah10:15 on received ability and responsible agency. The revised Isaiah note now adds the precise distinction that created dependence does not make human agency unreal, while Habakkuk retains its separate moral protest about a cruel instrument of judgement. These revisions resolve the three material overlap findings.
+
+Read the remaining minor-prophet notes and compared their neighbouring existing coverage. Particularly worthwhile distinctions include Joel's 'decision' belonging to the judging God rather than a crowd choosing belief; Jonah's sailors attempting rescue; Haggai's ritual question illuminating the difference between sacramental efficacy and recipient disposition; Malachi's tithe promise not functioning as a personal investment contract; and Zechariah's positive portrayal of the nations accompanying Israel. No unfounded Hebrew/Greek claim was introduced. The Malachi marriage note accurately reflects the Catechism's explicit distinction between betrayal, an unjustly abandoned spouse and legitimate separation; it does not flatten those circumstances into equal guilt.
+
+All six connections were read against their actual Bible endpoints and cached source paragraphs:
+
+- **Rachel's tears:** Matthew's quotation is direct and Jeremiah's hope of return is preserved without making Herod's atrocity necessary or good. CCC530 supports opposition to Christ's light.
+- **Inherited consequences/personal guilt:** the existing Ezekiel18:20 note already explains the distinction, but pairing it with Lamentations5:7 adds a worthwhile resolution of apparently contrary scriptural language. CCC1869 supports the social consequences; the personal-responsibility claim is explicit in Ezekiel. Retain as a useful link rather than add another individual Ezekiel note.
+- **Accusation/intercession:** Zechariah, Romans and Revelation are correctly called related images; CCC2634 actually concerns Christ's intercession for sinners. The connection adds scriptural relationships beyond the existing Zechariah3:4 cleansing note.
+- **Struck shepherd/return:** direct quotation in Mark verified; the Galilee promise makes this distinct from the current general Good Shepherd connection. CCC609 directly supports the Son's free acceptance, avoiding a false conflict between Father and Son.
+- **Honour for the overlooked:** thematically close to the existing1Corinthians12:22 note and vine/body connection, but adds two concrete endpoints—Zephaniah's reversal of public shame and Luke's non-reciprocal hospitality—without pretending direct quotation. A reasonable retention, though the lowest-priority new connection if further pruning is wanted. Its first and last endpoints add more than merely repeating the removed Catherine note adjacent to1Corinthians12:22.
+- **Heavens opened:** appropriately labelled echo rather than direct quotation. The Catechism explicitly treats baptism's opened heaven as undoing separation and a prelude to new creation. No unsourced Greek-word argument is made.
+
+Validation repeated independently: **25 draft notes valid; all six study connections valid**. Every connection evidence excerpt matches its cached page and every raw-HTML SHA256 matches metadata. The source contexts support the stated claims. Final result: **no remaining blocking theological, contextual or source concerns** after the accepted revisions. Production data and the author's JSON were not edited by this reviewer.

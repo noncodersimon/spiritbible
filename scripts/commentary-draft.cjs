@@ -5,6 +5,7 @@ const crypto = require('node:crypto');
 const Module = require('node:module');
 const { JSDOM } = Module.createRequire(require.resolve('isomorphic-dompurify'))('jsdom');
 const { validateSources } = require('./build-data.cjs');
+const { isSpiritualClassic, isSourceURL } = require('./source-policy.cjs');
 const root = path.resolve(__dirname, '..');
 const out = path.join(root, 'drafts/commentary');
 const books = require('../src/lib/books.json');
@@ -15,8 +16,8 @@ const order = new Map(books.map((b,i) => [b.name,i]));
 const sha = s => crypto.createHash('sha256').update(s).digest('hex');
 const normal = s => s.replace(/\s+/gu,' ').trim();
 const canonicalURL = s => { const u = new URL(s); u.hash = ''; return u.href; };
-const allowedHosts = new Set(['www.vatican.va','www.newadvent.org']);
-const types = new Set(['catechism','encyclopedia','fathers']);
+const allowedHosts = new Set(['www.vatican.va','www.newadvent.org','ccel.org']);
+const types = new Set(['catechism','encyclopedia','fathers','spiritual-classic']);
 const interpretations = new Set(['doctrine','patristic','spiritual','historical','language','mixed']);
 
 function reviewFingerprint(n, context) {
@@ -56,7 +57,7 @@ function inspectBody(body) {
   }
   const links = [...fragment.querySelectorAll('a')].map(a => {
     const url = new URL(a.getAttribute('href'));
-    if (url.protocol !== 'https:' || !allowedHosts.has(url.hostname) || url.username || url.password) throw Error(`Unexpected source URL ${url.href}`);
+    if (!isSourceURL(url)) throw Error(`Unexpected source URL ${url.href}`);
     if (a.target !== '_blank' || !a.rel.split(/\s+/).includes('noopener') || !a.rel.split(/\s+/).includes('noreferrer')) throw Error('Source links must open safely');
     return { url: url.href, label: normal(a.textContent) };
   });
@@ -104,7 +105,7 @@ function validateDraft(rows, { complete = true, cache } = {}) {
         const url=canonicalURL(s.url), u=new URL(url);
         if (u.protocol!=='https:' || !allowedHosts.has(u.hostname)) throw Error('Source is outside approved primary sources');
         if (!html.links.some(l=>canonicalURL(l.url)===url)) throw Error('Source absent from displayed citations');
-        const correctCollection = s.type === 'catechism' ? u.hostname === 'www.vatican.va' && (/^\/archive\/ENG0015\//.test(u.pathname) || /^\/content\/catechism\//.test(u.pathname)) : u.hostname === 'www.newadvent.org' && u.pathname.startsWith(s.type === 'fathers' ? '/fathers/' : '/cathen/');
+        const correctCollection = s.type === 'spiritual-classic' ? isSpiritualClassic(u) : s.type === 'catechism' ? u.hostname === 'www.vatican.va' && (/^\/archive\/ENG0015\//.test(u.pathname) || /^\/content\/catechism\//.test(u.pathname)) : u.hostname === 'www.newadvent.org' && u.pathname.startsWith(s.type === 'fathers' ? '/fathers/' : '/cathen/');
         if (!correctCollection) throw Error('Source type does not match the requested collection');
         if (!cache) {
           if (!s.evidenceVerified || !/^[a-f0-9]{64}$/.test(s.retrievalSha256 || '') || !s.excerptHash) throw Error('Missing recorded provenance check');
