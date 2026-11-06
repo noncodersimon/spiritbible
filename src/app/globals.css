@@ -278,7 +278,7 @@ button {
 .connection-key { color: var(--connection-text); }
 .copy-passage { cursor: pointer; text-decoration: underline; text-underline-offset: .2em; padding-block: 6px; }
 .copy-status, .study-status { font-size: .8rem; margin: 0 0 12px; }
-.commentary-mark { background: var(--note-mark); border-radius: 4px; padding: 0 2px; cursor: pointer; font-weight: 650; }
+.commentary-mark { background: var(--note-mark); border-radius: 4px; padding: 0 2px; cursor: pointer; font-weight: inherit; }
 .commentary-mark.significance-interest { background: var(--note-interest); font-weight: inherit; text-decoration: underline dotted var(--note-edge); text-underline-offset: .18em; }
 .connection-marker { display: inline-block; vertical-align: baseline; color: var(--connection-text); background: var(--connection-mark); border-bottom: 2px solid currentColor; border-radius: 3px; margin-left: .3em; padding: 0 .2em; cursor: pointer; user-select: none; font-weight: 600; line-height: 1.2; }
 .connection-marker.significance-interest { color: var(--connection-interest); background: transparent; border-bottom: 1px dotted currentColor; font-weight: 400; }
