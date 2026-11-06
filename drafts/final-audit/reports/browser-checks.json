@@ -1,0 +1,12 @@
+{
+  "theme": "System/Light/Dark overrides, persistence, live system changes, keyboard navigation and blocked storage passed",
+  "darkCommentaryContrast": 8.643151111415433,
+  "mobile": "320px: no horizontal overflow; theme control remains accessible",
+  "notes": 1205,
+  "connections": 145,
+  "endpoints": 408,
+  "chapters": 804,
+  "priority": "Actual API classification, popup labels, source links, all four text contrast combinations and linked navigation passed",
+  "dialogFocus": "Both note and connection dialogs receive focus, contain Tab navigation and restore their invoking marker on Escape",
+  "pageErrors": 0
+}

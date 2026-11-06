@@ -2,12 +2,14 @@
 
 import { useEffect, useRef, useState } from 'react';
 import type { Verse } from '@/types/bible';
-import type { ChapterStudy, PassageTarget, SourceLink, StudyConnection } from '@/types/study';
+import type { ChapterStudy, PassageTarget, SourceLink, StudyConnection, StudySignificance } from '@/types/study';
 import { copyText, passageHref, passageLabel, selectedPassage } from '@/lib/passage';
 import ReaderDialog from '@/components/ReaderDialog';
 import DOMPurify from 'isomorphic-dompurify';
 
-type Note = { id: number; book: string; chapter: number; verse: number; start: number; end: number; body: string; phrase?: string | null };
+type Note = { significance?: StudySignificance; id: number; book: string; chapter: number; verse: number; start: number; end: number; body: string; phrase?: string | null };
+const significanceOf = (item: { significance?: StudySignificance }) => item.significance === 'interest' ? 'interest' : 'fundamental';
+const significanceLabel = (item: { significance?: StudySignificance }) => significanceOf(item) === 'fundamental' ? 'Fundamental' : 'Of interest';
 const kindLabels = { quotation: 'Biblical quotation', fulfilment: 'Fulfilment in Scripture', echo: 'Literary echo', typology: 'Catholic reading', theme: 'Shared theme' };
 function Sources({ sources }: { sources: SourceLink[] }) {
   return <p className="sources">{sources.map((s, i) => <span key={s.url}>{i > 0 && ' · '}<a href={s.url} target="_blank" rel="noopener noreferrer">{s.label}</a></span>)}</p>;
@@ -102,10 +104,10 @@ export default function ChapterClient({ book, chapter, verses, highlightVerse, t
     }
     if (cursor < v.text.length) segments.push({ text: v.text.slice(cursor), offset: cursor });
     return segments.map((s, i) => s.note ? <mark key={i} role="button" tabIndex={0}
-      aria-label={`Commentary on ${s.text}`}
+      aria-label={`${significanceLabel(s.note)} commentary on ${s.text}`}
       onClick={() => { if (!window.getSelection()?.toString()) setActiveNote(s.note!); }}
       onKeyDown={event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); setActiveNote(s.note!); } }}
-      className="commentary-mark">{highlight(s.text, s.offset, v)}</mark> : <span key={i}>{highlight(s.text, s.offset, v)}</span>);
+      className={`commentary-mark significance-${significanceOf(s.note)}`}>{highlight(s.text, s.offset, v)}</mark> : <span key={i}>{highlight(s.text, s.offset, v)}</span>);
   }
   function shareSelection(event: React.ClipboardEvent<HTMLDivElement>) {
     const selected = textRoot.current && selectedPassage(textRoot.current, window.getSelection(), book, chapter);
@@ -133,7 +135,7 @@ export default function ChapterClient({ book, chapter, verses, highlightVerse, t
       <p>{study.introduction.summary}</p><Sources sources={study.introduction.sources} />
     </details>}
     <div className="reader-tools">
-      <p className="reader-key"><span className="commentary-key">Commentary</span><span className="connection-key">↔ Related passages</span></p>
+      <div className="reader-legend"><p className="reader-key"><span className="commentary-key">Commentary</span><span className="connection-key">↔ Related passages</span></p><p className="significance-key"><strong>Bold: fundamental</strong><span>Subtle / dotted: of interest</span></p></div>
       <button className="copy-passage" onMouseDown={event => event.preventDefault()} onClick={copyPassage}>{selection ? 'Copy selection + link' : 'Copy chapter + link'}</button>
     </div>
     {copyStatus && <p role="status" className="copy-status">{copyStatus}</p>}
@@ -143,16 +145,17 @@ export default function ChapterClient({ book, chapter, verses, highlightVerse, t
         const related = study.connections.filter(c => c.passages.some(p => p.book === book && p.chapter === chapter && p.verse === v.verse));
         return <p key={v.verse} id={`v${v.verse}`} className={inRange(v.verse) ? 'passage-target' : undefined} tabIndex={inRange(v.verse) ? -1 : undefined}>
           <sup style={{ userSelect: 'none' }}>{v.verse}</sup>{' '}<span data-verse-text={v.verse}>{renderVerse(v)}</span>
-          {related.length > 0 && <button className="connection-marker" aria-label={`Related passages for ${book} ${chapter}:${v.verse}`} title="Explore related passages" onClick={() => setActiveConnections(related)} />}
+          {related.length > 0 && <button className={`connection-marker significance-${related.some(c => significanceOf(c) === 'fundamental') ? 'fundamental' : 'interest'}`} aria-label={`Related passages for ${book} ${chapter}:${v.verse} — ${related.some(c => significanceOf(c) === 'fundamental') ? 'includes fundamental connections' : 'of interest'}`} title="Explore related passages" onClick={() => setActiveConnections(related)} />}
         </p>;
       })}
     </div>
     {activeNote && <ReaderDialog title={passageLabel(activeNote)} onClose={() => setActiveNote(null)}>
+      <p className={`note-significance significance-${significanceOf(activeNote)}`}>{significanceLabel(activeNote)} commentary</p>
       <div className="note-popup" dangerouslySetInnerHTML={{ __html: sanitizeNoteHTML(activeNote.body) }} />
     </ReaderDialog>}
     {activeConnections && <ReaderDialog title="Related passages" onClose={() => setActiveConnections(null)}>
-      {activeConnections.map(c => <article className="connection-card" key={c.id}>
-        <p className="connection-kind">{kindLabels[c.kind]}</p>
+      {activeConnections.map(c => <article className={`connection-card significance-${significanceOf(c)}`} key={c.id}>
+        <p className="connection-kind">{significanceLabel(c)} · {kindLabels[c.kind]}</p>
         <h4>{c.title}</h4><p>{c.summary}</p>
         <ul className="passage-links">{c.passages.map(p => <li key={passageHref(p)}>
           <a href={passageHref(p)} onClick={event => {

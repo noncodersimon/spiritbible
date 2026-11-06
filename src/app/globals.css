@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 /* ==========================================================================
    SpiritBible - themed to the Digitelos design system.
@@ -7,8 +8,7 @@
    css/main.css) so the family stays in step: cobalt and azure for chrome,
    amber for highlights only, ink and parchment neutrals. The pebbles banner
    stays - it is this site's own identity - with the spiral mark beside the
-   title. Note highlights use amber, the one place a highlight colour is
-   doing its actual job.
+   title. Commentary uses amber in light mode and purple in dark mode.
    ========================================================================== */
 
 /* ---------- CSS variables / theme ---------- */
@@ -30,7 +30,13 @@
   --accent: var(--cobalt); /* solid fills: buttons, active chips */
   --accent-hover: #1e43b8;
   --accent-text: var(--cobalt); /* links and tinted text on the ground */
-  --note-mark: rgba(249, 142, 18, 0.28); /* amber, for note highlights */
+  --note-mark: #fbd49b;
+  --note-interest: #fff0d9;
+  --note-edge: #955600;
+  --connection-text: #086b65;
+  --connection-mark: #daf0e9;
+  --connection-interest: #386f68;
+  --passage-tint: #d9e9ff;
 
   --banner-img: url("/pebbles-banner.JPG");
   --banner-overlay: linear-gradient(
@@ -40,26 +46,45 @@
   );
 }
 
-/* Dark mode: override BOTH the theme colours and the banner */
-@media (prefers-color-scheme: dark) {
-  :root {
+/* The early script resolves System before paint; the media rule also supports no JavaScript. */
+:root[data-theme="dark"] {
     color-scheme: dark;
     --background: var(--ink);
     --foreground: #ededed;
     --surface: #15151c;
     --border-soft: #26262e;
     --input-border: #3d3d48;
-    --accent: var(--cobalt); /* cobalt + white text works on either ground */
+    --accent: var(--cobalt);
     --accent-hover: #3a67e4;
-    --accent-text: var(--azure); /* cobalt is too dark as text on ink */
-    --note-mark: rgba(249, 142, 18, 0.35);
-
-    --banner-img: url("/pebbles-banner.JPG");
-    --banner-overlay: linear-gradient(
-      to right,
-      rgba(0, 0, 0, 0.6),
-      rgba(0, 0, 0, 0.45)
-    );
+    --accent-text: var(--azure);
+    --note-mark: #563075;
+    --note-interest: #2c203d;
+    --note-edge: #c49ae7;
+    --connection-text: #7be3d2;
+    --connection-mark: #163b35;
+    --connection-interest: #9bbeb7;
+    --passage-tint: #233e5f;
+    --banner-overlay: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.45));
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    color-scheme: dark;
+    --background: var(--ink);
+    --foreground: #ededed;
+    --surface: #15151c;
+    --border-soft: #26262e;
+    --input-border: #3d3d48;
+    --accent: var(--cobalt);
+    --accent-hover: #3a67e4;
+    --accent-text: var(--azure);
+    --note-mark: #563075;
+    --note-interest: #2c203d;
+    --note-edge: #c49ae7;
+    --connection-text: #7be3d2;
+    --connection-mark: #163b35;
+    --connection-interest: #9bbeb7;
+    --passage-tint: #233e5f;
+    --banner-overlay: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.45));
   }
 }
 
@@ -118,14 +143,6 @@ button {
   display: flex;
   align-items: center; /* vertically centre content */
   justify-content: flex-start; /* title on the left */
-}
-
-/* Repeat the background-image inside dark media query to beat specificity */
-@media (prefers-color-scheme: dark) {
-  .site-header {
-    background-image: var(--banner-overlay), var(--banner-img);
-    background-color: transparent !important;
-  }
 }
 
 /* White title text on photo */
@@ -246,11 +263,7 @@ button {
 /* Programmatic reading focus is indicated by the selected words, not a box. */
 .bible-reader .passage-target:focus { outline: none; }
 
-/* Teal links identify connected passages; amber still identifies commentary. */
-:root { --connection-text: #086b65; --passage-tint: #d9e9ff; }
-@media (prefers-color-scheme: dark) {
-  :root { --connection-text: #66d6c6; --passage-tint: #233e5f; }
-}
+/* Teal links identify connected passages. */
 .search-options { display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: center; margin: -6px 0 16px; font-size: .8rem; }
 .search-options p { margin: 0; }
 .search-options select { background: var(--surface); border: 1px solid var(--border-soft); border-radius: 5px; padding: 3px 5px; color: inherit; }
@@ -260,13 +273,23 @@ button {
 .book-introduction .sources, .connection-card .sources { font-size: .8rem; margin-top: 12px; }
 .book-introduction .sources a, .connection-card .sources a { color: var(--accent-text); text-decoration: underline; text-underline-offset: .15em; }
 .reader-tools { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 14px; font-size: .75rem; }
+.reader-legend { display: grid; gap: 4px; }
+.significance-key { display: flex; flex-wrap: wrap; gap: 3px 12px; margin: 0; font-size: .7rem; }
+.significance-key strong { font-weight: 650; }
 .reader-key { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin: 0; }
 .commentary-key { background: var(--note-mark); border-radius: 3px; padding: 0 3px; }
 .connection-key { color: var(--connection-text); }
 .copy-passage { cursor: pointer; text-decoration: underline; text-underline-offset: .2em; padding-block: 6px; }
 .copy-status, .study-status { font-size: .8rem; margin: 0 0 12px; }
-.commentary-mark { background: var(--note-mark); border-radius: 4px; padding: 0 2px; cursor: pointer; }
-.connection-marker { display: inline-block; vertical-align: baseline; color: var(--connection-text); border-bottom: 1px dotted currentColor; margin-left: .3em; padding: 0 .2em; cursor: pointer; user-select: none; font-weight: 600; line-height: 1.2; }
+.commentary-mark { background: var(--note-mark); border-radius: 4px; padding: 0 2px; cursor: pointer; font-weight: 650; }
+.commentary-mark.significance-interest { background: var(--note-interest); font-weight: inherit; text-decoration: underline dotted var(--note-edge); text-underline-offset: .18em; }
+.note-significance { width: fit-content; margin: 0 0 12px; padding: 2px 7px; border-radius: 4px; background: var(--note-mark); font-size: .75rem; font-weight: 650; }
+.note-significance.significance-interest { background: var(--note-interest); font-weight: 400; border-bottom: 1px dotted var(--note-edge); }
+.connection-marker { display: inline-block; vertical-align: baseline; color: var(--connection-text); background: var(--connection-mark); border-bottom: 2px solid currentColor; border-radius: 3px; margin-left: .3em; padding: 0 .2em; cursor: pointer; user-select: none; font-weight: 600; line-height: 1.2; }
+.connection-marker.significance-interest { color: var(--connection-interest); background: transparent; border-bottom: 1px dotted currentColor; font-weight: 400; }
+.connection-card.significance-interest .connection-kind, .connection-card.significance-interest .passage-links a { color: var(--connection-interest); }
+.connection-card.significance-interest .passage-links a { font-weight: 400; text-decoration-style: dotted; }
+.connection-card.significance-fundamental .connection-kind { font-weight: 650; }
 .connection-marker::before { content: '↔'; }
 .passage-links { padding-left: 20px; margin-top: 16px; }
 .passage-links li { margin: 8px 0; }
@@ -286,3 +309,13 @@ button {
 @media (max-width: 640px) { .reader-dialog-backdrop { align-items: flex-end; } .reader-dialog { padding: 16px; } }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 .connection-marker { min-width: 28px; min-height: 24px; font-size: 1.05em; }
+
+/* Compact theme override, aligned with the header's existing title. */
+.theme-control { position: relative; flex-shrink: 0; }
+.theme-trigger { display: grid; place-items: center; width: 40px; height: 40px; border: 1px solid #ffffff75; border-radius: 50%; background: #0005; color: #fff; cursor: pointer; }
+.theme-trigger:hover { background: #0008; }
+.theme-trigger svg { width: 21px; height: 21px; }
+.theme-menu { position: absolute; top: calc(100% + 10px); right: 0; width: 152px; padding: 5px; background: var(--surface); color: var(--foreground); border: 1px solid var(--border-soft); border-radius: 10px; box-shadow: 0 8px 28px #0004; }
+.theme-menu button { display: flex; align-items: center; justify-content: space-between; gap: 16px; width: 100%; min-height: 40px; padding: 8px 10px; border-radius: 6px; font-size: .875rem; text-align: left; cursor: pointer; }
+.theme-menu button[aria-checked="true"] { font-weight: 650; background: var(--passage-tint); }
+.theme-menu button:hover { background: var(--passage-tint); }

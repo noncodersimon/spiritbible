@@ -9,14 +9,14 @@ const sha = value => createHash('sha256').update(value).digest('hex');
 const normal = value => value.replace(/\s+/gu, ' ').trim();
 const payload = rows => rows.map(({book,chapter,verse,start,end,phrase,body}) => ({book,chapter,verse,start,end,phrase,body}));
 
-function validateDeeperReview(root = path.resolve(__dirname, '..'), cache) {
+function validateDeeperReview(root = path.resolve(__dirname, '..'), cache, {historical = false} = {}) {
   const read = file => JSON.parse(fs.readFileSync(path.join(root, file)));
   const dir = 'drafts/deeper-commentary/';
   const baseline = read(dir+'baseline.json');
   const editorial = read(dir+'editorial.json');
   const evidence = read(dir+'source-evidence.json');
   const original = read('drafts/commentary/editorial.json');
-  const notes = read('data/notes.json');
+  const notes = historical ? [...read('drafts/commentary/notes.json'), ...read(dir+'notes.json')] : read('data/notes.json');
   assert.equal(sha(fs.readFileSync(path.join(root, 'data/bible.json'))), baseline['bible.json'], 'Bible text changed');
   assert.equal(sha(JSON.stringify(notes.slice(0, baseline.baseNoteCount), null, 2)+'\n'), baseline['notes.json'], 'Original commentary changed');
   const evidenced = editorial.map(n => ({...n, sources:n.sources.map(s => {
@@ -33,16 +33,16 @@ function validateDeeperReview(root = path.resolve(__dirname, '..'), cache) {
   assert.deepEqual(read(dir+'notes.json'), payload(checked));
   // Existing shared note URLs use array-derived IDs: preserve the original prefix.
   assert.deepEqual(notes, [...read('drafts/commentary/notes.json'), ...payload(checked)]);
-  const study = read('data/study.json');
+  const study = read(historical ? 'drafts/final-audit/baseline-study.json' : 'data/study.json');
   const originalStudy = {...study, connections:study.connections.slice(0, baseline.baseConnectionCount)};
   assert.equal(sha(JSON.stringify(originalStudy, null, 2)+'\n'), baseline['study.json'], 'Original connections or introductions changed');
   assert.deepEqual(study.connections.slice(baseline.baseConnectionCount), read(dir+'connections.json'));
-  const reviewed = validateStudyReview(study, read('drafts/study/review.json'), cache);
+  const reviewed = validateStudyReview(study, read(historical ? 'drafts/final-audit/baseline-study-review.json' : 'drafts/study/review.json'), cache);
   return {newNotes:checked.length, totalNotes:notes.length, ...reviewed};
 }
 
 if (require.main === module) {
-  try { console.log(validateDeeperReview(undefined, process.argv[2])); }
+  try { console.log(validateDeeperReview(undefined, process.argv.slice(2).find(a => a !== '--historical'), {historical:process.argv.includes('--historical')})); }
   catch (error) { console.error(error.message); process.exitCode = 1; }
 }
 module.exports = {validateDeeperReview};

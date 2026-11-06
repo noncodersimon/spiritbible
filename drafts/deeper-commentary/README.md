@@ -40,12 +40,12 @@ Short books with adequate existing coverage were not given new entries merely to
 Run from the repository:
 
 ```sh
-node scripts/deeper-review.cjs
+node scripts/deeper-review.cjs --historical
 npm test
 npm run build
 ```
 
-Where the research cache is available, additionally run `node scripts/deeper-review.cjs /workspace/commentary-research/cache`. This checks source excerpts against both extracted text and the hash-verified fetched HTML. Excerpt matching establishes provenance; contextual interpretation also required the editorial review described above.
+Where the research cache is available, additionally run `node scripts/deeper-review.cjs --historical /workspace/commentary-research/cache`. This checks source excerpts against both extracted text and the hash-verified fetched HTML. Excerpt matching establishes provenance; contextual interpretation also required the editorial review described above. This archive records the earlier release; the subsequent refinement is validated by `scripts/final-review.cjs`.
 
 New notes are appended after the original 1,054 entries, preserving numeric note IDs used in shared links. The original Bible text, notes, 78 connections and 73 introductions are preserved exactly. The generator rebuilds the reading database and search index together. No reader layout or styling changes form part of this expansion.
 

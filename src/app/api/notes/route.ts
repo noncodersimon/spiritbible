@@ -13,7 +13,7 @@ export async function GET(req: Request) {
     if (!book || !chapter) return NextResponse.json({ notes: [] });
 
     const rows = db.prepare(`
-      SELECT id, book, chapter, verse, start, end, body, phrase
+      SELECT id, book, chapter, verse, start, end, body, phrase, significance
       FROM note
       WHERE book = ? COLLATE NOCASE AND chapter = ?
       ORDER BY verse, start

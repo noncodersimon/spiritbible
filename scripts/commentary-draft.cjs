@@ -68,7 +68,7 @@ function inspectBody(body) {
   return {links, prose, words: prose.split(/\s+/u).filter(Boolean).length};
 }
 
-function validateDraft(rows, { complete = true, cache } = {}) {
+function validateDraft(rows, { complete = true, cache, minWords = 100, maxWords = 200 } = {}) {
   if (!Array.isArray(rows)) throw Error('Draft must be an array');
   const errors = [], ids = new Set(), bodies = new Map(), occupied = new Map();
   const result = [], verifiedHTML = new Map();
@@ -93,7 +93,7 @@ function validateDraft(rows, { complete = true, cache } = {}) {
       occupied.set(key(n),[...ranges,[start,end]]);
       if (!n.title?.trim() || !n.theme?.trim() || !interpretations.has(n.interpretation) || typeof n.languageNote !== 'boolean') throw Error('Missing editorial metadata');
       const html = inspectBody(n.body);
-      if (html.words<100 || html.words>200) throw Error(`Prose length ${html.words}; expected100–200`);
+      if (html.words<minWords || html.words>maxWords) throw Error(`Prose length ${html.words}; expected${minWords}–${maxWords}`);
       const previous = bodies.get(html.prose.toLowerCase());
       if (previous) throw Error(`Duplicate body also used by ${previous}`);
       bodies.set(html.prose.toLowerCase(),n.id);

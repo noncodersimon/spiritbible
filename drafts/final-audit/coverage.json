@@ -1,0 +1,23 @@
+{
+  "baseCommit": "31ac24c",
+  "totalNotes": 1205,
+  "newNotes": 43,
+  "revisedNotes": 1162,
+  "retainedNotes": 0,
+  "totalConnections": 145,
+  "newConnections": 36,
+  "notesBySignificance": {
+    "fundamental": 896,
+    "interest": 309
+  },
+  "connectionsBySignificance": {
+    "fundamental": 133,
+    "interest": 12
+  },
+  "books": 73,
+  "previousWords": 147044,
+  "currentWords": 83560,
+  "minimumWords": 45,
+  "maximumWords": 87,
+  "sourceEvidenceRecords": 1336
+}

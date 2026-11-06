@@ -1,8 +1,10 @@
+export type StudySignificance = 'fundamental' | 'interest';
 export type SourceLink = { label: string; url: string };
 export type Passage = { book: string; chapter: number; verse?: number; endVerse?: number };
 export type PassageTarget = Passage & { start?: number; end?: number; note?: number; connection?: string };
 export type StudyConnection = {
   id: string;
+  significance?: StudySignificance;
   title: string;
   kind: 'quotation' | 'fulfilment' | 'echo' | 'typology' | 'theme';
   summary: string;

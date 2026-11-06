@@ -33,6 +33,9 @@ function validateSources(verses, notes) {
         typeof row.body !== 'string' || !row.body.trim()) {
       throw new Error(`Invalid note at notes.json row ${i + 1}.`);
     }
+    if (row.significance != null && !['fundamental', 'interest'].includes(row.significance)) {
+      throw new Error(`Invalid note significance at notes.json row ${i + 1}.`);
+    }
     if (!references.has(reference(row))) {
       throw new Error(`Note references missing verse: ${row.book} ${row.chapter}:${row.verse}.`);
     }
@@ -87,6 +90,7 @@ function buildData(root = path.resolve(__dirname, '..')) {
         end INTEGER NOT NULL,
         body TEXT NOT NULL,
         phrase TEXT,
+        significance TEXT NOT NULL CHECK (significance IN ('fundamental', 'interest')),
         UNIQUE (book, chapter, verse, start, end)
       );
       CREATE TABLE source_manifest (file TEXT PRIMARY KEY, sha256 TEXT NOT NULL);
@@ -95,11 +99,11 @@ function buildData(root = path.resolve(__dirname, '..')) {
       );
     `);
     const verseInsert = db.prepare('INSERT INTO verse (book, chapter, verse, text) VALUES (@book, @chapter, @verse, @text)');
-    const noteInsert = db.prepare('INSERT INTO note (book, chapter, verse, start, end, body, phrase) VALUES (@book, @chapter, @verse, @start, @end, @body, @phrase)');
+    const noteInsert = db.prepare('INSERT INTO note (book, chapter, verse, start, end, body, phrase, significance) VALUES (@book, @chapter, @verse, @start, @end, @body, @phrase, @significance)');
     const manifestInsert = db.prepare('INSERT INTO source_manifest VALUES (?, ?)');
     db.transaction(() => {
       for (const row of verses) verseInsert.run(row);
-      for (const row of notes) noteInsert.run({ ...row, phrase: row.phrase ?? null });
+      for (const row of notes) noteInsert.run({ ...row, phrase: row.phrase ?? null, significance: row.significance ?? 'fundamental' });
       for (const [file, source] of [['bible.json', bibleSource], ['notes.json', notesSource], ['study.json', studySource]]) {
         manifestInsert.run(file, createHash('sha256').update(source).digest('hex'));
       }

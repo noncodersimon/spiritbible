@@ -2,6 +2,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import Link from "next/link";
+import ThemeToggle from "@/components/ThemeToggle";
 import { Inter, Space_Grotesk } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-body" });
@@ -23,12 +24,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="h-full" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: `(function(){var p='system';try{var s=localStorage.getItem('spiritbible-theme');if(s==='light'||s==='dark')p=s;}catch(e){}var d=p==='dark'||(p==='system'&&window.matchMedia('(prefers-color-scheme: dark)').matches);document.documentElement.dataset.theme=d?'dark':'light';document.documentElement.dataset.themePreference=p;})();` }} />
+      </head>
       <body
         className={`${inter.variable} ${spaceGrotesk.variable} ${inter.className} h-full`}
       >
         {/* Header */}
         <header className="site-header sticky top-0 z-50 border-b border-neutral-200/50 dark:border-neutral-900/50 bg-transparent dark:bg-transparent">
-          <div className="mx-auto max-w-5xl w-full px-4 py-3 flex items-center justify-start">
+          <div className="mx-auto max-w-5xl w-full px-4 py-3 flex items-center justify-between gap-3">
             <Link
               href="/"
               className="site-title font-semibold tracking-tight text-lg flex items-center gap-2"
@@ -41,6 +45,7 @@ export default function RootLayout({
               />
               SpiritBible
             </Link>
+            <ThemeToggle />
           </div>
         </header>
 

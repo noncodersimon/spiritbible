@@ -1,0 +1,8 @@
+{
+  "automatedSuite": "npm test: all 11 test files passed",
+  "releaseValidator": "1,205 notes and 218 study items passed; exact cached-source excerpts and hashes checked",
+  "historicalValidator": "preceding release passed separately",
+  "bible": "Pinned publisher import check passed; data/bible.json unchanged",
+  "productionBuild": "npm run build passed; database and search indexes rebuilt from reviewed JSON",
+  "browser": "Production Chromium checks passed: every note and all 408 connection endpoints across 804 chapters; both emphasis levels; four text contrast combinations; keyboard/dialog focus; theme override and persistence; 320px layout; zero page errors"
+}

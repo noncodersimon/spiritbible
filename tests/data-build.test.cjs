@@ -56,6 +56,20 @@ test('replacement rebuild updates reading and search and removes deleted verses 
   });
 });
 
+test('editorial significance survives database generation and updates without changing note IDs', (t) => {
+  const f = fixture(t);
+  f.write('notes.json', [{ ...f.notes[0], significance: 'interest' }]);
+  buildData(f.root);
+  inspect(f.target, db => assert.deepEqual(db.prepare('SELECT id,significance FROM note').all(), [{ id: 1, significance: 'interest' }]));
+  f.write('notes.json', [{ ...f.notes[0], significance: 'fundamental' }]);
+  buildData(f.root);
+  inspect(f.target, db => assert.deepEqual(db.prepare('SELECT id,significance FROM note').all(), [{ id: 1, significance: 'fundamental' }]));
+  const previous = fs.readFileSync(f.target);
+  f.write('notes.json', [{ ...f.notes[0], significance: 'unreviewed' }]);
+  assert.throws(() => buildData(f.root), /Invalid note significance/);
+  assert.deepEqual(fs.readFileSync(f.target), previous);
+});
+
 test('an invalid import leaves the previous database intact', (t) => {
   const f = fixture(t);
   buildData(f.root);

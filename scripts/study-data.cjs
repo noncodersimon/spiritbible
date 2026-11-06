@@ -19,7 +19,8 @@ function validateStudy(study, verses) {
   const books = new Set(verses.map(v => v.book)), ids = new Set(), introduced = new Set(), summaries = new Set();
   for (const c of study.connections) {
     if (!/^[a-z0-9-]{1,100}$/.test(c.id) || ids.has(c.id) || !c.title?.trim() || !kinds.has(c.kind)) throw Error(`Invalid study connection: ${c.id}`);
-    ids.add(c.id); prose(c.summary, 100, 200, c.id); sourceLinks(c.sources, c.id);
+    if (c.significance != null && !['fundamental', 'interest'].includes(c.significance)) throw Error(`Invalid study significance: ${c.id}`);
+    ids.add(c.id); prose(c.summary, 35, 200, c.id); sourceLinks(c.sources, c.id);
     if (summaries.has(c.summary)) throw Error(`Duplicate study explanation: ${c.id}`);
     summaries.add(c.summary);
     if (!Array.isArray(c.passages) || c.passages.length < 2 || c.passages.length > 8) throw Error(`Invalid study passages: ${c.id}`);
