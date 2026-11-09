@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import ChapterClient from '@/components/ChapterClient';
+import InstallButton from '@/components/InstallButton';
 import { passageHref, readPassage } from '@/lib/passage';
 import type { PassageTarget } from '@/types/study';
 
@@ -369,26 +370,29 @@ function scrollToReaderTop() {
   return (
     <main className="mx-auto max-w-3xl p-4">
       {/* Search */}
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          doSearch();
-        }}
-        style={{ display: 'flex', gap: 8, marginBottom: 16 }}
-      >
-        <input
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          type="search"
-          aria-label="Search the Bible"
-          aria-describedby="search-help"
-          placeholder='Passage, word or phrase'
-          className="text-input"
-        />
-        <button type="submit" className="btn-primary">
-          Search
-        </button>
-      </form>
+      <div className="search-toolbar">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            doSearch();
+          }}
+          className="search-form"
+        >
+          <input
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            type="search"
+            aria-label="Search the Bible"
+            aria-describedby="search-help"
+            placeholder='Passage, word or phrase'
+            className="text-input"
+          />
+          <button type="submit" className="btn-primary">
+            Search
+          </button>
+        </form>
+        <InstallButton />
+      </div>
       <div className="search-options">
         <label>Search in <select aria-label="Search in" value={searchScope} onChange={e => setSearchScope(e.target.value)}>
           <option value="bible">Bible text</option><option value="commentary">Notes &amp; connections</option>

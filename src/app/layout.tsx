@@ -15,6 +15,9 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   title: "SpiritBible",
   description: "A clean, fast Bible reader with notes and search.",
+  applicationName: "SpiritBible",
+  appleWebApp: { capable: true, title: "SpiritBible", statusBarStyle: "default" },
+  icons: { apple: "/apple-touch-icon.png" },
 };
 
 export default function RootLayout({

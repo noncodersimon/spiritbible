@@ -59,6 +59,32 @@ export function selectedPassage(root: HTMLElement, selection: Selection | null, 
   return { target: { book, chapter, verse: first.verse, endVerse: last.verse, start: first.start, end: last.end }, text: parts.map(p => p.text).join('\n') };
 }
 
+function quotePassage(text: string): string {
+  const passage = text.trim();
+  if (!passage) return passage;
+  // Reuse speech that spans the selection, including speech continued across verses.
+  for (const [open, close] of [['“', '”'], ['"', '"'], ['‘', '’']]) {
+    if (passage.startsWith(open)) {
+      let end = passage.indexOf(close, 1);
+      // A contraction inside single-quoted speech is not its closing quotation mark.
+      while (close === '’' && end > 0 && /[\p{L}\p{N}]/u.test(passage[end - 1]) && /[\p{L}\p{N}]/u.test(passage[end + 1] ?? '')) end = passage.indexOf(close, end + 1);
+      if (end === -1) return passage + close;
+      if (end === passage.length - 1) return passage;
+    }
+    if (close !== '’' && passage.endsWith(close) && !passage.slice(0, -1).includes(open) && !passage.slice(0, -1).includes(close)) return open + passage;
+  }
+  // Close speech cut off by the selection, without rewriting the words or internal punctuation.
+  if (/[“”]/.test(passage)) {
+    let speaking = false, needsOpening = false;
+    for (const character of passage) {
+      if (character === '“') speaking = true; // Paragraphs can repeat an opening mark.
+      if (character === '”') { if (!speaking) needsOpening = true; speaking = false; }
+    }
+    return `‘${needsOpening ? '“' : ''}${passage}${speaking ? '”' : ''}’`;
+  }
+  return passage.includes('"') ? `‘${passage}’` : `“${passage}”`;
+}
+
 export function copyText(text: string, target: PassageTarget, origin: string): string {
-  return `${text}\n\n${passageLabel(target)} — World English Bible, British Edition\n${origin}${passageHref(target)}`;
+  return `${quotePassage(text)}\n\n${passageLabel(target)}\n${origin}${passageHref(target)}`;
 }

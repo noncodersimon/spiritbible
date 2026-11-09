@@ -23,8 +23,27 @@ test('share links round-trip Catholic references, precise selection offsets and 
  assert.equal(readPassage('?ref=John+3%3A16&start=9&end=2').start,undefined);
  assert.equal(readPassage('?ref=John+3%3A16&connection=%3Cscript%3E').connection,undefined);
  const copied=copyText('For God so loved the world.',{book:'John',chapter:3,verse:16},'https://spirit.digitelos.co.uk');
- assert.ok(copied.startsWith('For God so loved the world.\n\nJohn 3:16'));
+ assert.ok(copied.startsWith('“For God so loved the world.”\n\nJohn 3:16'));
+ assert.ok(!copied.includes('World English Bible'));
  assert.ok(copied.includes('https://spirit.digitelos.co.uk/?ref=John+3%3A16'));
+});
+test('copied passages reuse boundary quotes and distinguish speech within a longer quotation',()=>{
+ const cases=[
+  ['“He who is not with me is against me, and he who doesn’t gather with me, scatters.', '“He who is not with me is against me, and he who doesn’t gather with me, scatters.”'],
+  ['For by your words you will be justified, and by your words you will be condemned.”','“For by your words you will be justified, and by your words you will be condemned.”'],
+  ['“Already quoted.”','“Already quoted.”'],
+  ['"Straight quotation','"Straight quotation"'],
+  ['Straight quotation"','"Straight quotation"'],
+  ['"Already quoted."','"Already quoted."'],
+  ['Then they said, “Teacher, we want to see a sign.”','‘Then they said, “Teacher, we want to see a sign.”’'],
+  ['“One.” He answered, “Two.”','‘“One.” He answered, “Two.”’'],
+  ['He answered, “Come with me.','‘He answered, “Come with me.”’'],
+  ['Come with me,” he answered.','‘“Come with me,” he answered.’'],
+  ['‘Don’t be afraid.’','‘Don’t be afraid.’'],
+  ['Jesus’ disciples','“Jesus’ disciples”'],
+  ['  First line.\nSecond line.  ','“First line.\nSecond line.”'],
+ ];
+ for(const [input,expected] of cases) assert.equal(copyText(input,{book:'Matthew',chapter:12,verse:30},'https://spirit.digitelos.co.uk').split('\n\n')[0],expected);
 });
 test('copying across commentary markup and verse controls uses only selected Bible words',()=>{
  const dom=new JSDOM('<p id="outside">Elsewhere</p><div id="reader"><p><sup>1</sup> <span data-verse-text="1">In the <mark>beginning</mark> was the Word.</span><button>↔</button></p><p><sup>2</sup> <span data-verse-text="2">He was with God.</span></p></div>');

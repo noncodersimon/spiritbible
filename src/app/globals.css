@@ -314,3 +314,16 @@ button {
 .theme-menu button { display: flex; align-items: center; justify-content: space-between; gap: 16px; width: 100%; min-height: 40px; padding: 8px 10px; border-radius: 6px; font-size: .875rem; text-align: left; cursor: pointer; }
 .theme-menu button[aria-checked="true"] { font-weight: 650; background: var(--passage-tint); }
 .theme-menu button:hover { background: var(--passage-tint); }
+
+/* Keep installation quieter than search; wrap it to the right on narrow screens. */
+.search-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 12px; margin-bottom: 16px; }
+.search-form { display: flex; flex: 1 1 18rem; gap: 8px; min-width: 0; }
+.install-control { margin-left: auto; }
+.install-trigger { display: inline-flex; align-items: center; gap: 7px; min-height: 44px; padding: 9px 12px; border: 1px solid var(--border-soft); border-radius: 8px; background: transparent; color: var(--foreground); font-size: 1rem; font-weight: 400; white-space: nowrap; cursor: pointer; }
+.install-trigger:hover { background: var(--surface); }
+.install-trigger:disabled { cursor: wait; opacity: .65; }
+.install-help p { margin: 12px 0; }
+.install-help ol { list-style: decimal; padding-left: 24px; }
+.install-help li { margin: 10px 0; }
+.install-download { color: var(--accent-text); text-decoration: underline; text-underline-offset: .2em; }
+.install-confirm { margin-top: 16px; padding: 8px 0; font-size: .875rem; text-decoration: underline; text-underline-offset: .2em; cursor: pointer; }
