@@ -24,7 +24,7 @@ const click=async e=>act(async()=>e.dispatchEvent(new window.MouseEvent('click',
 function offer(outcome='dismissed',fails=false){const event=new window.Event('beforeinstallprompt',{cancelable:true});let calls=0;event.prompt=async()=>{calls++;if(fails)throw Error('Unavailable');};event.userChoice=Promise.resolve({outcome});window.dispatchEvent(event);return{event,calls:()=>calls};}
 
 test('Windows fallback provides a real shortcut, keeps the button until confirmed, and restores dialog focus',async()=>withDOM({},async()=>{
- const button=document.querySelector('.install-trigger');assert.match(button.textContent,/Add to Desktop/);button.focus();await click(button);
+ const button=document.querySelector('.install-trigger');assert.match(button.getAttribute('aria-label'),/Add to Desktop/);button.focus();await click(button);
  assert.equal(document.activeElement,document.querySelector('[role="dialog"]'));const download=document.querySelector('.install-download');assert.equal(download.getAttribute('href'),'/SpiritBible.url');assert.equal(download.download,'SpiritBible.url');
  await act(async()=>window.dispatchEvent(new window.KeyboardEvent('keydown',{key:'Escape',bubbles:true})));assert.equal(document.activeElement,button);assert(document.querySelector('.install-trigger'));
  await click(button);await click(document.querySelector('.install-confirm'));assert.equal(localStorage.getItem('spiritbible:installed'),'1');assert.equal(document.querySelector('.install-trigger'),null);
@@ -39,11 +39,11 @@ test('native prompt failures fall back to instructions without hiding or disabli
 }));
 test('iPhone and desktop-UA iPad offer Safari Home Screen instructions rather than a false automatic install',async()=>{
  for(const nav of [{userAgent:'Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) Version/18.0 Mobile Safari/604.1',platform:'iPhone'}, {userAgent:'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15) Version/18.0 Safari/605.1',platform:'MacIntel',maxTouchPoints:5}])await withDOM({navigator:nav},async()=>{
-  assert.match(document.querySelector('.install-trigger').textContent,/Add to Home Screen/);await click(document.querySelector('.install-trigger'));assert.match(document.querySelector('[role="dialog"]').textContent,/Share/);assert.match(document.querySelector('[role="dialog"]').textContent,/Open as Web App/);assert.equal(document.querySelector('.install-download'),null);
+  assert.match(document.querySelector('.install-trigger').getAttribute('aria-label'),/Add to Home Screen/);await click(document.querySelector('.install-trigger'));assert.match(document.querySelector('[role="dialog"]').textContent,/Share/);assert.match(document.querySelector('[role="dialog"]').textContent,/Open as Web App/);assert.equal(document.querySelector('.install-download'),null);
  });
 });
 test('Android provides Home Screen guidance and blocked storage does not break confirmation',async()=>withDOM({blocked:true,navigator:{userAgent:'Mozilla/5.0 (Linux; Android 15) Chrome/130 Mobile Safari/537.36',platform:'Linux armv8l'}},async()=>{
- assert.match(document.querySelector('.install-trigger').textContent,/Add to Home Screen/);await click(document.querySelector('.install-trigger'));assert.match(document.querySelector('[role="dialog"]').textContent,/browser’s menu/);await click(document.querySelector('.install-confirm'));assert.equal(document.querySelector('.install-trigger'),null);
+ assert.match(document.querySelector('.install-trigger').getAttribute('aria-label'),/Add to Home Screen/);await click(document.querySelector('.install-trigger'));assert.match(document.querySelector('[role="dialog"]').textContent,/browser’s menu/);await click(document.querySelector('.install-confirm'));assert.equal(document.querySelector('.install-trigger'),null);
 }));
 test('remembered, standalone and iOS standalone installations hide the control',async()=>{
  for(const options of [{remembered:true},{standalone:true},{navigator:{standalone:true}}])await withDOM(options,async()=>assert.equal(document.querySelector('.install-trigger'),null));

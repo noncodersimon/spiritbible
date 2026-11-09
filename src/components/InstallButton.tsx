@@ -69,9 +69,8 @@ export default function InstallButton() {
   if (!device || installed) return null;
   const label = device.kind === 'ios' || device.kind === 'android' ? 'Add to Home Screen' : device.kind === 'windows' ? 'Add to Desktop' : device.kind === 'mac' && device.safari ? 'Add to Dock' : 'Install app';
   return <div className="install-control">
-    <button type="button" className="install-trigger" onClick={install} disabled={busy}>
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M4 16v5h16v-5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-      {label}
+    <button type="button" className="install-trigger" aria-label={label} title={label} onClick={install} disabled={busy}>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2" /><path d="M12 8v8m-4-4h8" /></svg>
     </button>
     {help && <ReaderDialog title={label} onClose={() => setHelp(false)}>
       <div className="install-help">

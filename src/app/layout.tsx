@@ -3,6 +3,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import Link from "next/link";
 import ThemeToggle from "@/components/ThemeToggle";
+import InstallButton from "@/components/InstallButton";
 import { Inter, Space_Grotesk } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-body" });
@@ -48,7 +49,10 @@ export default function RootLayout({
               />
               SpiritBible
             </Link>
-            <ThemeToggle />
+            <div className="header-actions">
+              <InstallButton />
+              <ThemeToggle />
+            </div>
           </div>
         </header>
 

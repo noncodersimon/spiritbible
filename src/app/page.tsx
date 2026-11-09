@@ -2,7 +2,6 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import ChapterClient from '@/components/ChapterClient';
-import InstallButton from '@/components/InstallButton';
 import { passageHref, readPassage } from '@/lib/passage';
 import type { PassageTarget } from '@/types/study';
 
@@ -391,7 +390,6 @@ function scrollToReaderTop() {
             Search
           </button>
         </form>
-        <InstallButton />
       </div>
       <div className="search-options">
         <label>Search in <select aria-label="Search in" value={searchScope} onChange={e => setSearchScope(e.target.value)}>
