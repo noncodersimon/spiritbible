@@ -3,8 +3,14 @@ import { redirect } from "next/navigation";
 import { loadVerses } from "@/lib/queries";
 import { prevChapter, nextChapter } from "@/lib/canon";
 import ChapterClient from "@/components/ChapterClient";
+import { socialMetadata, socialPassage } from "@/lib/social";
 
 type RouteParams = { book: string; chapter: string };
+
+export async function generateMetadata({ params }: { params: Promise<RouteParams> }) {
+  const { book, chapter } = await params;
+  return socialMetadata(await socialPassage(new URLSearchParams({ ref: `${book} ${chapter}` })));
+}
 
 export default async function ChapterPage({
   params,

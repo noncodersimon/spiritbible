@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import ThemeToggle from "@/components/ThemeToggle";
 import InstallButton from "@/components/InstallButton";
+import { socialMetadata } from "@/lib/social";
 import { Inter, Space_Grotesk } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-body" });
@@ -14,8 +15,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "SpiritBible",
-  description: "A clean, fast Bible reader with notes and search.",
+  ...socialMetadata(),
   applicationName: "SpiritBible",
   appleWebApp: { capable: true, title: "SpiritBible", statusBarStyle: "default" },
   icons: { apple: "/apple-touch-icon.png" },
