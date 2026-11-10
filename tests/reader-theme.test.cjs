@@ -87,7 +87,7 @@ test('theme menu persists choices, follows system only in System mode, and resto
   assert.equal(document.activeElement.textContent, 'Dark');
   await key(document.activeElement, 'Escape');
   assert.equal(document.activeElement, trigger);
-  assert.equal(document.querySelector('[role="menu"]'), null);
+  assert.equal(Boolean(document.querySelector('[role="menu"]')), false);
   await click(trigger);
   await key(document.activeElement, 'Home');
   await click(document.activeElement);
@@ -105,6 +105,26 @@ test('theme menu persists choices, follows system only in System mode, and resto
   await act(async () => secondRoot.render(React.createElement(ThemeToggle)));
   assert.equal(document.documentElement.dataset.theme, 'dark', 'blocked storage preserves the early preference');
   await act(async () => secondRoot.unmount());
+}));
+
+test('a second tap closes the theme menu even if mobile blur happens before click', async () => withDOM(async ({ root }) => {
+  window.matchMedia = () => ({ matches: false, addEventListener() {}, removeEventListener() {} });
+  const ThemeToggle = loadTS('../src/components/ThemeToggle.tsx').default;
+  await act(async () => root.render(React.createElement(ThemeToggle)));
+  const trigger = document.querySelector('.theme-trigger');
+  await click(trigger);
+  assert.equal(trigger.getAttribute('aria-expanded'), 'true');
+  // Some mobile browsers blur the focused menu item without focusing the button.
+  await act(async () => trigger.dispatchEvent(new window.Event('pointerdown', { bubbles: true })));
+  await act(async () => document.activeElement.blur());
+  await act(async () => trigger.dispatchEvent(new window.MouseEvent('click', { bubbles: true, detail: 1 })));
+  assert.equal(Boolean(document.querySelector('[role="menu"]')), false);
+  assert.equal(trigger.getAttribute('aria-expanded'), 'false');
+  // Keyboard activation still toggles normally after a touch interaction.
+  await click(trigger);
+  assert.equal(trigger.getAttribute('aria-expanded'), 'true');
+  await click(trigger);
+  assert.equal(trigger.getAttribute('aria-expanded'), 'false');
 }));
 
 test('note and connection importance preserves verse text and mixed markers prioritise fundamental', async () => withDOM(async ({ root }) => {
