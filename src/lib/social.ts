@@ -4,7 +4,8 @@ import { loadVerses } from './queries';
 import type { PassageTarget } from '../types/study';
 
 export const siteOrigin = 'https://spirit.digitelos.co.uk';
-export const socialImageSize = { width: 1200, height: 410 };
+// Standard social-card proportions avoid horizontal cropping on X.
+export const socialImageSize = { width: 1200, height: 630 };
 const description = 'Read the Bible with Catholic commentary and related passages.';
 
 // Use the reader's reference parser and actual verse bounds; never put arbitrary
@@ -25,7 +26,7 @@ export function socialMetadata(passage: PassageTarget | null = null): Metadata {
   const title = label ? `${label} | SpiritBible` : 'SpiritBible';
   const summary = label ? `Read ${label} on SpiritBible, with Catholic commentary and related passages.` : description;
   const image = new URL('/share-image', siteOrigin);
-  image.searchParams.set('v', '2'); // Refresh cached previews after the compact redesign.
+  image.searchParams.set('v', '3'); // Refresh images cached with the overly wide proportions.
   if (label) image.searchParams.set('ref', label);
   const alt = label ? `SpiritBible — ${label}` : 'SpiritBible — Scripture with Catholic commentary';
   // Keep these URLs absolute and omit layout metadataBase: Next 15's resolver

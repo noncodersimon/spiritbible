@@ -50,7 +50,7 @@ test('invalid, missing and untrusted references fall back to the general card', 
     assert.equal(p, null);
     const meta = socialMetadata(p);
     assert.equal(meta.title, 'SpiritBible');
-    assert.equal(meta.openGraph.images[0].url, `${siteOrigin}/share-image?v=2`);
+    assert.equal(meta.openGraph.images[0].url, `${siteOrigin}/share-image?v=3`);
     assert.equal(meta.openGraph.url, `${siteOrigin}/`);
   }
 });

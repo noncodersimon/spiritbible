@@ -12,7 +12,7 @@ export async function GET(request: Request) {
   const logo = await readFile(join(process.cwd(), 'public/icons/spiritbible-192.png'));
   return new ImageResponse(
     <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column',
-      background: '#fbfaf6', color: '#15151c', padding: '32px 80px', borderBottom: '10px solid #2b57db' }}>
+      background: '#fbfaf6', color: '#15151c', padding: '64px 80px', borderBottom: '12px solid #2b57db' }}>
       <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: 18 }}>
         <img src={`data:image/png;base64,${logo.toString('base64')}`} width="76" height="76" alt="" />
         <span style={{ fontSize: 42, fontWeight: 700 }}>SpiritBible</span>
