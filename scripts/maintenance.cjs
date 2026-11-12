@@ -1,12 +1,11 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { spawnSync } = require('node:child_process');
-const { createHash } = require('node:crypto');
 
 const directory = '.maintenance';
 const stateFile = path.join(directory, 'state.json');
-const issueTitle = 'SpiritBible maintenance needs attention';
-const marker = '<!-- spiritbible-weekly-maintenance -->';
+const issueTitle = 'SpiritBible updates applied';
+const marker = '<!-- spiritbible-applied-updates -->';
 const read = file => JSON.parse(fs.readFileSync(file, 'utf8'));
 function save(state) { fs.mkdirSync(directory, { recursive: true }); fs.writeFileSync(stateFile, JSON.stringify(state, null, 2) + '\n'); }
 function state() { return fs.existsSync(stateFile) ? read(stateFile) : { warnings: [] }; }
@@ -127,7 +126,35 @@ async function deployment() {
   throw new Error('No successful Vercel deployment was confirmed within 15 minutes. Check the Git integration and deployment status.');
 }
 
-function attentionFingerprint(problems) { return createHash('sha256').update([...new Set(problems)].sort().join('\n')).digest('hex'); }
+function shouldNotifyApplied(current, jobStatus, steps) {
+  return jobStatus === 'success' && Boolean(current.published) && current.deployed === true &&
+    ['candidate', 'publish', 'deployment', 'live'].every(name => steps[name]?.outcome === 'success');
+}
+
+async function notifyApplied(current, jobStatus, steps, repository, runUrl, api = github) {
+  if (!shouldNotifyApplied(current, jobStatus, steps)) return;
+  const owner = repository.split('/')[0];
+  const trustedAuthor = user => ['github-actions[bot]', owner].includes(user?.login);
+  const stamp = `<!-- applied:${current.published} -->`;
+  let existing;
+  for (let page = 1; ; page++) {
+    const issues = await api(`/issues?state=all&per_page=100&page=${page}`);
+    existing = issues.find(issue => !issue.pull_request && trustedAuthor(issue.user) && issue.title === issueTitle && issue.body?.includes(marker));
+    if (existing || issues.length < 100) break;
+  }
+  if (existing) {
+    if (existing.body.includes(stamp)) return;
+    for (let page = 1; ; page++) {
+      const comments = await api(`/issues/${existing.number}/comments?per_page=100&page=${page}`);
+      if (comments.some(comment => trustedAuthor(comment.user) && comment.body?.includes(stamp))) return;
+      if (comments.length < 100) break;
+    }
+  }
+  const changes = current.updates?.length ? current.updates.map(value => '- ' + value).join('\n') : '- Compatible indirect dependencies were updated.';
+  const body = `${stamp}\n@${owner}, SpiritBible updates have been applied.\n\n${changes}\n\nThe tests, production build, deployment and live-site checks passed.\n\n[Dependency update](https://github.com/${repository}/commit/${current.published}) · [Run report](${runUrl})\n`;
+  if (existing) await api(`/issues/${existing.number}/comments`, 'POST', { body });
+  else await api('/issues', 'POST', { title: issueTitle, body: `${marker}\nThis thread reports successfully deployed and verified weekly updates. No-change runs, warnings and failed attempts do not generate messages here.\n\n${body}` });
+}
 
 async function report() {
   const current = state();
@@ -140,24 +167,10 @@ async function report() {
   const runUrl = `https://github.com/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`;
   const summary = `## Weekly maintenance\n\n${current.published ? `Dependency commit: ${current.published}. Vercel confirmed: ${current.deployed ? 'yes' : 'no'}.` : 'No dependency commit was published.'}\n\n${(current.updates || []).map(value => '- ' + value).join('\n') || 'No direct dependency version changes.'}\n\n${problems.length ? problems.map(value => '- ' + value).join('\n') : 'All checks passed. No action is needed.'}\n`;
   if (process.env.GITHUB_STEP_SUMMARY) fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, summary);
-  // Only issues made by this workflow are touched. An unchanged problem stays quiet.
-  const issues = await github('/issues?state=open&creator=github-actions%5Bbot%5D&per_page=100');
-  const existing = issues.find(issue => !issue.pull_request && issue.title === issueTitle && issue.body?.includes(marker));
-  if (!problems.length) {
-    if (existing) await github(`/issues/${existing.number}`, 'PATCH', { state: 'closed', state_reason: 'completed' });
-    return;
-  }
-  const fingerprint = attentionFingerprint(problems), stamp = `<!-- fingerprint:${fingerprint} -->`;
-  if (existing?.body?.includes(stamp)) return;
-  const owner = process.env.GITHUB_REPOSITORY.split('/')[0];
-  const body = `${marker}\n${stamp}\n@${owner}, this routine needs attention.\n\n${summary}\n[Open the run and its maintenance-report artifact](${runUrl}).\n\nCompatible updates are published only after the candidate passes its checks. If a deployment or live check failed after publication, inspect the recorded commit and Vercel deployment; there is no automatic rollback.\n`;
-  if (existing) {
-    await github(`/issues/${existing.number}`, 'PATCH', { body });
-    await github(`/issues/${existing.number}/comments`, 'POST', { body: `@${owner}, the maintenance findings have changed. Please see the updated issue and [run report](${runUrl}).` });
-  } else await github('/issues', 'POST', { title: issueTitle, body });
+  await notifyApplied(current, process.env.MAINTENANCE_JOB_STATUS, steps, process.env.GITHUB_REPOSITORY, runUrl);
 }
 
-module.exports = { assertCompatible, attentionFingerprint };
+module.exports = { assertCompatible, shouldNotifyApplied, notifyApplied };
 if (require.main === module) {
   const actions = { prepare, audit, publish, deployment, report };
   const action = actions[process.argv[2]];

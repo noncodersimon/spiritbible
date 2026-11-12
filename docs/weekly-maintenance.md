@@ -12,21 +12,24 @@ GitHub Actions runs **Weekly maintenance** every Monday at **07:17 UTC** (07:17 
 6. Commit **only `package.json` and `package-lock.json`**, provided main has not changed during the checks. Never force-push. Vercel's existing Git integration deploys that commit.
 7. Wait for Vercel's status on that exact commit, then check the live website. The live site is also checked on weeks with no updates.
 
-If a deployment or live check fails after publication, the routine raises an issue; it does **not** silently roll back. Inspect the reported dependency commit, restore the previous Vercel deployment if necessary, then correct or revert the dependency change. Failed candidate checks never publish the candidate.
+If a deployment or live check fails after publication, the run fails and records the problem in its report; it does **not** silently roll back or send an update-applied notification. Inspect the reported dependency commit, restore the previous Vercel deployment if necessary, then correct or revert the dependency change. Failed candidate checks never publish the candidate.
 
 ## Quiet notifications
 
-Successful checks and successful automatic updates produce **no issue or comment**. The Actions run summary and its `maintenance-report` artifact record what changed; artifacts are retained for 30 days.
+The **SpiritBible updates applied** issue is a single notification thread. The workflow mentions `@noncodersimon` there only after it has published a dependency commit, Vercel has confirmed its deployment, and the live-site checks have passed. Each commit is reported once, even if the reporting step is retried. Direct changes are listed; lockfile-only updates are described as indirect dependency updates.
 
-One issue named **SpiritBible maintenance needs attention** is created when action is needed. It mentions `@noncodersimon`. An unchanged set of findings produces no repeated comments. Changed findings update that issue and add a notification; a subsequent clean run closes it. Major upgrades and unresolved security advisories are included in the findings. An issue notification depends on the recipient's GitHub notification preferences.
+No-change runs, warnings, candidate failures, failed deployments and failed live checks produce **no issue or comment**. Their details remain in the Actions summary and `maintenance-report` artifact (retained for 30 days). The old **SpiritBible maintenance needs attention** issue is no longer updated by the routine. This is the owner's preference for update-applied notifications only; a failure therefore requires checking the Actions report rather than expecting a maintenance alert.
 
-This workflow cannot send messages into a ChatGPT conversation. It also cannot change personal GitHub notification preferences.
+This workflow cannot send messages into a ChatGPT conversation or change personal GitHub notification preferences. GitHub's own Actions emails are independent of the issue notifications.
 
-To reduce unrelated GitHub noise while preserving these alerts:
+To receive these messages without the development-failure emails:
 
-- On the repository, choose **Watch → Participating and @mentions** rather than **All Activity**. Do not choose **Ignore**, which can suppress important mentions too.
-- In **Settings → Notifications**, review automatic watching for repositories you push to and teams you join.
-- For Actions notifications, select failed-workflow notifications if you want GitHub's own fallback alerts. These can repeat for recurring failures; the maintenance issue itself is deduplicated.
+- In **Settings → Notifications**, turn **Actions** notifications off.
+- Enable **Participating, @mentions and custom**, choosing email or web/mobile delivery as preferred.
+- On the repository, use **Watch → Participating and @mentions**, rather than **All Activity** or **Ignore**.
+- Follow the **SpiritBible updates applied** thread. Unsubscribe from unrelated noisy issue/PR conversations if needed; the delivery preferences are account-wide and do not isolate this one workflow automatically.
+
+Committing or pushing code under `noncodersimon` does not itself create an `@mention`. Explicit mentions and subscribed conversations can still create notifications, so this configuration suppresses Actions noise rather than promising to suppress every other GitHub notification.
 
 ## Operational limits
 

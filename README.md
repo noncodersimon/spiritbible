@@ -69,7 +69,7 @@ The last setting lets Turbopack use the environment proxy's trusted system certi
 
 ## Checks and remaining work
 
-The [weekly maintenance routine](docs/weekly-maintenance.md) checks compatible dependency updates, tests the reader, deploys passing updates through Vercel and checks the live site. Routine success stays quiet; GitHub issues flag problems that need attention.
+The [weekly maintenance routine](docs/weekly-maintenance.md) checks compatible dependency updates, tests the reader, deploys passing updates through Vercel and checks the live site. A dedicated GitHub issue notifies only after updates have been deployed and verified. No-change runs and failures remain in the Actions reports without maintenance notifications.
 
 `npm test` exercises source preservation, repeat builds, changes/deletions, search refresh, invalid imports, stale-source detection, and generated-file handling. The production build also checks TypeScript.
 
