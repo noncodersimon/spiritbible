@@ -1,0 +1,89 @@
+name: Weekly maintenance
+
+on:
+  schedule:
+    - cron: '17 7 * * 1'
+  workflow_dispatch:
+
+concurrency:
+  group: weekly-maintenance
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  maintain:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    permissions:
+      contents: write
+      statuses: read
+      issues: write
+    env:
+      NEXT_TELEMETRY_DISABLED: '1'
+    steps:
+      - name: Check out the default branch
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: main
+          persist-credentials: false
+      - name: Set up the selected Node major
+        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version-file: package.json
+          cache: npm
+      - name: Install the committed dependencies
+        id: install
+        run: npm ci --no-audit --no-fund
+      - name: Prepare compatible updates
+        id: prepare
+        run: npm run maintenance:prepare
+      - name: Check security advisories and support dates
+        id: audit
+        run: npm run maintenance:audit
+      - name: Build the Bible database
+        id: data
+        run: npm run data:build
+      - name: Run regression tests
+        id: tests
+        run: npm test
+      - name: Build the production application
+        id: build
+        run: npm run build
+      - name: Install the browser used for checks
+        id: browser
+        run: npx --no-install playwright install --with-deps chromium
+      - name: Check the candidate in a browser
+        id: candidate
+        run: npm run test:smoke
+      - name: Publish only the tested dependency files
+        id: publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node scripts/maintenance.cjs publish
+      - name: Wait for Vercel to deploy this commit
+        id: deployment
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node scripts/maintenance.cjs deployment
+      - name: Check the live website
+        id: live
+        env:
+          SMOKE_BASE_URL: https://spirit.digitelos.co.uk
+        run: npm run test:smoke
+      - name: Keep the run report
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: maintenance-report
+          path: .maintenance/
+          if-no-files-found: ignore
+          retention-days: 30
+      - name: Notify only when attention is needed
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          MAINTENANCE_JOB_STATUS: ${{ job.status }}
+          MAINTENANCE_STEPS: ${{ toJSON(steps) }}
+        run: node scripts/maintenance.cjs report

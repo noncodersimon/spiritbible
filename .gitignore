@@ -54,3 +54,6 @@ node_modules/
 
 # Optional: generated scripts bundle
 scripts/dist/
+
+# Weekly maintenance logs and reports
+/.maintenance/

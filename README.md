@@ -69,6 +69,8 @@ The last setting lets Turbopack use the environment proxy's trusted system certi
 
 ## Checks and remaining work
 
+The [weekly maintenance routine](docs/weekly-maintenance.md) checks compatible dependency updates, tests the reader, deploys passing updates through Vercel and checks the live site. Routine success stays quiet; GitHub issues flag problems that need attention.
+
 `npm test` exercises source preservation, repeat builds, changes/deletions, search refresh, invalid imports, stale-source detection, and generated-file handling. The production build also checks TypeScript.
 
 The repository's default flat ESLint configuration has a pre-existing compatibility error. Its legacy configuration works with this PowerShell command:
