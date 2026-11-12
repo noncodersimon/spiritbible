@@ -4,10 +4,11 @@ const { assertCompatible, attentionFingerprint } = require('../scripts/maintenan
 
 test('maintenance accepts compatible changes but refuses major upgrades and unrelated edits', () => {
   const before = { name: 'reader', engines: { node: '26.x' }, scripts: { test: 'node --test' }, dependencies: { next: '15.5.9', react: '^19.1.0' }, devDependencies: { typescript: '^5.0.0' } };
-  const next = structuredClone(before); next.dependencies.next = '15.6.0'; next.dependencies.react = '^19.2.0';
+  const next = structuredClone(before); next.dependencies.next = '15.6.0'; next.dependencies.react = '^19.1.10';
   assert.doesNotThrow(() => assertCompatible(before, next));
   for (const change of [
     p => { p.dependencies.next = '16.0.0'; },
+    p => { p.dependencies.react = '^19.2.0'; },
     p => { p.engines.node = '28.x'; },
     p => { p.scripts.test = 'true'; },
     p => { delete p.dependencies.react; },

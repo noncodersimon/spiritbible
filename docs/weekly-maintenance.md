@@ -5,10 +5,10 @@ GitHub Actions runs **Weekly maintenance** every Monday at **07:17 UTC** (07:17 
 ## What happens
 
 1. Use the Node major selected by `engines.node` in `package.json` and install the committed lockfile.
-2. Update direct packages within their existing major version, including exact pins, and refresh compatible transitive dependencies. Node and framework major upgrades are not automatic.
+2. Update direct packages within their existing major version, including exact pins, and refresh compatible transitive dependencies. React and React DOM stay on the tested minor line and receive patch updates; a newer minor is reviewed alongside framework compatibility. Node and framework major upgrades are not automatic.
 3. Check npm security advisories, available major updates and the official Node support schedule. High/critical advisories, an unsupported Node version or unavailable audit results block publication.
 4. Generate the database, run the regression suite, and build the production application.
-5. Run Chromium checks against the candidate: passage links, search, commentary, related passages, copying, the 73-book canon, social-card metadata and images, install manifest, phone layout and theme controls.
+5. Run Chromium checks against the standalone deployment bundle: successful initial server responses, passage links, search, commentary, related passages, copying, the 73-book canon, social-card metadata and images, install manifest, phone layout and theme controls.
 6. Commit **only `package.json` and `package-lock.json`**, provided main has not changed during the checks. Never force-push. Vercel's existing Git integration deploys that commit.
 7. Wait for Vercel's status on that exact commit, then check the live website. The live site is also checked on weeks with no updates.
 
@@ -49,6 +49,6 @@ npx playwright install chromium
 npm run test:smoke
 ```
 
-The smoke command starts and stops a local production server on port 3107. To inspect the live reader without changing it, set `SMOKE_BASE_URL=https://spirit.digitelos.co.uk`. In the managed cloud environment, `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium` can use the installed browser. Reports and screenshots are kept in ignored `.maintenance/` files.
+The smoke command copies public/static assets into Next.js's standalone output, then starts and stops that packaged server on port 3107. To inspect the live reader without changing it, set `SMOKE_BASE_URL=https://spirit.digitelos.co.uk`. In the managed cloud environment, `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium` can use the installed browser. Reports and screenshots are kept in ignored `.maintenance/` files.
 
 `maintenance:prepare` changes dependency manifests; use a clean checkout. `maintenance:audit` records advisories and support findings. Publication and issue reporting are separate authenticated workflow steps; install, build and browser steps do not receive `GH_TOKEN`.

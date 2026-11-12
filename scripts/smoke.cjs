@@ -15,12 +15,16 @@ async function main() {
   const errors = [], checks = [];
   try {
     if (!live) {
+      const standalone = path.join('.next', 'standalone');
+      assert(fs.existsSync(path.join(standalone, 'server.js')), 'Build the standalone production server before smoke testing.');
+      fs.cpSync('public', path.join(standalone, 'public'), { recursive: true });
+      fs.cpSync(path.join('.next', 'static'), path.join(standalone, '.next', 'static'), { recursive: true });
       log = fs.openSync(path.join(directory, 'server.log'), 'w');
-      server = spawn(process.execPath, [require.resolve('next/dist/bin/next'), 'start', '--hostname', '127.0.0.1', '--port', '3107'], { stdio: ['ignore', log, log] });
+      server = spawn(process.execPath, [path.join(standalone, 'server.js')], { stdio: ['ignore', log, log], env: { ...process.env, PORT: '3107', HOSTNAME: '127.0.0.1' } });
       let ready = false;
       for (let i = 0; i < 60; i++) {
         if (server.exitCode !== null) throw new Error('The production server exited before becoming ready.');
-        try { const response = await fetch(base, { signal: AbortSignal.timeout(2000) }); if (response.ok) { ready = true; break; } } catch {}
+        try { await fetch(base, { signal: AbortSignal.timeout(2000) }); ready = true; break; } catch {}
         await pause(1000);
       }
       assert(ready, 'The production server did not become ready.');
@@ -29,7 +33,8 @@ async function main() {
     browser = await chromium.launch({ headless: true, ...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH ? { executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH } : {}) });
     const desktop = await browser.newContext({ viewport: { width: 1280, height: 900 }, permissions: ['clipboard-read', 'clipboard-write'] });
     page = await desktop.newPage(); page.on('pageerror', error => errors.push(error.message));
-    await page.goto(`${base}/?ref=John+1%3A1-3`, { waitUntil: 'networkidle' });
+    const initial = await page.goto(`${base}/?ref=John+1%3A1-3`, { waitUntil: 'networkidle' });
+    assert.equal(initial.status(), 200, 'The initial page must render successfully before client-side hydration.');
     await page.locator('#v3 .passage-highlight').first().waitFor();
     await page.getByRole('heading', { name: 'John 1', exact: true }).waitFor();
     checks.push('Passage links and range highlighting');
@@ -84,7 +89,8 @@ async function main() {
 
     const mobile = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
     page = await mobile.newPage(); page.on('pageerror', error => errors.push(error.message));
-    await page.goto(`${base}/?ref=John1`, { waitUntil: 'networkidle' });
+    const phoneResponse = await page.goto(`${base}/?ref=John1`, { waitUntil: 'networkidle' });
+    assert.equal(phoneResponse.status(), 200);
     await page.getByRole('heading', { name: 'John 1', exact: true }).waitFor();
     assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
     const theme = page.locator('.theme-trigger'), menu = page.getByRole('menu', { name: 'Colour theme' });
