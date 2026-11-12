@@ -5,7 +5,7 @@ const path = require('node:path');
 const Module = require('node:module');
 const vm = require('node:vm');
 const ts = require('typescript');
-const { JSDOM } = Module.createRequire(require.resolve('isomorphic-dompurify'))('jsdom');
+const { JSDOM } = require('jsdom');
 const React = require('react');
 const { act } = React;
 
@@ -125,6 +125,20 @@ test('a second tap closes the theme menu even if mobile blur happens before clic
   assert.equal(trigger.getAttribute('aria-expanded'), 'true');
   await click(trigger);
   assert.equal(trigger.getAttribute('aria-expanded'), 'false');
+}));
+
+test('commentary sanitisation removes executable markup and preserves source links', async () => withDOM(async ({ root }) => {
+  global.fetch = async url => ({ ok: true, json: async () => url.startsWith('/api/notes') ? { notes: [{ id: 1, book: 'John', chapter: 1, verse: 1, phrase: 'Word', start: 0, end: 4,
+    body: '<p onclick="alert(1)">Safe commentary</p><script>alert(1)</script><img src="x" onerror="alert(1)"><a href="javascript:alert(1)">Unsafe link</a><a href="https://www.vatican.va/">Source</a>' }] } : { connections: [] } });
+  const ChapterClient = loadTS('../src/components/ChapterClient.tsx').default;
+  await act(async () => root.render(React.createElement(ChapterClient, { book: 'John', chapter: 1, verses: [{ verse: 1, text: 'Word' }] })));
+  await click(document.querySelector('.commentary-mark'));
+  const popup = document.querySelector('.note-popup');
+  assert.equal(Boolean(popup.querySelector('script,[onclick],[onerror],[href^="javascript:"]')), false);
+  assert.match(popup.textContent, /Safe commentary/);
+  const source = popup.querySelector('a[href="https://www.vatican.va/"]');
+  assert.equal(source.target, '_blank');
+  assert.match(source.rel, /noopener/);
 }));
 
 test('note and connection importance preserves verse text and mixed markers prioritise fundamental', async () => withDOM(async ({ root }) => {

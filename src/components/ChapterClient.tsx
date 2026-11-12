@@ -5,7 +5,9 @@ import type { Verse } from '@/types/bible';
 import type { ChapterStudy, PassageTarget, SourceLink, StudyConnection, StudySignificance } from '@/types/study';
 import { copyText, passageHref, passageLabel, selectedPassage } from '@/lib/passage';
 import ReaderDialog from '@/components/ReaderDialog';
-import DOMPurify from 'isomorphic-dompurify';
+import createDOMPurify from 'dompurify';
+
+const browserPurifiers = new WeakMap<Window, ReturnType<typeof createDOMPurify>>();
 
 type Note = { significance?: StudySignificance; id: number; book: string; chapter: number; verse: number; start: number; end: number; body: string; phrase?: string | null };
 const significanceOf = (item: { significance?: StudySignificance }) => item.significance === 'interest' ? 'interest' : 'fundamental';
@@ -15,7 +17,12 @@ function Sources({ sources }: { sources: SourceLink[] }) {
   return <p className="sources">{sources.map((s, i) => <span key={s.url}>{i > 0 && ' · '}<a href={s.url} target="_blank" rel="noopener noreferrer">{s.label}</a></span>)}</p>;
 }
 function sanitizeNoteHTML(raw: string) {
-  return DOMPurify.sanitize(raw, { ADD_ATTR: ['target', 'rel'] }).replace(/<a\b([^>]*\bhref="https?:[^"]*"[^>]*)>/gi, (full, attrs) => {
+  // Notes open after browser interaction. Use its actual DOM rather than loading
+  // a server-side DOM emulator into every reader page.
+  if (typeof window === 'undefined') return '';
+  const purifier = browserPurifiers.get(window) ?? createDOMPurify(window);
+  browserPurifiers.set(window, purifier);
+  return purifier.sanitize(raw, { ADD_ATTR: ['target', 'rel'] }).replace(/<a\b([^>]*\bhref="https?:[^"]*"[^>]*)>/gi, (full, attrs) => {
     if (!/\btarget\s*=/.test(attrs)) attrs += ' target="_blank"';
     if (!/\brel\s*=/.test(attrs)) attrs += ' rel="noopener noreferrer nofollow"';
     return `<a${attrs}>`;

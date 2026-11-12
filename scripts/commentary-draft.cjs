@@ -2,8 +2,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
-const Module = require('node:module');
-const { JSDOM } = Module.createRequire(require.resolve('isomorphic-dompurify'))('jsdom');
+const { JSDOM } = require('jsdom');
 const { validateSources } = require('./build-data.cjs');
 const { isSpiritualClassic, isPapalWriting, isSourceURL } = require('./source-policy.cjs');
 const root = path.resolve(__dirname, '..');

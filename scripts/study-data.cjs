@@ -1,6 +1,5 @@
-const { createRequire } = require('node:module');
 const { isSourceURL } = require('./source-policy.cjs');
-const { JSDOM } = createRequire(require.resolve('isomorphic-dompurify'))('jsdom');
+const { JSDOM } = require('jsdom');
 const kinds = new Set(['quotation', 'fulfilment', 'echo', 'typology', 'theme']);
 const words = text => text.trim().split(/\s+/u).length;
 function sourceLinks(sources, id) {

@@ -2,7 +2,7 @@ const {test}=require('node:test');
 const assert=require('node:assert/strict');
 const fs=require('node:fs'),path=require('node:path'),Module=require('node:module'),vm=require('node:vm');
 const ts=require('typescript'),React=require('react'),{act}=React;
-const {JSDOM}=Module.createRequire(require.resolve('isomorphic-dompurify'))('jsdom');
+const {JSDOM}=require('jsdom');
 function load(file){
  const filename=path.resolve(__dirname,file),m=new Module(filename,module);m.filename=filename;m.paths=Module._nodeModulePaths(path.dirname(filename));const original=m.require.bind(m);
  m.require=id=>{if(id.startsWith('.'))for(const ext of ['.tsx','.ts']){const p=path.resolve(path.dirname(filename),id+ext);if(fs.existsSync(p))return load(p);}return original(id);};

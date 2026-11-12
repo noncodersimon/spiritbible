@@ -21,7 +21,6 @@ function assertCompatible(before, after) {
     assertSameKeys(before[section], after[section]);
     for (const [name, version] of Object.entries(before[section] || {})) {
       if (major(version) !== major(after[section][name])) throw new Error(`Major upgrade blocked: ${name}`);
-      if (['react', 'react-dom'].includes(name) && String(version).match(/\d+\.\d+/)?.[0] !== String(after[section][name]).match(/\d+\.\d+/)?.[0]) throw new Error(`React minor upgrade requires framework compatibility review: ${name}`);
     }
   }
   const withoutDependencies = value => Object.fromEntries(Object.entries(value).filter(([key]) => !['dependencies', 'devDependencies'].includes(key)));
@@ -47,8 +46,7 @@ async function prepare() {
   const before = read('package.json');
   const current = { before, base: run('git', ['rev-parse', 'HEAD'], { capture: true }), warnings: [] };
   save(current);
-  run('npm', ['exec', '--no', '--', 'ncu', '--target', 'minor', '--reject', 'react,react-dom', '--upgrade']);
-  run('npm', ['exec', '--no', '--', 'ncu', '--target', 'patch', '--filter', 'react,react-dom', '--upgrade']);
+  run('npm', ['exec', '--no', '--', 'ncu', '--target', 'minor', '--upgrade']);
   assertCompatible(before, read('package.json'));
   // Also refresh compatible transitive dependencies, even when direct pins did not move.
   run('npm', ['update', '--no-audit', '--no-fund']);

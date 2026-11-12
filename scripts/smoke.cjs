@@ -17,10 +17,12 @@ async function main() {
     if (!live) {
       const standalone = path.join('.next', 'standalone');
       assert(fs.existsSync(path.join(standalone, 'server.js')), 'Build the standalone production server before smoke testing.');
+      const trace = JSON.parse(fs.readFileSync(path.join('.next', 'server', 'app', 'page.js.nft.json'), 'utf8'));
+      assert(!trace.files.some(file => /node_modules\/(?:jsdom|isomorphic-dompurify)\//.test(file)), 'The deployed reader must not load a server-side DOM emulator.');
       fs.cpSync('public', path.join(standalone, 'public'), { recursive: true });
       fs.cpSync(path.join('.next', 'static'), path.join(standalone, '.next', 'static'), { recursive: true });
       log = fs.openSync(path.join(directory, 'server.log'), 'w');
-      server = spawn(process.execPath, [path.join(standalone, 'server.js')], { stdio: ['ignore', log, log], env: { ...process.env, PORT: '3107', HOSTNAME: '127.0.0.1' } });
+      server = spawn(process.execPath, [path.join(standalone, 'server.js')], { stdio: ['ignore', log, log], env: { ...process.env, PORT: '3107', HOSTNAME: '127.0.0.1', NODE_OPTIONS: [process.env.NODE_OPTIONS, '--no-experimental-require-module'].filter(Boolean).join(' ') } });
       let ready = false;
       for (let i = 0; i < 60; i++) {
         if (server.exitCode !== null) throw new Error('The production server exited before becoming ready.');

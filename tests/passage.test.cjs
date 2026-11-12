@@ -4,7 +4,7 @@ const fs=require('node:fs');
 const path=require('node:path');
 const Module=require('node:module');
 const ts=require('typescript');
-const {JSDOM}=Module.createRequire(require.resolve('isomorphic-dompurify'))('jsdom');
+const {JSDOM}=require('jsdom');
 function load(filename){
  filename=path.resolve(__dirname,filename);
  const instance=new Module(filename,module);instance.filename=filename;instance.paths=Module._nodeModulePaths(path.dirname(filename));

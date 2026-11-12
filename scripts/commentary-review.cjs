@@ -71,7 +71,7 @@ fs.writeFileSync(path.join(dir,'coverage.md'),[
 ].join('\n'));
 
 const sampleRefs=[['Genesis',1,1],['Exodus',3,14],['Judges',11,31],['Tobit',12,8],['2 Maccabees',12,45],['Job',13,15],['Psalms',137,9],['Wisdom',7,25],['Isaiah',7,14],['Matthew',6,11],['Luke',1,43],['John',1,1],['Romans',8,22],['Ephesians',2,8],['Hebrews',4,15],['Revelation',21,4]];
-const {JSDOM}=require('node:module').createRequire(require.resolve('isomorphic-dompurify'))('jsdom');
+const {JSDOM}=require('jsdom');
 const samples=sampleRefs.map(([book,chapter,verse])=>rows.find(n=>n.book===book&&n.chapter===chapter&&n.verse===verse)||rows.find(n=>n.book===book&&n.chapter===chapter)||rows.find(n=>n.book===book));
 fs.writeFileSync(path.join(dir,'samples.md'),[
  '# Representative commentary notes',
