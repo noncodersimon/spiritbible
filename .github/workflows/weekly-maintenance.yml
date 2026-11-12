@@ -84,6 +84,7 @@ jobs:
         if: always()
         env:
           GH_TOKEN: ${{ github.token }}
+          MAINTENANCE_ISSUE_NUMBER: '3'
           MAINTENANCE_JOB_STATUS: ${{ job.status }}
           MAINTENANCE_STEPS: ${{ toJSON(steps) }}
         run: node scripts/maintenance.cjs report

@@ -56,3 +56,20 @@ test('successful updates use one thread and never notify twice for the same comm
   await send({ ...updated, published: 'def456' });
   assert.equal(writes.length, 2);
 });
+
+test('a configured notification thread is addressed directly and must be trusted', async () => {
+  const previous = process.env.MAINTENANCE_ISSUE_NUMBER;
+  process.env.MAINTENANCE_ISSUE_NUMBER = '3';
+  try {
+    const issue = { user: { login: 'owner' }, body: '<!-- spiritbible-applied-updates -->\n<!-- applied:abc123 -->' };
+    const calls = [];
+    const api = async endpoint => { calls.push(endpoint); return issue; };
+    await notifyApplied(updated, 'success', passed, 'owner/repo', 'https://example.test/run', api);
+    assert.deepEqual(calls, ['/issues/3']);
+    issue.user.login = 'someone-else';
+    await assert.rejects(notifyApplied(updated, 'success', passed, 'owner/repo', 'https://example.test/run', api), /could not be verified/);
+  } finally {
+    if (previous === undefined) delete process.env.MAINTENANCE_ISSUE_NUMBER;
+    else process.env.MAINTENANCE_ISSUE_NUMBER = previous;
+  }
+});

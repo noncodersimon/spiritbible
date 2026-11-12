@@ -137,7 +137,12 @@ async function notifyApplied(current, jobStatus, steps, repository, runUrl, api 
   const trustedAuthor = user => ['github-actions[bot]', owner].includes(user?.login);
   const stamp = `<!-- applied:${current.published} -->`;
   let existing;
-  for (let page = 1; ; page++) {
+  if (process.env.MAINTENANCE_ISSUE_NUMBER) {
+    if (!/^\d+$/.test(process.env.MAINTENANCE_ISSUE_NUMBER)) throw new Error('Invalid maintenance notification issue number.');
+    existing = await api(`/issues/${process.env.MAINTENANCE_ISSUE_NUMBER}`);
+    if (existing.pull_request || !trustedAuthor(existing.user) || !existing.body?.includes(marker)) throw new Error('The configured maintenance notification thread could not be verified.');
+  }
+  for (let page = 1; !existing; page++) {
     const issues = await api(`/issues?state=all&per_page=100&page=${page}`);
     existing = issues.find(issue => !issue.pull_request && trustedAuthor(issue.user) && issue.title === issueTitle && issue.body?.includes(marker));
     if (existing || issues.length < 100) break;

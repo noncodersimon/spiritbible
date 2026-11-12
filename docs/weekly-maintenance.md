@@ -16,7 +16,7 @@ If a deployment or live check fails after publication, the run fails and records
 
 ## Quiet notifications
 
-The **SpiritBible updates applied** issue is a single notification thread. The workflow mentions `@noncodersimon` there only after it has published a dependency commit, Vercel has confirmed its deployment, and the live-site checks have passed. Each commit is reported once, even if the reporting step is retried. Direct changes are listed; lockfile-only updates are described as indirect dependency updates.
+The [**SpiritBible updates applied** issue](https://github.com/noncodersimon/spiritbible/issues/3) is a single notification thread. The workflow addresses issue #3 directly and mentions `@noncodersimon` there only after it has published a dependency commit, Vercel has confirmed its deployment, and the live-site checks have passed. Each commit is reported once, even if the reporting step is retried. Direct changes are listed; lockfile-only updates are described as indirect dependency updates.
 
 No-change runs, warnings, candidate failures, failed deployments and failed live checks produce **no issue or comment**. Their details remain in the Actions summary and `maintenance-report` artifact (retained for 30 days). The old **SpiritBible maintenance needs attention** issue is no longer updated by the routine. This is the owner's preference for update-applied notifications only; a failure therefore requires checking the Actions report rather than expecting a maintenance alert.
 
